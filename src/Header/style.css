@@ -1,0 +1,22 @@
+
+header {
+    display: block;
+    width: 100%;
+    z-index: 6;
+    box-shadow: 0 0 10px -2px grey;
+    box-sizing: border-box;
+    height: 80px;
+    padding: 18px var(--offset);
+}
+
+header > .changeLang {
+    display: inline-block;
+    float: right;
+    height: 25px;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+header > .changeLang > img {
+    height: 100%;
+}
