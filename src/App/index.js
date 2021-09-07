@@ -12,6 +12,7 @@ import Calculator from "../Calculator";
 import OffersList from "../OffersList";
 import TopTable from "../TopTable";
 import FAQ from "../FAQ";
+import Reviews from "../Reviews";
 
 import './style.css'
 
@@ -91,6 +92,7 @@ const App = props => {
                             "                    микрокредитам под залог авто, жилье в залог оформить нельзя."}
 
                 ]}/>
+                <Reviews/>
             </Route>
         </Switch>
     </Router>

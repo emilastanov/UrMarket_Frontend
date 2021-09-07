@@ -1,0 +1,170 @@
+
+.reviews {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 var(--offset);
+    height: 468px;
+}
+.reviews > .review_form {
+    width: 100%;
+    background: white;
+    margin: 0 auto 20px auto;
+    box-shadow: 0 0 10px -8px grey;
+    box-sizing: border-box;
+    border: 1px solid #efefef;
+    border-radius: 8px;
+}
+
+.reviews > .review_form > .title{
+    font-family: "Ubuntu", sans-serif;
+    color: #535353;
+    margin: 24px 32px;
+    font-size: 16px;
+
+}
+
+.reviews > .review_form > form {
+    border-top: 1px solid #efefef;
+}
+
+.reviews > .review_form > form > input {
+    border: 1px solid #dce1e6;
+    box-sizing: border-box;
+    display: block;
+    border-radius: 6px!important;
+    margin: 16px 32px;
+    font-size: 16px;
+    font-family: "OpenSans", sans-serif;
+    padding: 5px 10px;
+    width: calc(100% - 64px);
+    background-color: white!important;
+    height: 40px;
+}
+
+.reviews > .review_form > form > .company{
+    display: grid;
+    width: calc(100% - 64px);
+    grid-template-columns: 80% 10%;
+}
+
+.reviews > .review_form > form > .company > select{
+    font-family: 'OpenSans', sans-serif;
+    font-size: 14px;
+    width: 100%;
+    margin: 0 32px;
+    padding: 5px 18px;
+    color: grey !important;
+    border: 1px solid #dce1e6;
+    box-sizing: border-box;
+    display: block;
+    border-radius: 6px!important;
+}
+
+.reviews > .review_form > form > textarea{
+    border: 1px solid #dce1e6;
+    box-sizing: border-box;
+    display: block;
+    border-radius: 6px!important;
+    margin: 16px 32px;
+    font-size: 16px;
+    font-family: "OpenSans", sans-serif;
+    width: calc(100% - 64px);
+    background-color: white!important;
+    padding: 10px 15px;
+    height: 200px;
+}
+
+.reviews > .review_form > form > button{
+    margin: 0 32px 16px 32px;
+    height: 40px;
+    width: 200px;
+    border-radius: 10px;
+    background: rgb(0, 172, 255);
+    color: white;
+    font-family: "OpenSans", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    font-style: italic;
+    border: 0.2px solid #00acff;
+    float: right;
+}
+
+.success_msg {
+    float: right;
+    margin-top: 8px;
+    color: rgba(26, 171, 72, 1);
+}
+
+.star-cb-group {
+    /* remove inline-block whitespace */
+    font-size: 0;
+    /* flip the order so we can use the + and ~ combinators */
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    /* the hidden clearer */
+}
+.star-cb-group * {
+    font-size: 1rem;
+}
+.star-cb-group > input {
+    display: none;
+}
+.star-cb-group > input + label {
+    /* only enough room for the star */
+    display: inline-block;
+    overflow: hidden;
+    text-indent: 9999px;
+    width: 1em;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.star-cb-group > input + label:before {
+    display: inline-block;
+    text-indent: -9999px;
+    content: "\2606";
+    color: #888;
+}
+.star-cb-group > input:checked ~ label:before, .star-cb-group > input + label:hover ~ label:before, .star-cb-group > input + label:hover:before {
+    content: "\2605";
+    color: rgba(26, 171, 72, 1);
+    text-shadow: 0 0 1px #333;
+}
+.star-cb-group > .star-cb-clear + label {
+    text-indent: -9999px;
+    width: 0.5em;
+    margin-left: -0.5em;
+}
+.star-cb-group > .star-cb-clear + label:before {
+    width: 0.5em;
+}
+.star-cb-group:hover > input + label:before {
+    content: "\2606";
+    color: #888;
+    text-shadow: none;
+}
+.star-cb-group:hover > input + label:hover ~ label:before, .star-cb-group:hover > input + label:hover:before {
+    content: "\2605";
+    color: rgba(26, 171, 72, 1);
+    text-shadow: 0 0 1px #333;
+}
+
+fieldset {
+    margin-left: 50px;
+    margin-top: -3px;
+    border: 0;
+    width: 5em;
+    border-radius: 1px;
+    padding: 0;
+    /*margin: 1em auto;*/
+}
+#rating {
+    font-size: 11px;
+    width: 75px;
+    display: block;
+    margin-left: 50px;
+    color: #a8a8a8 !important;
+}
+
