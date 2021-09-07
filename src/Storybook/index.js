@@ -4,6 +4,8 @@ import Button from "../components/Button";
 import InputGroup from "../components/InputGroup";
 import Input from "../components/Input";
 import Ads from "../components/Ads";
+import Filter from "../components/Filter";
+import Offer from "../components/Offer";
 
 const Storybook = props => {
     return <div>
@@ -31,6 +33,35 @@ const Storybook = props => {
                 img="https://urmarket.online/static/credit7Adv.png"
                 style={{width: 400}}
             />
+        </div>
+
+        <div style={{display: "block", width: "100%", height: 200}}>
+            <Filter filters={[
+                {"name": "По сумме"},
+                {"name": "По сроку"},
+                {"name": "По ставке"},
+                {"name": "По популярности"}
+            ]}/>
+        </div>
+
+        <div style={{display: "block", width: "20%", height: 200}}>
+            <Offer
+                image="https://urmarket.online/static/credit7Adv.png"
+                link="#"
+                amount={{min: 5, max: 10, symbol: 'p'}}
+                term={{min: 1, max: 5}}
+                time={{min:5, max:15}}
+                rate={0.1}
+            />
+        </div>
+
+        <div style={{display: "block", width: "100%", height: 200}}>
+            <Filter filters={[
+                {"name": "По сумме"},
+                {"name": "По сроку"},
+                {"name": "По ставке"},
+                {"name": "По популярности"}
+            ]}/>
         </div>
     </div>
 }
