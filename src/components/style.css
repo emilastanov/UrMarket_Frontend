@@ -33,7 +33,7 @@
     background: white;
     position: relative;
     cursor: pointer;
-    border-right: 1px solid #efefef;
+    border-right: 1px solid #dfdfdf;
     z-index: 5;
     box-sizing: border-box;
 }
