@@ -4,6 +4,7 @@
     grid-template-columns: 1fr 1fr;
     padding: 0 var(--offset);
     height: 468px;
+    column-gap: 24px;
 }
 .reviews > .review_form {
     width: 100%;

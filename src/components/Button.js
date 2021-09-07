@@ -8,7 +8,8 @@ const Button = (props) => (
         "background": props.background ? props.background: "rgb(0, 172, 255)",
         "border": props.border ? `0.2px solid ${props.border}`: "0.2px solid #00acff",
         "width": props.width ? `${props.width}px`: "200px",
-        "height": props.height ? `${props.height}px`: "60px"
+        "height": props.height ? `${props.height}px`: "60px",
+        "margin": props.margin
     }}>
         <span>{props.children}</span>
     </div>

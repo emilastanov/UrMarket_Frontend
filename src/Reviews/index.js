@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Field } from 'react-final-form'
 
-import Button from "../components/Button";
+import ReviewsList from "../components/ReviewsList";
 
 import './style.css';
 
@@ -54,6 +54,7 @@ const Reviews = props => {
                 )}
             />
         </div>
+        <ReviewsList />
     </div>
 };
 

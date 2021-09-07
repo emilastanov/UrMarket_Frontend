@@ -197,3 +197,67 @@
     cursor: pointer;
     text-decoration: none;
 }
+
+.reviewsList {
+    background: white;
+    box-shadow: 0 0 10px -8px grey;
+    box-sizing: border-box;
+    border: 1px solid #efefef;
+    border-radius: 8px;
+    z-index: 5;
+    height: 468px;
+}
+
+.reviewsList > .list > .review {
+    font-family: "Ubuntu", sans-serif;
+    color: #828282;
+    font-size: 12px;
+    margin: 15px 0 0 0;
+}
+
+.reviewsList > .list > .review > div > span > img {
+    width: 20px;
+    position: relative;
+    top: 4px;
+}
+
+.reviewsList > .list > .review > div > span:last-child {
+    position: relative;
+    right: 10px;
+    color: #828282;
+    margin-left: 2px;
+}
+
+.reviewsList > .list > .review > p {
+    color: #535353;
+    margin: 10px 0 0 0;
+    padding: 0 0 15px 0;
+    border-bottom: 1px solid #efefef;
+    font-family: "OpenSans", sans-serif;
+    font-size: 16px;
+}
+
+.reviewsList > .list > .moreButton {
+    width: 150px;
+    text-align: center;
+    margin: 16px auto;
+    color: #3b43c0;
+    cursor: pointer;
+}
+
+.reviewsList > .list > .review > div > span {
+    font-family: "Ubuntu", sans-serif;
+    color: #535353;
+    font-size: 16px;
+    margin: 0 5px 0 0;
+}
+
+.reviewsList > .title{
+    font-family: "Ubuntu", sans-serif;
+    color: #535353;
+    margin: 24px 32px;
+    font-size: 16px;
+}
+.reviewsList > .list {
+    padding: 0 30px;
+}
