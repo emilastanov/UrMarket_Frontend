@@ -13,6 +13,7 @@ import OffersList from "../OffersList";
 import TopTable from "../TopTable";
 import FAQ from "../FAQ";
 import Reviews from "../Reviews";
+import Footer from "../Footer";
 
 import './style.css'
 
@@ -93,6 +94,7 @@ const App = props => {
 
                 ]}/>
                 <Reviews/>
+                <Footer/>
             </Route>
         </Switch>
     </Router>

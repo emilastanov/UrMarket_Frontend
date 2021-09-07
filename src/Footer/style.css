@@ -1,0 +1,7 @@
+
+footer {
+    width: calc(100% - var(--offset)*2);
+    margin: 24px auto;
+    font-size: 14px;
+    color: #9f9f9f;
+}
