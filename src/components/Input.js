@@ -5,7 +5,7 @@ import './style.css';
 const Input = props => {
     const [focus, setFocus] = useState(false);
     return <div className="input" onClick={(elem)=>{
-            setFocus(!focus);
+            setFocus(true);
             if (elem.target.children.length > 0) {
                 console.log(elem.target.children[1].focus())
             } else if (elem.target.tagName === "LABEL") {
@@ -14,18 +14,20 @@ const Input = props => {
         }
     }>
         <label style={{
-            transform: focus? 'scale(0.9) translate(-15px,-15px)': 'none'
+            transform: focus? 'scale(0.9) translate(-10px,-15px)': 'none'
         }}>{props.label}</label>
         <input
             type="text"
             placeholder={props.placeholder}
             onFocus={(elem)=>{elem.target.style.opacity = 1}}
             onBlur={(elem)=>{
-                elem.target.style.opacity = 0;
-                setFocus(false)
+                if (!elem.target.value) {
+                    elem.target.style.opacity = 0;
+                    setFocus(false)
+                }
             }}
             value={props.value}
-            onChange={props.changeValue}
+            onChange={e=>props.changeValue(e.target.value)}
         />
     </div>
 }

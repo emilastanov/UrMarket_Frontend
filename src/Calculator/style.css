@@ -1,0 +1,20 @@
+
+.calculator {
+    box-sizing: border-box;
+    background: rgba(26, 171, 72, 1);
+    height: 400px;
+    padding: 48px var(--offset);
+}
+
+.calculator > h1 {
+    margin: 0;
+    font-family: "Ubuntu", sans-serif;
+    color: white;
+    font-size: 40px;
+}
+
+.calculator > p {
+    width: 70%;
+    color: white;
+    margin: 24px 0;
+}

@@ -65,3 +65,17 @@
     border-radius: 0;
     cursor: pointer;
 }
+
+.ads {
+    display: grid;
+    grid-template-columns: 60% 40%;
+}
+
+.ads > img {
+    width: 100%;
+    border-right: 1px solid white;
+}
+.ads > p {
+    margin-left: 24px;
+    color: white
+}
