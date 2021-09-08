@@ -9,23 +9,22 @@ const Offer = props => (
         </a>
         <div className="wrapper">
             <div className="amount">
-                <span>Сумма</span>
+                <span>{props.data? props.data.amount : ""}</span>
                 <span>{props.amount.min} - {props.amount.max} {props.amount.symbol}</span>
             </div>
             <div className="time">
-                <span>Время</span>
-                <span>{props.time.min} - {props.time.max} мин</span>
+                <span>{props.data? props.data.time.title : ""}</span>
+                <span>{props.time.min} - {props.time.max} {props.data? props.data.time.units : ""}</span>
             </div>
-            <div className="term" >
-                <span>Срок</span>
-                <span>{props.term.min} - {props.term.max} дней</span>
+            <div className="term">
+                <span>{props.data? props.data.term.title : ""}</span>
+                <span>{props.term.min} - {props.term.max} {props.data? props.data.term.units : ""}</span>
             </div>
-            <div className="rate" >
-                <span>Ставка</span>
-                <span>от {props.rate}%</span>
+            <div className="rate">
+                <span>{props.data? props.data.rate.title : ""}</span>
+                <span>{props.data? props.data.rate.units : ""} {props.rate}%</span>
             </div>
-            <a className="button" href={props.link} target="_black">получить
-                решение</a>
+            <a className="button" href={props.link} target="_black">{props.data? props.data.button : ""}</a>
         </div>
     </div>
 );

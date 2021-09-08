@@ -6,7 +6,7 @@ const Header = props => {
     return <header>
         <img className="logotype" src="https://res.cloudinary.com/urmarket-online/image/upload/v1630921659/logotype.svg" alt="Logotype"/>
         <div className="changeLang" onClick={props.change}>
-            <img className="logotype" src={`https://res.cloudinary.com/urmarket-online/image/upload/v1630923674/lang${props.language}.svg`} alt="Change language"/>
+            <span className={props.language.selected === props.language.languages[0]? "selected" : ""}>{props.language.languages[0]}</span><span style={{color: "#00ACFF"}}> | </span><span className={props.language.selected === props.language.languages[1]? "selected" : ""}>{props.language.languages[1]}</span>
         </div>
     </header>
 }

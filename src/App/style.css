@@ -9,6 +9,11 @@
 }
 
 @font-face {
+    font-family: Quicksand; /* Имя шрифта */
+    src: url(fonts/Quicksand-VariableFont_wght.ttf); /* Путь к файлу со шрифтом */
+}
+
+@font-face {
     font-family: Quicksand;
     src: url(fonts/Quicksand-SemiBold.ttf);
 }

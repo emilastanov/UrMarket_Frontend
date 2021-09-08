@@ -4,7 +4,7 @@ import './style.css'
 
 const Filter = props => (
     <div className="filter">
-        <span>Сортировать:</span>
+        <span>{props.header}</span>
         {props.filters.map((item,key)=>(
             <span key={key}>{item.name}</span>
         ))}

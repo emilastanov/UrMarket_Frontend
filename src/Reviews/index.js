@@ -12,22 +12,24 @@ const Reviews = props => {
     }
     return <div className="reviews">
         <div className="review_form">
-            <h1 className="title">Оставьте отзыв</h1>
+            <h1 className="title">{props.data ? props.data.header : ""}</h1>
             <Form
                 onSubmit={submitForm}
                 render={({handleSubmit}) => (
                     <form onSubmit={handleSubmit} >
-                        <input id="name" name="name" type="text" placeholder="Фамилия Имя" />
+                        <input name="name" type="text" placeholder={props.data ? props.data.form.name : ""} />
                         <div className="company">
                             <select name="company" id="company"
                                     onChange="document.getElementById('company').style = 'color: black!important';">
-                                <option value="" selected="" disabled="" hidden="" id="select_placeholder">Выберите МФО
+                                <option selected disabled={true} hidden={true} id="select_placeholder">
+                                    {props.data ? props.data.form.select_organization : ""}
                                 </option>
-                                <option value="Ваша Готивочка">Ваша Готивочка</option>
-                                <option value="Money4you">Money4you</option>
+                                {props.offers.map((item,key)=>(
+                                    <option key={key} value={item.title}>{item.title}</option>
+                                ))}
                             </select>
                             <div>
-                                <span id="rating">Оцените</span>
+                                <span id="rating">{props.data ? props.data.form.rating : ""}</span>
                                 <fieldset>
                                     <span className="star-cb-group">
                                       <input type="radio" id="rating-5" name="rating" value="5" /><label
@@ -46,15 +48,14 @@ const Reviews = props => {
                                 </fieldset>
                             </div>
                         </div>
-                        <textarea id="text" placeholder="Оставьте отзыв" />
-
-                        <button type="submit" id="send_button">Отправить</button>
-                        <span className="success_msg" id="success_msg" >Ваш отзыв успешно отправлен!</span>
+                        <textarea id="text" placeholder={props.data ? props.data.form.input_placeholder : ""} />
+                        <button type="submit" id="send_button">{props.data ? props.data.form.button : ""}</button>
+                        <span className="success_msg" id="success_msg" style={{display: "none"}}>{props.data ? props.data.success_message : ""}</span>
                     </form>
                 )}
             />
         </div>
-        <ReviewsList />
+        <ReviewsList data={props.data} reviews={props.reviews}/>
     </div>
 };
 

@@ -1,24 +1,29 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import './style.css';
 
 const FAQ = props => {
-    const [answer, showAnswer] = useState("")
-    const [activeQuestion, setActiveQuestion] = useState(null)
+    const [answer, showAnswer] = useState(null)
+    const [activeQuestion, setActiveQuestion] = useState(0)
+    useEffect(()=>{
+        if (props.questions){
+            showAnswer(props.questions[0].answer)
+        }
+    },[props.questions])
     return <div className="FAQ">
         <h1 className="title">
-            Часто задаваемые вопросы
+            {props.header}
         </h1>
         <div className="body">
             <div className="questions">
-                {props.questions.map((item, key) => (
+                {props.questions ? props.questions.map((item, key) => (
                     <div key={key} className={`question ${activeQuestion===key? 'active': ''}`} onClick={()=>{
                         showAnswer(item.answer);
                         setActiveQuestion(key)
                     }}>
                         {item.question}
                     </div>
-                ))}
+                )) : ""}
             </div>
             <div className="answer" >
                 <p>{answer}</p>

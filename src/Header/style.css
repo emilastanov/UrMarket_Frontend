@@ -13,10 +13,26 @@ header > .changeLang {
     display: inline-block;
     float: right;
     height: 25px;
-    margin: 10px 0;
+    margin: 4px;
     cursor: pointer;
+    font-family: "Quicksand", sans-serif;
+    font-size: 28px;
+    color: #828282;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+header > .changeLang > .selected {
+    color: #1AAB48;
+    font-size: 30px;
 }
 
 header > .changeLang > img {
     height: 100%;
 }
+

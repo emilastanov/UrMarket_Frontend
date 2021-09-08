@@ -13,6 +13,16 @@
     font-size: 40px;
 }
 
+.textLoading {
+    display: inline;
+    background-color: rgb(216 216 216);
+    box-shadow: -10px 0 0 rgb(216 216 216), 10px 0 0 rgb(216 216 216);
+    padding: 0 10px 0 0;
+    color: rgb(216 216 216)!important;
+    line-height: 26px;
+    /*font-size: 45px;*/
+}
+
 .calculator > p {
     width: 70%;
     color: white;

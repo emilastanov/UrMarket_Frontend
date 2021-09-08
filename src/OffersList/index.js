@@ -9,22 +9,23 @@ import Offer from "../components/Offer";
 const OffersList = props => {
 
     return <div className="offersList">
-        <Filter filters={[
-            {"name": "По сумме"},
-            {"name": "По сроку"},
-            {"name": "По ставке"},
-            {"name": "По популярности"}
+        <Filter header={props.filter ? props.filter.header : ""} filters={[
+            {"name": props.filter ? props.filter.amount : ""},
+            {"name": props.filter ? props.filter.term : ""},
+            {"name": props.filter ? props.filter.rate : ""},
+            {"name": props.filter ? props.filter.popular : ""}
         ]}/>
         <div className="list">
             {props.offers.map((item,key)=>(
                 <Offer
+                    data={props.card}
                     key={key}
-                    image="https://urmarket.online/static/credit7Adv.png"
-                    link="#"
-                    amount={{min: 5, max: 10, symbol: 'p'}}
-                    term={{min: 1, max: 5}}
-                    time={{min:5, max:15}}
-                    rate={0.1}
+                    image={item.logotype}
+                    link={item.link}
+                    amount={item.amount}
+                    term={item.term}
+                    time={item.processing_time}
+                    rate={item.rate}
                 />
             ))}
         </div>

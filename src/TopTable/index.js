@@ -4,20 +4,20 @@ import './style.css'
 
 const TopTable = props => (
     <div className="top">
-        <h2 className="title" id="topTitle">Топ 5 МФО, выдающих микрозаймы онлайн</h2>
+        <h2 className="title" id="topTitle">{props.header}</h2>
         <div className="top_table" id="top_table">
             <div className="top_table_row" id="top_table_row">
                 <div className="top_table_column">
-                    МФО
+                    {props.columns ? props.columns.company : ""}
                 </div>
                 <div className="top_table_column">
-                    Сумма
+                    {props.columns ? props.columns.amount : ""}
                 </div>
                 <div className="top_table_column">
-                    Ставка
+                    {props.columns ? props.columns.rate : ""}
                 </div>
                 <div className="top_table_column">
-                    Срок
+                    {props.columns ? props.columns.term : ""}
                 </div>
             </div>
             {props.offers.map((item,key)=>(
@@ -25,7 +25,7 @@ const TopTable = props => (
                     <div className="top_table_column">{item.title}</div>
                     <div className="top_table_column">{item.amount.min} - {item.amount.max}</div>
                     <div className="top_table_column">от {item.rate}%</div>
-                    <div className="top_table_column">{item.time.min} - {item.time.max} дней</div>
+                    <div className="top_table_column">{item.processing_time.min} - {item.processing_time.max} дней</div>
                 </div>
             ))}
         </div>
