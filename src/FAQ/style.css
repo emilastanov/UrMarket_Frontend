@@ -1,53 +1,55 @@
+@media screen and (min-width: 901px) {
+    .FAQ {
+        width: calc(100% - var(--offset) * 2);
+        background: white;
+        margin: 0 auto 20px auto;
+        box-shadow: 0 0 10px -8px grey;
+        box-sizing: border-box;
+        border: 1px solid #efefef;
+        border-radius: 8px;
+    }
 
-.FAQ {
-    width: calc(100% - var(--offset)*2);
-    background: white;
-    margin: 0 auto 20px auto;
-    box-shadow: 0 0 10px -8px grey;
-    box-sizing: border-box;
-    border: 1px solid #efefef;
-    border-radius: 8px;
-}
+    .FAQ > .title {
+        font-family: "Ubuntu", sans-serif;
+        color: #535353;
+        margin: 24px 32px;
+        font-size: 16px;
+    }
 
-.FAQ > .title {
-    font-family: "Ubuntu", sans-serif;
-    color: #535353;
-    margin: 24px 32px;
-    font-size: 16px;
-}
+    .FAQ > .body {
+        display: grid;
+        grid-template-columns: 26% 74%;
+        border-top: 1px solid #dfdfdf;
+        box-sizing: border-box;
+    }
 
-.FAQ > .body {
-    display: grid;
-    grid-template-columns: 26% 74%;
-    border-top: 1px solid #dfdfdf;
-    box-sizing: border-box;
-}
+    .FAQ > .body > .questions > .question {
+        width: 100%;
+        box-sizing: border-box;
+        margin: 0;
+        border-right: 1px solid #dfdfdf;
+        border-bottom: 1px solid #dfdfdf;
+        height: 64px;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        padding: 16px 8px 16px 32px;
+        font-style: italic;
+        font-size: 14px;
+        cursor: pointer;
+    }
 
-.FAQ > .body > .questions > .question {
-    width: 100%;
-    box-sizing: border-box;
-    margin: 0;
-    border-right: 1px solid #dfdfdf;
-    border-bottom: 1px solid #dfdfdf;
-    height: 64px;
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    padding: 16px 8px 16px 32px;
-    font-style: italic;
-    font-size: 14px;
-    cursor: pointer;
-}
-.FAQ > .body > .questions > .question:last-child {
-    border-bottom: none
-}
+    .FAQ > .body > .questions > .question:last-child {
+        border-bottom: none
+    }
 
-.FAQ > .body > .questions > .question.active {
-    border-left: 4px solid rgba(26, 171, 72, 1);
-    background: #f5f5f5;
-}
+    .FAQ > .body > .questions > .question.active {
+        border-left: 4px solid rgba(26, 171, 72, 1);
+        background: #f5f5f5;
+    }
 
-.FAQ > .body > .answer {
-    padding: 24px;
-    font-style: italic;
+    .FAQ > .body > .answer {
+        padding: 24px;
+        font-style: italic;
+    }
 }

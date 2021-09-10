@@ -6,9 +6,14 @@ import TopTable from "../../TopTable";
 import FAQ from "../../FAQ";
 import Reviews from "../../Reviews";
 import Footer from "../../Footer";
+import Header from "../../Header";
 
 import {getContent, getFAQ, getOffers, getReviews} from "./reducer.js"
+import {useParams, useLocation} from "react-router-dom";
 
+const useQuery = () => {
+    return new URLSearchParams(useLocation().search);
+}
 
 const Main = props => {
 
@@ -16,44 +21,44 @@ const Main = props => {
     const [offers, setOffers] = useState(null);
     const [faq, setFaq] = useState(null);
     const [reviews, setReviews] = useState(null);
+    let {market} = useParams();
+    let query = useQuery();
+
+    market = market ? market : "ua"
+    const language = query.get("language")? query.get("language") : "ru"
 
     useEffect(()=>{
-        getContent(props.market, props.language).then((response)=>{
+        getContent(market, language).then((response)=>{
             const data = response.data.data.getContent;
             setContent(data.content)
 
-            console.log(data);
-
             document.title = data.content.title;
-            document.createElement('meta')
-
         });
-        getOffers(props.market).then((response)=>{
+        getOffers(market).then((response)=>{
             const offers = response.data.data.listOffers.offers;
 
-            console.log(offers);
-
             setOffers(offers);
+
+            props.loader(false)
         });
-        getFAQ(props.market, props.language).then((response)=>{
+        getFAQ(market, language).then((response)=>{
             const FAQ = response.data.data.listFAQ.list_faq;
 
-            console.log(FAQ);
-
             setFaq(FAQ);
+
         });
-        getReviews(props.market).then((response)=>{
+        getReviews(market).then((response)=>{
             const reviews = response.data.data.listReviews.reviews
 
-            console.log(reviews)
-
             setReviews(reviews)
+
         })
     }, [setContent])
 
 
 
     return <React.Fragment>
+        <Header language={{selected: "ru", languages: ["ru", "ua"]}} change={()=>{console.log("CLICK")}} />
         <Calculator
             header={content ? content.header : ""}
             description={content ? content.description: ""}
@@ -76,6 +81,8 @@ const Main = props => {
             header={content ? content.faq_header : ""}
         />
         <Reviews
+            updateReviews={getReviews}
+            market={content ? content.market : null}
             data={content ? content.review : null}
             offers={offers? offers: []}
             reviews={reviews? reviews: []}

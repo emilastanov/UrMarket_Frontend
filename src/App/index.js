@@ -3,32 +3,32 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    Redirect
 } from "react-router-dom";
 
-import Storybook from "../Storybook";
-import Header from "../Header";
 import Main from "../pages/Main";
+import PageLoader from "../components/PageLoader";
+import AdminPanel from "../pages/AdminPanel";
+import Login from "../pages/Login";
+
 import './style.css'
 
 
 const App = props => {
-    let [lang, changeLang] = useState("ru")
-    const changeLanguage = () => {
-        if (lang === "ru") {
-            changeLang('ua')
-        } else {
-            changeLang('ru')
-        }
-    }
+    const [isLoading, setIsLoading] = useState(true)
+    const token = localStorage.getItem("token");
+
     return <Router>
-        <Header language={{selected: lang, languages: ["ru", "ua"]}} change={changeLanguage}/>
+        <PageLoader state={isLoading}/>
         <Switch>
-            <Route path="/storybook">
-                <Storybook />
+            <Route path="/admin">
+                {token ? <AdminPanel loader={setIsLoading}/> : <Login loader={setIsLoading}/>}
+            </Route>
+            <Route path="/:market">
+                <Main language="ru" loader={setIsLoading}/>
             </Route>
             <Route path="/">
-                <Main market="ua" language="ru" />
+                <Redirect to="/ua?language=ru"/>
             </Route>
         </Switch>
     </Router>

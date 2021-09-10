@@ -16,7 +16,7 @@ const OffersList = props => {
             {"name": props.filter ? props.filter.popular : ""}
         ]}/>
         <div className="list">
-            {props.offers.map((item,key)=>(
+            {props.offers.filter((a)=>(a.is_show)).map((item,key)=>(
                 <Offer
                     data={props.card}
                     key={key}

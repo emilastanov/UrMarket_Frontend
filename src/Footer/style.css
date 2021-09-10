@@ -1,7 +1,8 @@
-
-footer {
-    width: calc(100% - var(--offset)*2);
-    margin: 24px auto;
-    font-size: 14px;
-    color: #9f9f9f;
+@media screen and (min-width: 901px) {
+    footer {
+        width: calc(100% - var(--offset) * 2);
+        margin: 24px auto;
+        font-size: 14px;
+        color: #9f9f9f;
+    }
 }

@@ -1,56 +1,97 @@
-import React from "react";
+import React, {useState} from "react";
 import { Form, Field } from 'react-final-form'
+import ReactStars from "react-rating-stars-component";
 
 import ReviewsList from "../components/ReviewsList";
 
 import './style.css';
+import {addReview_reducer} from "./reducer";
 
 
 const Reviews = props => {
-    const submitForm = () => {
 
+    const [success, setSuccess] = useState(null);
+
+    const submitForm = (e,f) => {
+        addReview_reducer(
+            props.market,
+            e.name,
+            e.text,
+            e.rating,
+            e.company
+        ).then((response)=>{
+            setSuccess(response.data.data.addReview.success);
+            props.updateReviews();
+            f.reset();
+        })
     }
+
+    const reviewValidator = (values) => {
+        const errors = {}
+            if (!values.name) {
+                errors.name = "required"
+            }
+            if (!values.text) {
+                errors.text = "required"
+            }
+            if (!values.company || values.company === 0) {
+                errors.company = "required"
+            }
+            if (!values.rating) {
+                errors.rating = "required"
+            }
+        return errors
+    }
+
     return <div className="reviews">
         <div className="review_form">
             <h1 className="title">{props.data ? props.data.header : ""}</h1>
             <Form
                 onSubmit={submitForm}
-                render={({handleSubmit}) => (
-                    <form onSubmit={handleSubmit} >
-                        <input name="name" type="text" placeholder={props.data ? props.data.form.name : ""} />
+                validate={reviewValidator}
+                render={({form, handleSubmit}) => (
+                    <form onSubmit={event => {
+                        handleSubmit(event, form)
+                    }}>
+                        <Field name="name">{({input,meta})=>(
+                            <input {...input} type="text" placeholder={props.data ? props.data.form.name : ""} style={!success && meta.touched && meta.error ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                        )}</Field>
                         <div className="company">
-                            <select name="company" id="company"
-                                    onChange="document.getElementById('company').style = 'color: black!important';">
-                                <option selected disabled={true} hidden={true} id="select_placeholder">
-                                    {props.data ? props.data.form.select_organization : ""}
-                                </option>
-                                {props.offers.map((item,key)=>(
-                                    <option key={key} value={item.title}>{item.title}</option>
-                                ))}
-                            </select>
+                            <Field name="company">
+                                {({input,meta})=>(
+                                    <select {...input} defaultValue={0} style={!success && meta.touched && meta.error ? {boxShadow: "0 0 5px -2px red"} : {}}>
+                                        <option value={0} hidden={true}>
+                                            {props.data ? props.data.form.select_organization : ""}
+                                        </option>
+                                        {props.offers.map((item,key)=>(
+                                            <option key={key} value={item.id}>{item.title}</option>
+                                        ))}
+                                    </select>
+                                )}
+                            </Field>
                             <div>
                                 <span id="rating">{props.data ? props.data.form.rating : ""}</span>
-                                <fieldset>
-                                    <span className="star-cb-group">
-                                      <input type="radio" id="rating-5" name="rating" value="5" /><label
-                                        htmlFor="rating-5">5</label>
-                                      <input type="radio" id="rating-4" name="rating" value="4" checked="checked" /><label
-                                        htmlFor="rating-4">4</label>
-                                      <input type="radio" id="rating-3" name="rating" value="3" /><label
-                                        htmlFor="rating-3">3</label>
-                                      <input type="radio" id="rating-2" name="rating" value="2" /><label
-                                        htmlFor="rating-2">2</label>
-                                      <input type="radio" id="rating-1" name="rating" value="1" /><label
-                                        htmlFor="rating-1">1</label>
-                                      <input type="radio" id="rating-0" name="rating" value="0"
-                                             className="star-cb-clear" /><label htmlFor="rating-0">0</label>
-                                    </span>
-                                </fieldset>
+                                <Field name="rating" defaultValue={4}>
+                                    {({input, meta})=> (
+                                        <ReactStars
+                                            classNames="rating"
+                                            count={5}
+                                            value={input.value}
+                                            onChange={input.onChange}
+                                            size={18}
+                                            activeColor="#ffd700"
+                                        />
+                                    )}
+                                </Field>
                             </div>
                         </div>
-                        <textarea id="text" placeholder={props.data ? props.data.form.input_placeholder : ""} />
-                        <button type="submit" id="send_button">{props.data ? props.data.form.button : ""}</button>
-                        <span className="success_msg" id="success_msg" style={{display: "none"}}>{props.data ? props.data.success_message : ""}</span>
+                        <Field name="text">
+                            {({input, meta})=>(
+                                <textarea {...input} placeholder={props.data ? props.data.form.input_placeholder : ""} style={!success && meta.touched && meta.error ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                            )}
+                        </Field>
+                        <button type="submit" id="send_button" >{props.data ? props.data.form.button : ""}</button>
+                        <span className="success_msg" id="success_msg" style={success ? {display: "block"} : {display: "none"}}>{props.data ? props.data.success_message : ""}</span>
                     </form>
                 )}
             />

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = 'http://api.urmarket.online/';
+const API_URL = 'https://api.urmarket.online/';
 
 export const getContent = async (market, language) => {
     const data = JSON.stringify({

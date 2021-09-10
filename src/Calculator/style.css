@@ -1,30 +1,32 @@
 
-.calculator {
-    box-sizing: border-box;
-    background: rgba(26, 171, 72, 1);
-    height: 400px;
-    padding: 48px var(--offset);
-}
+@media screen and (min-width: 901px) {
+    .calculator {
+        box-sizing: border-box;
+        background: rgba(26, 171, 72, 1);
+        height: 400px;
+        padding: 48px var(--offset);
+    }
 
-.calculator > h1 {
-    margin: 0;
-    font-family: "Ubuntu", sans-serif;
-    color: white;
-    font-size: 40px;
-}
+    .calculator > h1 {
+        margin: 0;
+        font-family: "Ubuntu", sans-serif;
+        color: white;
+        font-size: 40px;
+    }
 
-.textLoading {
-    display: inline;
-    background-color: rgb(216 216 216);
-    box-shadow: -10px 0 0 rgb(216 216 216), 10px 0 0 rgb(216 216 216);
-    padding: 0 10px 0 0;
-    color: rgb(216 216 216)!important;
-    line-height: 26px;
-    /*font-size: 45px;*/
-}
+    .textLoading {
+        display: inline;
+        background-color: rgb(216 216 216);
+        box-shadow: -10px 0 0 rgb(216 216 216), 10px 0 0 rgb(216 216 216);
+        padding: 0 10px 0 0;
+        color: rgb(216 216 216) !important;
+        line-height: 26px;
+        /*font-size: 45px;*/
+    }
 
-.calculator > p {
-    width: 70%;
-    color: white;
-    margin: 24px 0;
+    .calculator > p {
+        width: 70%;
+        color: white;
+        margin: 24px 0;
+    }
 }

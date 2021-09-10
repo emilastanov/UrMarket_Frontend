@@ -1,38 +1,81 @@
+@media screen and (min-width: 901px) {
+    header {
+        display: block;
+        width: 100%;
+        z-index: 6;
+        box-shadow: 0 0 10px -2px grey;
+        box-sizing: border-box;
+        height: 80px;
+        padding: 18px var(--offset);
+    }
 
-header {
-    display: block;
-    width: 100%;
-    z-index: 6;
-    box-shadow: 0 0 10px -2px grey;
-    box-sizing: border-box;
-    height: 80px;
-    padding: 18px var(--offset);
+    header > .changeLang {
+        display: inline-block;
+        float: right;
+        height: 25px;
+        margin: 4px;
+        cursor: pointer;
+        font-family: "Quicksand", sans-serif;
+        font-size: 28px;
+        color: #828282;
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none;
+        /* Non-prefixed version, currently
+                                         supported by Chrome, Edge, Opera and Firefox */
+    }
+
+    header > .changeLang > .selected {
+        color: #1AAB48;
+        font-size: 30px;
+    }
+
+    header > .changeLang > img {
+        height: 100%;
+    }
+
 }
+@media screen and (max-width: 900px) {
+    header {
+        position: fixed;
+        top: 0;
+        display: block;
+        width: 100%;
+        z-index: 6;
+        background: #ffffff;
+        box-shadow: 0 0 10px -2px grey;
+    }
 
-header > .changeLang {
-    display: inline-block;
-    float: right;
-    height: 25px;
-    margin: 4px;
-    cursor: pointer;
-    font-family: "Quicksand", sans-serif;
-    font-size: 28px;
-    color: #828282;
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-    -khtml-user-select: none; /* Konqueror HTML */
-    -moz-user-select: none; /* Old versions of Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
+    header > .changeLang {
+        display: inline-block;
+        float: right;
+        height: 50px;
+        margin-right: 16px;
+        cursor: pointer;
+        font-family: "Quicksand", sans-serif;
+        font-size: 32px;
+        color: #828282;
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none;
+        /* Non-prefixed version, currently
+                                         supported by Chrome, Edge, Opera and Firefox */
+    }
+
+    header > .changeLang > .selected {
+        color: #1AAB48;
+        font-size: 34px;
+    }
+
+    header img {
+        height: 42px;
+        margin: 8px;
+    }
+
 }
-
-header > .changeLang > .selected {
-    color: #1AAB48;
-    font-size: 30px;
-}
-
-header > .changeLang > img {
-    height: 100%;
-}
-

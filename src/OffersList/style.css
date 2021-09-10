@@ -1,12 +1,14 @@
+@media screen and (min-width: 901px) {
+    .offersList {
+        padding: 24px var(--offset);
+    }
 
-.offersList {
-    padding: 24px var(--offset);
-}
-.offersList > .list {
-    display: grid;
-    width: 100%;
-    grid-template-columns: calc(25% - 18px) calc(25% - 18px) calc(25% - 18px) calc(25% - 18px);
-    column-gap: 24px;
-    row-gap: 24px;
-    transition: 250ms;
+    .offersList > .list {
+        display: grid;
+        width: 100%;
+        grid-template-columns: calc(25% - 18px) calc(25% - 18px) calc(25% - 18px) calc(25% - 18px);
+        column-gap: 24px;
+        row-gap: 24px;
+        transition: 250ms;
+    }
 }
