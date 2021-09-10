@@ -23,9 +23,9 @@ export const offerSwitcher = async (key, id, state) => {
 export const addOffer = async (key, title,description,logotype,link,rate,isShow,amountMin,amountMax,amountSymbol,
                          termMin,termMax,rating,processingTimeMin,processingTimeMax,processingMethods,requirementsAgeMin,
                          requirementsAgeMax,requirementsIncome,requirementsIncomeProof,requirementsDocuments,
-                         requirementsUkrainNationality,requirementsSpecial) => {
+                         requirementsUkrainNationality,requirementsSpecial,market) => {
     const data = JSON.stringify({
-        "query": `mutation{addOffer(title: "${title}",description: "${description}",logotype: "${logotype}",link: "${link}",rate: ${rate},isShow: ${isShow},amountMin: ${amountMin},amountMax: ${amountMax},amountSymbol: "${amountSymbol}",termMin: ${termMin},termMax: ${termMax},rating: ${rating},processingTimeMin: ${processingTimeMin},processingTimeMax: ${processingTimeMax},processingMethods: "${processingMethods}",requirementsAgeMin: ${requirementsAgeMin},requirementsAgeMax: ${requirementsAgeMax},requirementsIncome: ${requirementsIncome},requirementsIncomeProof: ${requirementsIncomeProof},requirementsDocuments: "${requirementsDocuments}",requirementsUkrainNationality: ${requirementsUkrainNationality},requirementsSpecial: "${requirementsSpecial}"){offer{id,is_show}}}`
+        "query": `mutation{addOffer(title: "${title}",description: "${description}",logotype: "${logotype}",link: "${link}",rate: ${rate},isShow: ${isShow},amountMin: ${amountMin},amountMax: ${amountMax},amountSymbol: "${amountSymbol}",termMin: ${termMin},termMax: ${termMax},rating: ${rating},processingTimeMin: ${processingTimeMin},processingTimeMax: ${processingTimeMax},processingMethods: "${processingMethods}",requirementsAgeMin: ${requirementsAgeMin},requirementsAgeMax: ${requirementsAgeMax},requirementsIncome: ${requirementsIncome},requirementsIncomeProof: ${requirementsIncomeProof},requirementsDocuments: "${requirementsDocuments}",requirementsUkrainNationality: ${requirementsUkrainNationality},requirementsSpecial: "${requirementsSpecial}", market: "${market}"){offer{id,is_show}}}`
     })
 
     const config = {

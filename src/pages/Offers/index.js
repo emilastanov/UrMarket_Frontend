@@ -65,7 +65,8 @@ const Offers = props => {
                 e.requirementsIncomeProof === undefined ? false : e.requirementsIncomeProof,
                 e.requirementsDocuments,
                 e.requirementsUkrainNationality === undefined ? false : e.requirementsUkrainNationality,
-                e.requirementsSpecial ? e.requirementsSpecial : ""
+                e.requirementsSpecial ? e.requirementsSpecial : "",
+                e.market
             ).then(resp=>{
                 offersList();
             })
@@ -76,6 +77,9 @@ const Offers = props => {
         const errors = {}
 
         if (!values.title){
+            errors.title = "required"
+        }
+        if (!values.market){
             errors.title = "required"
         }
         if (!values.description){
@@ -243,6 +247,14 @@ const Offers = props => {
                             <div className="mb-3">
                                 <label htmlFor="exampleInputEmail1" className="form-label">Реферальная ссылка</label>
                                 <Field name="link">
+                                    {({input, meta})=>(
+                                        <input {...input} className="form-control" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                                    )}
+                                </Field>
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="exampleInputEmail1" className="form-label">Реферальная ссылка</label>
+                                <Field name="market">
                                     {({input, meta})=>(
                                         <input {...input} className="form-control" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
                                     )}
