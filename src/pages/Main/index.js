@@ -66,6 +66,7 @@ const Main = props => {
             term = {content ? content.calc.term : ""}
             button = {content ? content.calc.button : ""}
             ads = {content ? content.ads : ""}
+            count_offers = {offers ? offers.length : 0}
         />
         <OffersList
             offers={offers? offers : []} filter={content? content.filter: null}

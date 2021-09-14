@@ -11,17 +11,17 @@ const Calculator = props => {
     const [amount, setAmount] = useState("");
     const [term, setTerm] = useState("");
     return <div className="calculator">
-        <h1 className={`calculator_header ${!props.header ? "textLoading" : "" }`} >
-            {props.header ? props.header : "Текст загружается"}
+        <h1 className={`calculator_header`} >
+            {props.header}
         </h1>
         <p className={`calculator_description`} >
-            <span className={!props.description ? "textLoading" : "" }>{props.description ? props.description : "Описание еще не загрузилось. Описание еще не загрузилось. Описание еще не загрузилось. Описание еще не загрузилось. Описание еще не загрузилось"}</span>
+            <span>{props.description}</span>
         </p>
         <InputGroup height={50}>
             <Input label={props.amount ? props.amount.label : ""} placeholder={props.amount ? props.amount.placeholder : ""} value={amount} changeValue={setAmount}/>
             <Input label={props.term ? props.term.label: ""} placeholder={props.term ? props.term.placeholder : ""} value={term} changeValue={setTerm}/>
         </InputGroup>
-        <Button height={50}>{props.button} (N)</Button>
+        <Button height={50}>{props.button} ({props.count_offers})</Button>
         <Ads
             text={props.ads ? props.ads.paragraph : ""}
             img={props.ads ? props.ads.image: ""}
