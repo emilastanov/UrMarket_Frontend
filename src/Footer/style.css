@@ -6,3 +6,12 @@
         color: #9f9f9f;
     }
 }
+
+@media screen and (max-width: 900px) {
+    footer {
+        width: calc(100% - var(--offset)/9 * 2);
+        margin: 24px auto;
+        font-size: 14px;
+        color: #9f9f9f;
+    }
+}

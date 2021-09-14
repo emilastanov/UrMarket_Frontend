@@ -18,7 +18,7 @@ const Login = props => {
                 setError(true)
             } else {
                 localStorage.setItem("token", e.auth_key);
-                window.location = "/#/admin"
+                window.location = "/admin"
             }
         })
     }

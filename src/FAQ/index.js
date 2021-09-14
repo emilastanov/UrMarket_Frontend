@@ -17,12 +17,17 @@ const FAQ = props => {
         <div className="body">
             <div className="questions">
                 {props.questions ? props.questions.map((item, key) => (
-                    <div key={key} className={`question ${activeQuestion===key? 'active': ''}`} onClick={()=>{
-                        showAnswer(item.answer);
-                        setActiveQuestion(key)
-                    }}>
-                        {item.question}
-                    </div>
+                    <React.Fragment>
+                        <div key={key} className={`question ${activeQuestion===key? 'active': ''}`} onClick={()=>{
+                            showAnswer(item.answer);
+                            setActiveQuestion(key)
+                        }}>
+                            {item.question}
+                        </div>
+                        <div className={`answer_mobile ${item.answer === answer ? "active" : ""}`}>
+                            {item.answer}
+                        </div>
+                    </React.Fragment>
                 )) : ""}
             </div>
             <div className="answer" >

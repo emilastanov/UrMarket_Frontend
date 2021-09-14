@@ -12,3 +12,18 @@
         transition: 250ms;
     }
 }
+
+@media screen and (max-width: 900px) {
+    .offersList {
+        padding: 18px calc(var(--offset)/9);
+    }
+
+    .offersList > .list {
+        display: grid;
+        width: 100%;
+        grid-template-columns: calc(50% - 4px) calc(50% - 4px);
+        column-gap: 8px;
+        row-gap: 8px;
+        transition: 250ms;
+    }
+}
