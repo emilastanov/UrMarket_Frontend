@@ -21,11 +21,11 @@ const Calculator = props => {
             <Input label={props.amount ? props.amount.label : ""} placeholder={props.amount ? props.amount.placeholder : ""} value={amount} changeValue={setAmount}/>
             <Input label={props.term ? props.term.label: ""} placeholder={props.term ? props.term.placeholder : ""} value={term} changeValue={setTerm}/>
         </InputGroup>
-        <Button width={window.innerWidth <= 900 ? 175 : null} height={50}>{props.button} ({props.count_offers})</Button>
+        <Button width={window.innerWidth <= 900 ? 175 : null} height={50} onClick={()=>{props.setFilters({amount: parseInt(amount, 10), term: parseInt(term, 10)})}}>{props.button} ({props.count_offers})</Button>
         <Ads
             text={props.ads ? props.ads.paragraph : ""}
             img={props.ads ? props.ads.image: ""}
-            style={window.innerWidth <= 900 ? {} : {width: 370,clear: 'both', paddingTop: 40}}
+            style={window.innerWidth <= 900 ? {} : {width: 370, clear: 'both', paddingTop: 40}}
         />
     </div>
 }

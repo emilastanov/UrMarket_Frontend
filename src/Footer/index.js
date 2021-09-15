@@ -3,7 +3,6 @@ import React from "react";
 import './style.css';
 
 const Footer = props => {
-    console.log(props.partners)
     return <footer>
         <div className="footer">
             <span id="rules">

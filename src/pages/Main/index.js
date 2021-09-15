@@ -20,8 +20,10 @@ const Main = props => {
 
     const [content, setContent] = useState(null);
     const [offers, setOffers] = useState(null);
+    const [offersData, setOffersData] = useState(null);
     const [faq, setFaq] = useState(null);
     const [reviews, setReviews] = useState(null);
+    const [filters, setFilters] = useState({amount: null, term: null})
     let {market} = useParams();
     let query = useQuery();
 
@@ -39,7 +41,8 @@ const Main = props => {
         getOffers(market).then((response)=>{
             const offers = response.data.data.listOffers.offers;
 
-            setOffers(offers);
+            setOffers(offers.sort((a,b)=>(a.rating.min - b.rating.min)));
+            setOffersData(offers.sort((a,b)=>(a.rating.min - b.rating.min)))
 
             props.loader(false)
         });
@@ -57,6 +60,27 @@ const Main = props => {
         })
     }, [setContent])
 
+    useEffect(()=>{
+        if (offers) {
+            let filteredOffers = offersData;
+            if (filters.amount) {
+                filteredOffers = filteredOffers.filter(item=>{
+                    if (item.amount.min <= filters.amount && item.amount.max >= filters.amount) {
+                        return item
+                    }
+                })
+            }
+            if (filters.term){
+                filteredOffers = filteredOffers.filter(item=>{
+                    if (item.term.min <= filters.term && item.term.max >= filters.term) {
+                        return item
+                    }
+                })
+            }
+            setOffers(filteredOffers)
+        }
+
+    }, [filters])
 
 
     return <React.Fragment>
@@ -69,9 +93,12 @@ const Main = props => {
             button = {content ? content.calc.button : ""}
             ads = {content ? content.ads : ""}
             count_offers = {offers ? offers.length : 0}
+            setFilters = {setFilters}
         />
         <OffersList
-            offers={offers? offers : []} filter={content? content.filter: null}
+            offers={offers? offers : []}
+            filter={content? content.filter: null}
+            offersData={offersData ? offersData : []}
             card={content ? content.offer : null}
         />
         <TopTable

@@ -17,8 +17,8 @@ const FAQ = props => {
         <div className="body">
             <div className="questions">
                 {props.questions ? props.questions.map((item, key) => (
-                    <React.Fragment>
-                        <div key={key} className={`question ${activeQuestion===key? 'active': ''}`} onClick={()=>{
+                    <React.Fragment key={key}>
+                        <div className={`question ${activeQuestion===key? 'active': ''}`} onClick={()=>{
                             showAnswer(item.answer);
                             setActiveQuestion(key)
                         }}>
