@@ -64,18 +64,10 @@ const Main = props => {
         if (offers) {
             let filteredOffers = offersData;
             if (filters.amount) {
-                filteredOffers = filteredOffers.filter(item=>{
-                    if (item.amount.min <= filters.amount && item.amount.max >= filters.amount) {
-                        return item
-                    }
-                })
+                filteredOffers = filteredOffers.filter(item=>(item.amount.min <= filters.amount && item.amount.max >= filters.amount))
             }
             if (filters.term){
-                filteredOffers = filteredOffers.filter(item=>{
-                    if (item.term.min <= filters.term && item.term.max >= filters.term) {
-                        return item
-                    }
-                })
+                filteredOffers = filteredOffers.filter(item=>(item.term.min <= filters.term && item.term.max >= filters.term))
             }
             setOffers(filteredOffers)
         }
