@@ -8,13 +8,16 @@ import {
 import AdminHeader from "../../components/AdminHeader";
 import Users from "../Users";
 import Offers from "../Offers";
+import FAQ from "../FAQ";
 
 import "./style.css";
 import {login} from "../Login/reducer";
+import {getMarkets} from "./reducer";
 
 const AdminPanel = props => {
 
     const [user, setUser] = useState(null);
+    const [markets, setMarkets] = useState(null)
     let { path } = useRouteMatch();
 
     const getUser = () => {
@@ -30,7 +33,14 @@ const AdminPanel = props => {
         })
     }
 
+    const listMarkets = () => {
+        getMarkets().then((response)=>{
+            setMarkets(response.data.data.listMarkets.markets)
+        })
+    }
+
     useEffect(()=>{
+        listMarkets();
         props.loader(false);
         getUser();
     }, [setUser])
@@ -44,7 +54,10 @@ const AdminPanel = props => {
                 <Users data={user}/>
             </Route>
             <Route path={`${path}/offer`}>
-                <Offers user={user}/>
+                <Offers user={user} markets={markets}/>
+            </Route>
+            <Route path={`${path}/faq`}>
+                <FAQ user={user} markets={markets}/>
             </Route>
             <Route path={`${path}/content`}>
                 content

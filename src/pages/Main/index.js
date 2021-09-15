@@ -9,11 +9,12 @@ import Footer from "../../Footer";
 import Header from "../../Header";
 
 import {getContent, getFAQ, getOffers, getReviews} from "./reducer.js"
-import {useParams, useLocation} from "react-router-dom";
+import {useLocation, useParams} from "react-router-dom";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
 }
+
 
 const Main = props => {
 
@@ -25,6 +26,7 @@ const Main = props => {
     let query = useQuery();
 
     market = market ? market : "ua"
+
     const language = query.get("language")? query.get("language") : "ru"
 
     useEffect(()=>{

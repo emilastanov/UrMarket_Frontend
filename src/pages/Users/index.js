@@ -7,6 +7,7 @@ const Users = props => {
     const [isShow, setIsShow] = useState(false);
     const [usersList, setUsersList] = useState(null);
     const [isShowForm, setIsShowForm] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const logout = () => {
         localStorage.removeItem("token")
@@ -18,6 +19,7 @@ const Users = props => {
             const users = response.data.data.listUsers.users
             console.log(users)
             setUsersList(users)
+            setIsLoading(false)
         })
     }
 
@@ -43,12 +45,35 @@ const Users = props => {
     }
 
     useEffect(()=>{
+        setIsLoading(true)
         if (props.data) {
             getUsersList()
         }
     },[props.data])
 
     return <div className="content p-5">
+        <div style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: "100%",
+            heigth: "100vh",
+            background: "rgba(128, 128, 128, 0.89)",
+            transition: "200ms",
+            opacity: isLoading? 1 : 0,
+            zIndex: isLoading ? 100 : -100
+        }}><h2 style={{
+            position: "absolute",
+            width: 200,
+            height: 50,
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            margin: "auto"
+        }}>Загрузка...</h2></div>
         <div className="row">
             <div className="col-6">
                 <div className="card text-center">
@@ -119,7 +144,10 @@ const Users = props => {
                                 <td>
                                     <Field name="role">
                                         {({input, meta})=> (
-                                            <input {...input} type="text" className="form-control" placeholder="Роль" style={meta.error && meta.touched ? {boxShadow: "0 0 5px -1px red"}: {}}/>
+                                            <select {...input} className="form-select" placeholder="Роль" style={meta.error && meta.touched ? {boxShadow: "0 0 5px -1px red"}: {}}>
+                                                <option value="admin">Администратор</option>
+                                                <option value="editor">Редактор</option>
+                                            </select>
                                         )}
                                     </Field>
                                 </td>

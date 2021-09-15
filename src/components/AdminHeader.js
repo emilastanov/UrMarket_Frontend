@@ -17,9 +17,9 @@ const AdminHeader = props => (
                     <li className="nav-item">
                         <Link className={`nav-link ${window.location.pathname === "/admin/offer"? "active" : ""}`} aria-current="page" to="/admin/offer">Офферы</Link>
                     </li>
-                    {/*<li className="nav-item">*/}
-                        {/*<Link className={`nav-link ${window.location.pathname === "/admin/content"? "active" : ""}`} to="/admin/content">Контент</Link>*/}
-                    {/*</li>*/}
+                    <li className="nav-item">
+                        <Link className={`nav-link ${window.location.pathname === "/admin/faq"? "active" : ""}`} to="/admin/faq">FAQ</Link>
+                    </li>
                     {/*<li className="nav-item">*/}
                     {/*    <Link className={`nav-link ${window.location.pathname === "/admin/market"? "active" : ""}`} to="/admin/market">Рынки</Link>*/}
                     {/*</li>*/}

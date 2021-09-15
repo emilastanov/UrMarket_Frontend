@@ -11,11 +11,6 @@ const Offers = props => {
     const [file, setFile] = useState(null);
 
 
-    const markets = [
-        {value: "kz", name: "Казахстан"},
-        {value: "ua", name: "Украина"}
-    ];
-
     const offersList = () => {
         getOffers(market).then((response)=>{
             const resp = response.data;
@@ -23,6 +18,7 @@ const Offers = props => {
             setIsLoading(false)
         })
     }
+
 
     const switchOffer = (id,state) => {
         setIsLoading(true)
@@ -38,7 +34,7 @@ const Offers = props => {
         })
     }
 
-    const _addOffer = (e) => {
+    const _addOffer = (e,f) => {
         setIsLoading(true)
         uploadImg(file).then((response)=>{
             const logotype = response.data.out;
@@ -69,6 +65,7 @@ const Offers = props => {
                 e.market
             ).then(resp=>{
                 offersList();
+                f.reset();
             })
         })
     }
@@ -138,7 +135,7 @@ const Offers = props => {
     }
 
     useEffect(()=>{
-        offersList()
+        offersList();
     },[setMarket])
 
     return <div className="content p-5">
@@ -170,9 +167,9 @@ const Offers = props => {
                 <select disabled={true} defaultValue={market} className="form-select" aria-label="Default select example" onChange={(e)=>{
                     setMarket(e.target.value)
                 }}>
-                    {markets.map((item,key)=>(
-                        <option key={key} value={item.value}>{item.name}</option>
-                    ))}
+                    {props.markets ? props.markets.map((item,key)=>(
+                        <option key={key} value={item.value}>{item.description}</option>
+                    )) : ""}
                 </select>
                 <button className="btn btn-primary disabled" style={{margin: "24px auto", display: "block"}} onClick={offersList}>Выбрать</button>
             </div>
@@ -213,8 +210,8 @@ const Offers = props => {
                 <Form
                     onSubmit={_addOffer}
                     validate={_addOfferValidator}
-                    render={({handleSubmit})=>(
-                        <form onSubmit={handleSubmit}>
+                    render={({form, handleSubmit})=>(
+                        <form onSubmit={event=>handleSubmit(event,form)}>
                             <div className="mb-3">
                                 <label htmlFor="formFile" className="form-label">Обложка оффера</label>
                                 <Field name="logotype">
@@ -256,7 +253,11 @@ const Offers = props => {
                                 <label htmlFor="exampleInputEmail1" className="form-label">Рынок</label>
                                 <Field name="market">
                                     {({input, meta})=>(
-                                        <input {...input} className="form-control" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                                        <select {...input} className="form-select" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}>
+                                            {props.markets ? props.markets.map((item, key)=>(
+                                                <option value={item.value} key={key}>{item.description}</option>
+                                            )) : ""}
+                                        </select>
                                     )}
                                 </Field>
                             </div>

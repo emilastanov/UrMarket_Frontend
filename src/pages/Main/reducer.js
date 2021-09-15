@@ -38,7 +38,7 @@ export const getOffers = async (market) => {
 
 export const getFAQ = async (market, language) => {
     const data = JSON.stringify({
-        "query": `query {listFAQ(language: "${language}", market: "${market}"){list_faq{answer,question}}}`
+        "query": `query {listFAQ(language: "${language}", market: "${market}"){list_faq{id, answer,question, market, language}}}`
     })
 
     const config = {
