@@ -13,7 +13,9 @@ const OffersList = props => {
 
     useEffect(()=>{
         setOffers(props.offers)
-        setBadOffers(props.offersData.filter((item)=>(props.offers.indexOf(item) < 0)))
+        if (props.offers.length !== props.offersData.length) {
+            setBadOffers(props.offersData.filter((item)=>(props.offers.indexOf(item) < 0)))
+        }
     }, [setOffers, props.offers])
 
     return <div className="offersList">
