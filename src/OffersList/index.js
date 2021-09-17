@@ -15,10 +15,12 @@ const OffersList = props => {
         setOffers(props.offers)
         if (props.offers.length !== props.offersData.length) {
             setBadOffers(props.offersData.filter((item)=>(props.offers.indexOf(item) < 0)))
+        } else {
+            setBadOffers(null)
         }
     }, [setOffers, props.offers])
 
-    return <div className="offersList">
+    return <div className="offersList" >
         <Filter header={props.filter ? props.filter.header : ""} filters={[
             {"name": props.filter ? props.filter.amount : "", "filter": ()=>{
                     let sortedOffers = [...offers]
@@ -41,7 +43,7 @@ const OffersList = props => {
                     setOffers(sortedOffers)
                 }}
         ]}/>
-        <div className="list">
+        <div className="list" id="offersList">
             {offers ? offers.filter((a)=>(a.is_show)).map((item,key)=>(
                 <Offer
                     data={props.card}

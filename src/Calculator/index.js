@@ -44,7 +44,10 @@ const Calculator = props => {
                 setCount(getCountOfFilteredOffers(amount, e));
             }}/>
         </InputGroup>
-        <Button width={window.innerWidth <= 900 ? 175 : null} height={50} onClick={()=>{props.setFilters({amount: parseInt(amount, 10), term: parseInt(term, 10)})}}>{props.button} ({count})</Button>
+        <Button width={window.innerWidth <= 900 ? 175 : null} height={50} onClick={()=>{
+            props.setFilters({amount: parseInt(amount, 10), term: parseInt(term, 10)});
+            document.getElementById('offersList').scrollIntoView({block: "center", behavior: "smooth"});
+        }}>{props.button} ({count})</Button>
         <Ads
             text={props.ads ? props.ads.paragraph : ""}
             img={props.ads ? props.ads.image: ""}
