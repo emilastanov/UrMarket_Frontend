@@ -19,6 +19,33 @@ export const getContent = async (market, language) => {
     return axios(config)
 };
 
+export const getLanguages = async (market) => {
+    const data = JSON.stringify({
+        "query": `query ListContent($market: String!){
+            listContent(market:$market){
+                errors,
+                contents{
+                    language
+                }
+            }
+        }`,
+        "variables": {
+            market: market
+        }
+    });
+
+    const config = {
+        method: 'post',
+        url: API_URL,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data : data
+    };
+
+    return axios(config)
+};
+
 export const getOffers = async (market) => {
     const data = JSON.stringify({
         "query": `query{listOffers(market:"${market}"){offers{id,title,logotype,market,description,is_show,link,rate,term{min,max},amount{min,max,symbol},rating,processing_time{min,max},processing_methods,requirements{age{min,max},income,income_proof,documents,ukrain_nationality,special}}}}`

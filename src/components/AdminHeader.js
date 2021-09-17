@@ -15,14 +15,20 @@ const AdminHeader = props => (
             <div className="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul className="navbar-nav">
                     <li className="nav-item">
+                        <Link className={`nav-link ${window.location.pathname === "/admin/content"? "active" : ""}`} to="/admin/content">Контент</Link>
+                    </li>
+                    <li className="nav-item">
                         <Link className={`nav-link ${window.location.pathname === "/admin/offer"? "active" : ""}`} aria-current="page" to="/admin/offer">Офферы</Link>
                     </li>
                     <li className="nav-item">
                         <Link className={`nav-link ${window.location.pathname === "/admin/faq"? "active" : ""}`} to="/admin/faq">FAQ</Link>
                     </li>
-                    {/*<li className="nav-item">*/}
-                    {/*    <Link className={`nav-link ${window.location.pathname === "/admin/market"? "active" : ""}`} to="/admin/market">Рынки</Link>*/}
-                    {/*</li>*/}
+                    <li className="nav-item">
+                        <Link className={`nav-link ${window.location.pathname === "/admin/reviews"? "active" : ""}`} to="/admin/reviews">Отзывы</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className={`nav-link ${window.location.pathname === "/admin/market"? "active" : ""}`} to="/admin/market">Рынки</Link>
+                    </li>
                     <li className="nav-item">
                         <Link className={`nav-link ${window.location.pathname === "/admin"? "active" : ""}`} to="/admin">Пользователи</Link>
                     </li>

@@ -9,9 +9,11 @@ import Offer from "../components/Offer";
 const OffersList = props => {
 
     const [offers, setOffers] = useState(null)
+    const [badOffers, setBadOffers] = useState(null)
 
     useEffect(()=>{
         setOffers(props.offers)
+        setBadOffers(props.offersData.filter((item)=>(props.offers.indexOf(item) < 0)))
     }, [setOffers, props.offers])
 
     return <div className="offersList">
@@ -40,6 +42,22 @@ const OffersList = props => {
         <div className="list">
             {offers ? offers.filter((a)=>(a.is_show)).map((item,key)=>(
                 <Offer
+                    data={props.card}
+                    key={key}
+                    image={item.logotype}
+                    link={item.link}
+                    amount={item.amount}
+                    term={item.term}
+                    time={item.processing_time}
+                    rate={item.rate}
+                />
+            )) : ""}
+        </div>
+        {badOffers && badOffers.length > 0 ? <h1 className="badOffersTitle">Эти предложения не подходят под ваши условия</h1> : ""}
+        <div className="list">
+            {badOffers ? badOffers.filter((a)=>(a.is_show)).map((item,key)=>(
+                <Offer
+                    isBad={true}
                     data={props.card}
                     key={key}
                     image={item.logotype}

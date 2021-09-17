@@ -11,6 +11,13 @@
         row-gap: 24px;
         transition: 250ms;
     }
+    .badOffersTitle {
+        margin-top: 24px;
+        margin-left: 28px;
+        font-family: "Ubuntu", sans-serif;
+        color: #535353;
+        font-size: 18px;
+    }
 }
 
 @media screen and (max-width: 900px) {
@@ -25,5 +32,12 @@
         column-gap: 8px;
         row-gap: 8px;
         transition: 250ms;
+    }
+
+    .badOffersTitle {
+        margin-left: 28px;
+        font-family: "Ubuntu", sans-serif;
+        color: #535353;
+        font-size: 18px;
     }
 }

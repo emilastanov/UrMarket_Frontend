@@ -62,7 +62,7 @@ const Offers = props => {
                 e.requirementsDocuments,
                 e.requirementsUkrainNationality === undefined ? false : e.requirementsUkrainNationality,
                 e.requirementsSpecial ? e.requirementsSpecial : "",
-                e.market
+                market
             ).then(resp=>{
                 offersList();
                 f.reset();
@@ -74,9 +74,6 @@ const Offers = props => {
         const errors = {}
 
         if (!values.title){
-            errors.title = "required"
-        }
-        if (!values.market){
             errors.title = "required"
         }
         if (!values.description){
@@ -250,18 +247,6 @@ const Offers = props => {
                                 </Field>
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="exampleInputEmail1" className="form-label">Рынок</label>
-                                <Field name="market">
-                                    {({input, meta})=>(
-                                        <select {...input} className="form-select" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}>
-                                            {props.markets ? props.markets.map((item, key)=>(
-                                                <option value={item.value} key={key}>{item.description}</option>
-                                            )) : ""}
-                                        </select>
-                                    )}
-                                </Field>
-                            </div>
-                            <div className="mb-3">
                                 <label htmlFor="exampleInputEmail1" className="form-label">Ставка</label>
                                 <Field name="rate">
                                     {({input, meta})=>(
@@ -292,7 +277,14 @@ const Offers = props => {
                                     </Field>
                                     <Field name="amountSymbol">
                                         {({input, meta})=>(
-                                            <input {...input} className="form-control" placeholder="Валюта" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                                            <select {...input} defaultValue={0} className="form-control" placeholder="Валюта" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}>
+                                                <option value={0} hidden={true}>
+                                                    Выбрать
+                                                </option>
+                                                <option value="₴">Гривна ₴</option>
+                                                <option value="₽">Рубль ₽</option>
+                                                <option value="₸">Тенге ₸</option>
+                                            </select>
                                         )}
                                     </Field>
                                 </div>

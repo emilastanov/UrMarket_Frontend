@@ -9,6 +9,9 @@ import AdminHeader from "../../components/AdminHeader";
 import Users from "../Users";
 import Offers from "../Offers";
 import FAQ from "../FAQ";
+import Reviews from "../Reviews";
+import Market from "../Market";
+import Content from "../Content";
 
 import "./style.css";
 import {login} from "../Login/reducer";
@@ -59,12 +62,16 @@ const AdminPanel = props => {
             <Route path={`${path}/faq`}>
                 <FAQ user={user} markets={markets}/>
             </Route>
-            <Route path={`${path}/content`}>
-                content
-            </Route>
             <Route path={`${path}/market`}>
-                market
+                <Market user={user} listMarkets={listMarkets}/>
             </Route>
+            <Route path={`${path}/reviews`}>
+                <Reviews user={user} markets={markets}/>
+            </Route>
+            <Route path={`${path}/content`}>
+                <Content user={user} markets={markets}/>
+            </Route>
+
         </Switch>
     </div>
 };

@@ -7,14 +7,14 @@ const Offer = props => (
         <a href={props.link} target="_blank">
             <div className="logotype" style={{backgroundImage: `url("${props.image}")`}}/>
         </a>
-        <div className="wrapper">
+        <div className={`wrapper ${props.isBad ? "badOffer" : ""}`}>
             <div className="amount">
                 <span>{props.data? props.data.amount : ""}</span>
                 <span>{props.amount.min} - {props.amount.max} {props.amount.symbol}</span>
             </div>
             <div className="time">
                 <span>{props.data? props.data.time.title : ""}</span>
-                <span>{props.time.min} - {props.time.max} {props.data? props.data.time.units : ""}</span>
+                <span>{props.time.max > 60 ? `до 24 ч` : `${props.time.min} - ${props.time.max} ${props.data? props.data.time.units : ""}`}</span>
             </div>
             <div className="term">
                 <span>{props.data? props.data.term.title : ""}</span>

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-
+import {useHistory} from "react-router-dom";
 import Calculator from "../../Calculator";
 import OffersList from "../../OffersList";
 import TopTable from "../../TopTable";
@@ -8,7 +8,7 @@ import Reviews from "../../Reviews";
 import Footer from "../../Footer";
 import Header from "../../Header";
 
-import {getContent, getFAQ, getOffers, getReviews} from "./reducer.js"
+import {getContent, getFAQ, getLanguages, getOffers, getReviews} from "./reducer.js"
 import {useLocation, useParams} from "react-router-dom";
 
 const useQuery = () => {
@@ -24,6 +24,9 @@ const Main = props => {
     const [faq, setFaq] = useState(null);
     const [reviews, setReviews] = useState(null);
     const [filters, setFilters] = useState({amount: null, term: null})
+    const [languages, setLanguages] = useState([]);
+
+    const history = useHistory();
     let {market} = useParams();
     let query = useQuery();
 
@@ -31,12 +34,26 @@ const Main = props => {
 
     const language = query.get("language")? query.get("language") : "ru"
 
+    const updateReviews = () => {
+        getReviews(market).then((response)=>{
+            const reviews = response.data.data.listReviews.reviews
+
+            setReviews(reviews)
+
+        })
+    }
+
     useEffect(()=>{
         getContent(market, language).then((response)=>{
             const data = response.data.data.getContent;
             setContent(data.content)
 
             document.title = data.content.title;
+        });
+        getLanguages(market).then(response=>{
+            const data = response.data.data.listContent.contents.map(item=>(item.language));
+
+            setLanguages(data)
         });
         getOffers(market).then((response)=>{
             const offers = response.data.data.listOffers.offers;
@@ -52,13 +69,8 @@ const Main = props => {
             setFaq(FAQ);
 
         });
-        getReviews(market).then((response)=>{
-            const reviews = response.data.data.listReviews.reviews
-
-            setReviews(reviews)
-
-        })
-    }, [setContent])
+        updateReviews()
+    }, [setContent, language])
 
     useEffect(()=>{
         if (offers) {
@@ -75,8 +87,13 @@ const Main = props => {
     }, [filters])
 
 
-    return <React.Fragment>
-        <Header language={{selected: "ru", languages: ["ru", "ua"]}} change={()=>{console.log("CLICK")}} />
+    return content ? <React.Fragment>
+        <Header language={{selected: language, languages: languages}} change={()=>{
+            props.loader(true)
+            history.push({
+                search: `?language=${languages.filter(item=>item!==language)[0]}`
+            })
+        }} />
         <Calculator
             header={content ? content.header : ""}
             description={content ? content.description: ""}
@@ -86,6 +103,7 @@ const Main = props => {
             ads = {content ? content.ads : ""}
             count_offers = {offers ? offers.length : 0}
             setFilters = {setFilters}
+            offers={offersData}
         />
         <OffersList
             offers={offers? offers : []}
@@ -103,14 +121,14 @@ const Main = props => {
             header={content ? content.faq_header : ""}
         />
         <Reviews
-            updateReviews={getReviews}
+            updateReviews={updateReviews}
             market={content ? content.market : null}
             data={content ? content.review : null}
             offers={offers? offers: []}
             reviews={reviews? reviews: []}
         />
         <Footer data={content ? content.footer : null} partners={offers ? offers.map((item)=> (item.title)) : []}/>
-    </React.Fragment>
+    </React.Fragment> : ''
 };
 
 export default Main;

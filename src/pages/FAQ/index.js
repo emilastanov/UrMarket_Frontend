@@ -77,7 +77,9 @@ const FAQ = props => {
                     <option value="ru">Русский</option>
                     <option value="ua">Украинский</option>
                 </select>
-                <button className="btn btn-primary disabled" style={{margin: "24px auto", display: "block"}} >Выбрать</button>
+                <button className="btn btn-primary" style={{margin: "24px auto", display: "block"}} onClick={()=>{
+                    getFaq()
+                }}>Выбрать</button>
             </div>
             <div className="col-6" style={{borderRight: "1px solid grey"}}>
                 <table className="table table-striped">
