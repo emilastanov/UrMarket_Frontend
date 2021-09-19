@@ -1,27 +1,32 @@
 @font-face {
     font-family: Ubuntu; /* Имя шрифта */
     src: url(fonts/Ubuntu-Bold.ttf); /* Путь к файлу со шрифтом */
+    font-display: swap;
 }
 
 @font-face {
     font-family: OpenSans; /* Имя шрифта */
     src: url(fonts/OpenSans-Regular.ttf); /* Путь к файлу со шрифтом */
+    font-display: swap;
 }
 
 @font-face {
     font-family: Quicksand; /* Имя шрифта */
     src: url(fonts/Quicksand-VariableFont_wght.ttf); /* Путь к файлу со шрифтом */
+    font-display: swap;
 }
 
 @font-face {
     font-family: Quicksand;
     src: url(fonts/Quicksand-SemiBold.ttf);
+    font-display: swap;
 }
 
 @font-face {
     font-family: OpenSans; /* Имя шрифта */
     font-style: italic;
     src: url(fonts/OpenSans-Light.ttf); /* Путь к файлу со шрифтом */
+    font-display: swap;
 }
 
 textarea, input[type="text"], input[type="button"], input[type="submit"] {
