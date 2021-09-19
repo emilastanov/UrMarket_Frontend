@@ -43,6 +43,19 @@ const AdminPanel = props => {
     }
 
     useEffect(()=>{
+        const link = document.createElement("link");
+        link.href = "https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css";
+        link.rel = "stylesheet";
+        link.integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+        link.crossOrigin = "anonymous"
+        document.getElementsByTagName('head')[0].appendChild(link);
+
+        const script = document.createElement("script");
+        script.src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        script.integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        script.crossOrigin="anonymous"
+        document.getElementsByTagName('body')[0].appendChild(script);
+
         listMarkets();
         props.loader(false);
         getUser();
