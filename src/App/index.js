@@ -1,17 +1,17 @@
-import React, {useState} from 'react';
+import React, {useState, lazy, Suspense} from 'react';
 import {
     BrowserRouter as Router,
     Switch,
     Route,
     Redirect
 } from "react-router-dom";
-
+import './style.css'
 import Main from "../pages/Main";
 import PageLoader from "../components/PageLoader";
-import AdminPanel from "../pages/AdminPanel";
-import Login from "../pages/Login";
+const AdminPanel = lazy(() => import("../pages/AdminPanel"));
+const Login = lazy(() => import("../pages/Login"));
 
-import './style.css'
+
 
 
 const App = props => {
@@ -22,7 +22,9 @@ const App = props => {
         <PageLoader state={isLoading}/>
         <Switch>
             <Route path="/admin">
-                {token ? <AdminPanel loader={setIsLoading}/> : <Login loader={setIsLoading}/>}
+                <Suspense fallback={"..."}>
+                    {token ? <AdminPanel loader={setIsLoading}/> : <Login loader={setIsLoading}/>}
+                </Suspense>
             </Route>
             <Route path="/:market">
                 <Main language="ru" loader={setIsLoading}/>
