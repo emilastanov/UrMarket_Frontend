@@ -10,11 +10,11 @@ import Header from "../../Header";
 
 import {getContent, getFAQ, getLanguages, getOffers, getReviews} from "./reducer.js"
 import {useLocation, useParams} from "react-router-dom";
+import {getMarkets} from "../AdminPanel/reducer";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
 }
-
 
 const Main = props => {
 
@@ -30,7 +30,6 @@ const Main = props => {
     let {market} = useParams();
     let query = useQuery();
 
-    market = market ? market : "ua"
 
     const language = query.get("language")? query.get("language") : "ru"
 
@@ -44,32 +43,42 @@ const Main = props => {
     }
 
     useEffect(()=>{
-        getContent(market, language).then((response)=>{
-            const data = response.data.data.getContent;
-            setContent(data.content)
+        getMarkets().then((response)=>{
+            const existMarket = response.data.data.listMarkets.markets.map((item)=>(item.value));
+            if (existMarket.indexOf(market) !== -1) {
+                getContent(market, language).then((response)=>{
+                    const data = response.data.data.getContent;
+                    setContent(data.content)
 
-            document.title = data.content.title;
-        });
-        getLanguages(market).then(response=>{
-            const data = response.data.data.listContent.contents.map(item=>(item.language));
+                    document.title = data.content.title;
+                });
+                getLanguages(market).then(response=>{
+                    const data = response.data.data.listContent.contents.map(item=>(item.language));
 
-            setLanguages(data)
-        });
-        getOffers(market).then((response)=>{
-            const offers = response.data.data.listOffers.offers;
+                    setLanguages(data)
+                });
+                getOffers(market, true).then((response)=>{
+                    const offers = response.data.data.listOffers.offers;
 
-            setOffers(offers.sort((a,b)=>(a.rating.min - b.rating.min)));
-            setOffersData(offers.sort((a,b)=>(a.rating.min - b.rating.min)))
+                    setOffers(offers.sort((a,b)=>(a.rating.min - b.rating.min)));
+                    setOffersData(offers.sort((a,b)=>(a.rating.min - b.rating.min)))
 
-            props.loader(false)
-        });
-        getFAQ(market, language).then((response)=>{
-            const FAQ = response.data.data.listFAQ.list_faq;
+                    props.loader(false)
+                });
+                getFAQ(market, language).then((response)=>{
+                    const FAQ = response.data.data.listFAQ.list_faq;
 
-            setFaq(FAQ);
+                    setFaq(FAQ);
 
-        });
-        updateReviews()
+                });
+                updateReviews()
+            } else {
+                history.push({
+                    pathname: "/404",
+                    search: `?markets=${existMarket}`
+                })
+            }
+        })
     }, [setContent, language])
 
     useEffect(()=>{

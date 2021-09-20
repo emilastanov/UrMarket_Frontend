@@ -63,7 +63,7 @@ const FAQ = props => {
         <div className="row">
             <div className="col-2" style={{borderRight: "1px solid grey"}}>
                 <h3>Рынок</h3>
-                <select disabled={true} defaultValue={market} className="form-select" aria-label="Default select example" onChange={(e)=>{
+                <select defaultValue={market} className="form-select" aria-label="Default select example" onChange={(e)=>{
                     setMarket(e.target.value)
                 }}>
                     {props.markets ? props.markets.map((item,key)=>(
@@ -76,6 +76,7 @@ const FAQ = props => {
                 }}>
                     <option value="ru">Русский</option>
                     <option value="ua">Украинский</option>
+                    <option value="kz">Казахский</option>
                 </select>
                 <button className="btn btn-primary" style={{margin: "24px auto", display: "block"}} onClick={()=>{
                     getFaq()

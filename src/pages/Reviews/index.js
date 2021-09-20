@@ -15,7 +15,7 @@ const Review = props => {
         })
     }
 
-    useEffect(()=>{
+    const GetReviews = () => {
         getReviews(market).then((response)=>{
             const reviews = response.data.data.listReviews.reviews
 
@@ -24,6 +24,10 @@ const Review = props => {
             setIsLoading(false);
 
         })
+    }
+
+    useEffect(()=>{
+        GetReviews();
     }, [reviews])
 
     return <div className="content p-5">
@@ -52,14 +56,17 @@ const Review = props => {
         <div className="row">
             <div className="col-2" style={{borderRight: "1px solid grey"}}>
                 <h3>Рынок</h3>
-                <select disabled={true} defaultValue={market} className="form-select" aria-label="Default select example" onChange={(e)=>{
+                <select defaultValue={market} className="form-select" aria-label="Default select example" onChange={(e)=>{
                     setMarket(e.target.value)
                 }}>
                     {props.markets ? props.markets.map((item,key)=>(
                         <option key={key} value={item.value}>{item.description}</option>
                     )) : ""}
                 </select>
-                <button className="btn btn-primary disabled" style={{margin: "24px auto", display: "block"}} >Выбрать</button>
+                <button className="btn btn-primary" style={{margin: "24px auto", display: "block"}} onClick={()=>{
+                    setIsLoading(true);
+                    GetReviews();
+                }}>Выбрать</button>
             </div>
             <div className="col-10" style={{borderRight: "1px solid grey"}}>
                 <table className="table table-striped">

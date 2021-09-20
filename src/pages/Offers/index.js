@@ -161,14 +161,17 @@ const Offers = props => {
         <div className="row">
             <div className="col-2" style={{borderRight: "1px solid grey"}}>
                 <h3>Рынок</h3>
-                <select disabled={true} defaultValue={market} className="form-select" aria-label="Default select example" onChange={(e)=>{
+                <select defaultValue={market} className="form-select" aria-label="Default select example" onChange={(e)=>{
                     setMarket(e.target.value)
                 }}>
                     {props.markets ? props.markets.map((item,key)=>(
                         <option key={key} value={item.value}>{item.description}</option>
                     )) : ""}
                 </select>
-                <button className="btn btn-primary disabled" style={{margin: "24px auto", display: "block"}} onClick={offersList}>Выбрать</button>
+                <button className="btn btn-primary " style={{margin: "24px auto", display: "block"}} onClick={()=>{
+                    setIsLoading(true);
+                    offersList();
+                }}>Выбрать</button>
             </div>
             <div className="col-6" style={{borderRight: "1px solid grey"}}>
                 <table className="table table-striped">

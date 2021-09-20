@@ -46,9 +46,9 @@ export const getLanguages = async (market) => {
     return axios(config)
 };
 
-export const getOffers = async (market) => {
+export const getOffers = async (market, main=false) => {
     const data = JSON.stringify({
-        "query": `query{listOffers(market:"${market}"){offers{id,title,logotype,market,description,is_show,link,rate,term{min,max},amount{min,max,symbol},rating,processing_time{min,max},processing_methods,requirements{age{min,max},income,income_proof,documents,ukrain_nationality,special}}}}`
+        "query": `query{listOffers(market:"${market}", main: ${main}){offers{id,title,logotype,market,description,is_show,link,rate,term{min,max},amount{min,max,symbol},rating,processing_time{min,max},processing_methods,requirements{age{min,max},income,income_proof,documents,ukrain_nationality,special}}}}`
     });
 
     const config = {

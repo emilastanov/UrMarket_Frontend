@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {addOrUpdateContent, listContent} from "./reducer";
+import {addOrUpdateContent, listContent, removeContent} from "./reducer";
 import {Field, Form} from "react-final-form";
 
 const Content = props => {
@@ -23,6 +23,7 @@ const Content = props => {
     }
 
     const _addOrUpdateContent = (values, f) => {
+        values.market = market
         setIsLoading(true);
         addOrUpdateContent(
             props.user.key,
@@ -31,6 +32,16 @@ const Content = props => {
         ).then(response=>{
             ListContent();
             f.reset();
+        })
+    }
+
+    const _removeContent = (id) => {
+        setIsLoading(true);
+        removeContent(
+            props.user.key,
+            id
+        ).then(response=>{
+            ListContent();
         })
     }
 
@@ -64,14 +75,17 @@ const Content = props => {
         <div className="row">
             <div className="col-2" style={{borderRight: "1px solid grey"}}>
                 <h3>Рынок</h3>
-                <select disabled={true} defaultValue={market} className="form-select" aria-label="Default select example" onChange={(e)=>{
+                <select defaultValue={market} className="form-select" aria-label="Default select example" onChange={(e)=>{
                     setMarket(e.target.value)
                 }}>
                     {props.markets ? props.markets.map((item,key)=>(
                         <option key={key} value={item.value}>{item.description}</option>
                     )) : ""}
                 </select>
-                <button className="btn btn-primary disabled" style={{margin: "24px auto", display: "block"}} >Выбрать</button>
+                <button className="btn btn-primary" style={{margin: "24px auto", display: "block"}} onClick={()=>{
+                    setIsLoading(true);
+                    ListContent();
+                }}>Выбрать</button>
             </div>
             <div className="col-6">
                 <table className="table table-striped">
@@ -93,7 +107,7 @@ const Content = props => {
                             <td>{item.language}</td>
                             <td>{item.logotype}</td>
                             <td>{item.market}</td>
-                            <td><button className="btn btn-danger" onClick={()=>{}}>x</button></td>
+                            <td><button className="btn btn-danger" onClick={()=>{_removeContent(item.id)}}>x</button></td>
                         </tr>
                     )) : ""}
                     </tbody>
@@ -108,7 +122,6 @@ const Content = props => {
                             changeValue(state, "id", ()=> values.content.id);
                             changeValue(state, "logotype", ()=> values.content.logotype);
                             changeValue(state, "language", ()=> values.content.language);
-                            changeValue(state, "market", ()=> values.content.market);
                             changeValue(state, "title", ()=> values.content.title);
                             changeValue(state, "metaTitle", ()=> values.content.meta.title);
                             changeValue(state, "metaDescription", ()=> values.content.meta.description);

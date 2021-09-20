@@ -189,3 +189,28 @@ export const addOrUpdateContent = async (key, values, edit=false) => {
 
     return axios(config)
 }
+
+export const removeContent = (key, id) => {
+    const data = JSON.stringify({
+        "query": `mutation RemoveContent($id:ID!){
+                      removeContent(id: $id){
+                        success
+                      }
+                    }`,
+        "variables": {
+            id: parseInt(id,10)
+        }
+    });
+
+    const config = {
+        method: 'post',
+        url: API_URL,
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': key
+        },
+        data : data
+    };
+
+    return axios(config)
+}
