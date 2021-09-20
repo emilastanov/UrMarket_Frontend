@@ -9,6 +9,8 @@ const Offers = props => {
     const [offers, setOffers] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [file, setFile] = useState(null);
+    const [showEditForm, setEditForm] = useState(false);
+    const [editOffer, setEditOffer] = useState(null);
 
 
     const offersList = () => {
@@ -17,6 +19,11 @@ const Offers = props => {
             setOffers(resp.data.listOffers.offers.sort((a,b)=>(a.id-b.id)))
             setIsLoading(false)
         })
+    }
+
+    const switchToEditForm = (id) => {
+        setEditForm(true);
+        setEditOffer(offers.filter((item)=>(item.id === id))[0]);
     }
 
 
@@ -68,67 +75,6 @@ const Offers = props => {
                 f.reset();
             })
         })
-    }
-
-    const _addOfferValidator = (values) => {
-        const errors = {}
-
-        if (!values.title){
-            errors.title = "required"
-        }
-        if (!values.description){
-            errors.description = "required"
-        }
-        if (!values.logotype){
-            errors.logotype = "required"
-        }
-        if (values.logotype && values.logotype.split('.').slice(-1)[0] !== "png") {
-            errors.logotype = "bad_format"
-        }
-        if (!values.link){
-            errors.link = "required"
-        }
-        if (!values.rate){
-            errors.rate = "required"
-        }
-        if (!values.amountMin){
-            errors.amountMin = "required"
-        }
-        if (!values.amountMax){
-            errors.amountMax = "required"
-        }
-        if (!values.amountSymbol){
-            errors.amountSymbol = "required"
-        }
-        if (!values.termMin){
-            errors.termMin = "required"
-        }
-        if (!values.termMax){
-            errors.termMax = "required"
-        }
-        if (!values.rating){
-            errors.rating = "required"
-        }
-        if (!values.processingTimeMin){
-            errors.processingTimeMin = "required"
-        }
-        if (!values.processingTimeMax){
-            errors.processingTimeMax = "required"
-        }
-        if (!values.processingMethods){
-            errors.processingMethods = "required"
-        }
-        if (!values.requirementsAgeMin){
-            errors.requirementsAgeMin = "required"
-        }
-        if (!values.requirementsAgeMax){
-            errors.requirementsAgeMax = "required"
-        }
-        if (!values.requirementsDocuments){
-            errors.requirementsDocuments = "required"
-        }
-
-        return errors
     }
 
     useEffect(()=>{
@@ -189,7 +135,7 @@ const Offers = props => {
                     <tbody>
                     {offers ? offers.map((item,key)=>(
                         <tr key={key}>
-                            <th scope="row">{item.id}</th>
+                            <th scope="row"><a className="btn btn-link" onClick={()=>{switchToEditForm(item.id)}}>{item.id}</a></th>
                             <td>{item.title}</td>
                             <td>{item.market}</td>
                             <td>{item.rating}</td>
@@ -209,15 +155,39 @@ const Offers = props => {
                 <h2>Добавление оффера</h2>
                 <Form
                     onSubmit={_addOffer}
-                    validate={_addOfferValidator}
+                    mutators={{
+                        fillForm: ([values], state, {changeValue})=>{
+                            changeValue(state, "id", ()=> values.offer.id);
+                        },
+                        resetIdField: (args,state,{changeValue}) => {
+                            changeValue(state,'id',()=>null)
+                        }
+                    }}
                     render={({form, handleSubmit})=>(
                         <form onSubmit={event=>handleSubmit(event,form)}>
+                            {showEditForm ? <div className="btn-group">
+                                <a className="btn btn-primary" onClick={()=>{
+                                    form.mutators.fillForm({offer: editOffer})
+                                }}>Заполнить</a>
+                                <a className="btn btn-danger ml-5" onClick={()=>{
+                                    form.mutators.resetIdField()
+                                    setEditForm(false);
+                                }}>Отменить</a>
+                            </div> : ''}
+                            {showEditForm ? <div className="mb-3">
+                                <label htmlFor="exampleInputEmail1" className="form-label">Идентификатор</label>
+                                <Field name="id">
+                                    {({input, meta})=>(
+                                        <input required={true} {...input} className="form-control" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                                    )}
+                                </Field>
+                            </div> : ""}
                             <div className="mb-3">
                                 <label htmlFor="formFile" className="form-label">Обложка оффера</label>
-                                <Field name="logotype">
+                                <Field name="logotype" >
                                     {({input, meta})=>(
                                         <React.Fragment>
-                                            <input {...input} onChange={(e)=>{input.onChange(e); setFile(e.target.files[0])}} className="form-control" type="file" id="formFile" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                                            <input required={true} {...input} onChange={(e)=>{input.onChange(e); setFile(e.target.files[0])}} className="form-control" type="file" id="formFile" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
                                             <div id="passwordHelpBlock" className="form-text" style={meta.error === "bad_format" && meta.touched ? {color: "red"} : {}}>
                                                 Изображение должно быть в формате png с прозрачным фоном.
                                             </div>
@@ -229,7 +199,7 @@ const Offers = props => {
                                 <label htmlFor="exampleInputEmail1" className="form-label">Название МФО</label>
                                 <Field name="title">
                                     {({input, meta})=>(
-                                        <input {...input} className="form-control" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                                        <input required={true} {...input} className="form-control" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
                                     )}
                                 </Field>
                             </div>
@@ -237,7 +207,7 @@ const Offers = props => {
                                 <label htmlFor="exampleInputEmail1" className="form-label">Описание</label>
                                 <Field name="description">
                                     {({input, meta})=>(
-                                        <input {...input} className="form-control" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                                        <input required={true} {...input} className="form-control" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
                                     )}
                                 </Field>
                             </div>
@@ -245,7 +215,7 @@ const Offers = props => {
                                 <label htmlFor="exampleInputEmail1" className="form-label">Реферальная ссылка</label>
                                 <Field name="link">
                                     {({input, meta})=>(
-                                        <input {...input} className="form-control" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                                        <input required={true} {...input} className="form-control" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
                                     )}
                                 </Field>
                             </div>
@@ -253,7 +223,7 @@ const Offers = props => {
                                 <label htmlFor="exampleInputEmail1" className="form-label">Ставка</label>
                                 <Field name="rate">
                                     {({input, meta})=>(
-                                        <input {...input} className="form-control" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                                        <input required={true} {...input} className="form-control" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
                                     )}
                                 </Field>
                             </div>
@@ -261,7 +231,7 @@ const Offers = props => {
                                 <label htmlFor="exampleInputEmail1" className="form-label">Приоритет</label>
                                 <Field name="rating">
                                     {({input, meta})=>(
-                                        <input {...input} className="form-control" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                                        <input required={true} {...input} className="form-control" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
                                     )}
                                 </Field>
                             </div>
@@ -270,17 +240,17 @@ const Offers = props => {
                                 <div className="input-group">
                                     <Field name="amountMin">
                                         {({input, meta})=>(
-                                            <input {...input} className="form-control" placeholder="Минимальная" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                                            <input required={true} {...input} className="form-control" placeholder="Минимальная" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
                                         )}
                                     </Field>
                                     <Field name="amountMax">
                                         {({input, meta})=>(
-                                            <input {...input} className="form-control" placeholder="Максимальная" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                                            <input required={true} {...input} className="form-control" placeholder="Максимальная" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
                                         )}
                                     </Field>
                                     <Field name="amountSymbol">
                                         {({input, meta})=>(
-                                            <select {...input} defaultValue={0} className="form-control" placeholder="Валюта" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}>
+                                            <select required={true} {...input} defaultValue={0} className="form-control" placeholder="Валюта" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}>
                                                 <option value={0} hidden={true}>
                                                     Выбрать
                                                 </option>
@@ -297,12 +267,12 @@ const Offers = props => {
                                 <div className="input-group">
                                     <Field name="termMin">
                                         {({input, meta})=>(
-                                            <input {...input} className="form-control" placeholder="Минимальный" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                                            <input required={true} {...input} className="form-control" placeholder="Минимальный" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
                                         )}
                                     </Field>
                                     <Field name="termMax">
                                         {({input, meta})=>(
-                                            <input {...input} className="form-control" placeholder="Максимальный" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                                            <input required={true} {...input} className="form-control" placeholder="Максимальный" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
                                         )}
                                     </Field>
                                 </div>
@@ -312,12 +282,12 @@ const Offers = props => {
                                 <div className="input-group">
                                     <Field name="processingTimeMin">
                                         {({input, meta})=>(
-                                            <input {...input} className="form-control" placeholder="Минимальное" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                                            <input required={true} {...input} className="form-control" placeholder="Минимальное" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
                                         )}
                                     </Field>
                                     <Field name="processingTimeMax">
                                         {({input, meta})=>(
-                                            <input {...input} className="form-control" placeholder="Максимальное" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                                            <input required={true} {...input} className="form-control" placeholder="Максимальное" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
                                         )}
                                     </Field>
                                 </div>
