@@ -4,7 +4,14 @@ const API_URL = 'https://api.urmarket.online/';
 
 export const offerSwitcher = async (key, id, state) => {
     const data = JSON.stringify({
-        "query": `mutation{updateOffer(id: ${id}, isShow: ${state}){offer{id,is_show}}}`
+        "query": `mutation SetOfferState(
+            $id: ID!,
+            $isShow: Boolean!
+        ){updateOffer(id: $id, isShow: $isShow){offer{id,is_show}}}`,
+        variables: {
+            id: id,
+            isShow: state
+        }
     });
 
     const config = {
