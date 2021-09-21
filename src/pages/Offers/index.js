@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {getOffers} from "../Main/reducer";
-import {offerSwitcher, addOffer, uploadImg, removeOffer} from "./reducer";
-import {Form, Field} from "react-final-form";
+import {addOrUpdateOffer, offerSwitcher, removeOffer, uploadImg} from "./reducer";
+import {Field, Form} from "react-final-form";
 
 const Offers = props => {
 
@@ -41,40 +41,51 @@ const Offers = props => {
         })
     }
 
-    const _addOffer = (e,f) => {
+    const _addOrUpdateOffer = (e,f) => {
         setIsLoading(true)
-        uploadImg(file).then((response)=>{
-            const logotype = response.data.out;
-            addOffer(
-                props.user.key,
-                e.title,
-                e.description,
-                logotype,
-                e.link,
-                e.rate,
-                e.isShow === undefined? false : e.isShow,
-                e.amountMin,
-                e.amountMax,
-                e.amountSymbol,
-                e.termMin,
-                e.termMax,
-                e.rating,
-                e.processingTimeMin,
-                e.processingTimeMax,
-                e.processingMethods,
-                e.requirementsAgeMin,
-                e.requirementsAgeMax,
-                e.requirementsIncome ? e.requirementsIncome : 0,
-                e.requirementsIncomeProof === undefined ? false : e.requirementsIncomeProof,
-                e.requirementsDocuments,
-                e.requirementsUkrainNationality === undefined ? false : e.requirementsUkrainNationality,
-                e.requirementsSpecial ? e.requirementsSpecial : "",
-                market
-            ).then(resp=>{
-                offersList();
-                f.reset();
+        if (showEditForm){
+            e.processingMethods = e.processingMethods.join(',')
+            e.requirementsDocuments = e.requirementsDocuments.join(',')
+            if (file) {
+                uploadImg(file).then((response)=>{
+                    e.logotype = response.data.out;
+                    addOrUpdateOffer(
+                        props.user.key,
+                        e,
+                        showEditForm
+                    ).then(resp=>{
+                        offersList();
+                        f.reset();
+                    })
+                })
+            } else {
+                addOrUpdateOffer(
+                    props.user.key,
+                    e,
+                    showEditForm
+                ).then(resp=>{
+                    offersList();
+                })
+            }
+        } else {
+            uploadImg(file).then((response)=>{
+                e.logotype = response.data.out;
+                e.isShow = e.isShow === undefined ? false : e.isShow;
+                e.requirementsIncome = e.requirementsIncome ? e.requirementsIncome : 0;
+                e.requirementsIncomeProof = e.requirementsIncomeProof === undefined ? false : e.requirementsIncomeProof;
+                e.requirementsUkrainNationality = e.requirementsUkrainNationality === undefined ? false : e.requirementsUkrainNationality;
+                e.requirementsSpecial = e.requirementsSpecial ? e.requirementsSpecial : "";
+                e.market = market
+                addOrUpdateOffer(
+                    props.user.key,
+                    e,
+                    showEditForm
+                ).then(resp=>{
+                    offersList();
+                    f.reset();
+                })
             })
-        })
+        }
     }
 
     useEffect(()=>{
@@ -154,10 +165,32 @@ const Offers = props => {
             <div className="col-4">
                 <h2>Добавление оффера</h2>
                 <Form
-                    onSubmit={_addOffer}
+                    onSubmit={_addOrUpdateOffer}
                     mutators={{
                         fillForm: ([values], state, {changeValue})=>{
                             changeValue(state, "id", ()=> values.offer.id);
+                            changeValue(state, "title", ()=> values.offer.title);
+                            changeValue(state, "description", ()=> values.offer.description);
+                            changeValue(state, "link", ()=> values.offer.link);
+                            changeValue(state, "rate", ()=> values.offer.rate);
+                            changeValue(state, "isShow", ()=> values.offer.is_show);
+                            changeValue(state, "amountMin", ()=> values.offer.amount.min);
+                            changeValue(state, "amountMax", ()=> values.offer.amount.max);
+                            changeValue(state, "amountSymbol", ()=> values.offer.amount.symbol);
+                            changeValue(state, "termMin", ()=> values.offer.term.min);
+                            changeValue(state, "termMax", ()=> values.offer.term.max);
+                            changeValue(state, "rating", ()=> values.offer.rating);
+                            changeValue(state, "processingTimeMin", ()=> values.offer.processing_time.min);
+                            changeValue(state, "processingTimeMax", ()=> values.offer.processing_time.max);
+                            changeValue(state, "processingMethods", ()=> values.offer.processing_methods);
+                            changeValue(state, "requirementsAgeMin", ()=> values.offer.requirements.age.min);
+                            changeValue(state, "requirementsAgeMax", ()=> values.offer.requirements.age.max);
+                            changeValue(state, "requirementsIncome", ()=> values.offer.requirements.income);
+                            changeValue(state, "requirementsIncomeProof", ()=> values.offer.requirements.income_proof);
+                            changeValue(state, "requirementsDocuments", ()=> values.offer.requirements.documents);
+                            changeValue(state, "requirementsUkrainNationality", ()=> values.offer.requirements.ukrain_nationality);
+                            changeValue(state, "requirementsSpecial", ()=> values.offer.requirements.special);
+                            changeValue(state, "market", ()=> values.offer.market);
                         },
                         resetIdField: (args,state,{changeValue}) => {
                             changeValue(state,'id',()=>null)
@@ -187,7 +220,7 @@ const Offers = props => {
                                 <Field name="logotype" >
                                     {({input, meta})=>(
                                         <React.Fragment>
-                                            <input required={true} {...input} onChange={(e)=>{input.onChange(e); setFile(e.target.files[0])}} className="form-control" type="file" id="formFile" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                                            <input {...input} onChange={(e)=>{input.onChange(e); setFile(e.target.files[0])}} className="form-control" type="file" id="formFile" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
                                             <div id="passwordHelpBlock" className="form-text" style={meta.error === "bad_format" && meta.touched ? {color: "red"} : {}}>
                                                 Изображение должно быть в формате png с прозрачным фоном.
                                             </div>
@@ -363,7 +396,7 @@ const Offers = props => {
                                 </Field>
                                 <label className="form-check-label" htmlFor="flexSwitchCheckDefault1">Отобразить в выдаче</label>
                             </div>
-                            <button className="btn btn-primary" style={{marginTop: 10}}>Добавить</button>
+                            <button className={`btn btn-${editOffer ? 'danger' : 'primary'}`} style={{marginTop: 10}}>{editOffer ? "Сохранить" : "Добавить"}</button>
                         </form>
                     )}
                 />
