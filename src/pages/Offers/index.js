@@ -396,7 +396,7 @@ const Offers = props => {
                                 </Field>
                                 <label className="form-check-label" htmlFor="flexSwitchCheckDefault1">Отобразить в выдаче</label>
                             </div>
-                            <button className={`btn btn-${editOffer ? 'danger' : 'primary'}`} style={{marginTop: 10}}>{editOffer ? "Сохранить" : "Добавить"}</button>
+                            <button className={`btn btn-${showEditForm ? 'danger' : 'primary'}`} style={{marginTop: 10}}>{showEditForm ? "Сохранить" : "Добавить"}</button>
                         </form>
                     )}
                 />
