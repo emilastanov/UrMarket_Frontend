@@ -44,8 +44,6 @@ const Offers = props => {
     const _addOrUpdateOffer = (e,f) => {
         setIsLoading(true)
         if (showEditForm){
-            e.processingMethods = e.processingMethods.join(',')
-            e.requirementsDocuments = e.requirementsDocuments.join(',')
             if (file) {
                 uploadImg(file).then((response)=>{
                     e.logotype = response.data.out;
@@ -182,12 +180,12 @@ const Offers = props => {
                             changeValue(state, "rating", ()=> values.offer.rating);
                             changeValue(state, "processingTimeMin", ()=> values.offer.processing_time.min);
                             changeValue(state, "processingTimeMax", ()=> values.offer.processing_time.max);
-                            changeValue(state, "processingMethods", ()=> values.offer.processing_methods);
+                            changeValue(state, "processingMethods", ()=> values.offer.processing_methods.join(','));
                             changeValue(state, "requirementsAgeMin", ()=> values.offer.requirements.age.min);
                             changeValue(state, "requirementsAgeMax", ()=> values.offer.requirements.age.max);
                             changeValue(state, "requirementsIncome", ()=> values.offer.requirements.income);
                             changeValue(state, "requirementsIncomeProof", ()=> values.offer.requirements.income_proof);
-                            changeValue(state, "requirementsDocuments", ()=> values.offer.requirements.documents);
+                            changeValue(state, "requirementsDocuments", ()=> values.offer.requirements.documents.join(','));
                             changeValue(state, "requirementsUkrainNationality", ()=> values.offer.requirements.ukrain_nationality);
                             changeValue(state, "requirementsSpecial", ()=> values.offer.requirements.special);
                             changeValue(state, "market", ()=> values.offer.market);
