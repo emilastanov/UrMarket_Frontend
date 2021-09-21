@@ -33,7 +33,7 @@ export const addOrUpdateOffer = async (key, values, edit) => {
             ${edit ? "$id: ID!" : ""}
             $title: String!,
             $description: String!,
-            $logotype: String,
+            $logotype: ${edit ? 'String' : 'String!'},
             $link: String!,
             $rate: Float!,
             $isShow: Boolean!,
