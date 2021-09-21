@@ -26,7 +26,7 @@ export const addOrUpdateOffer = async (key, values, edit) => {
             ${edit ? "$id: ID!" : ""}
             $title: String!,
             $description: String!,
-            $logotype: String!,
+            $logotype: String,
             $link: String!,
             $rate: Float!,
             $isShow: Boolean!,
