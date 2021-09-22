@@ -201,16 +201,28 @@
         background-color: rgb(249, 249, 249);
         border-bottom: 1px solid rgb(228, 228, 228);
     }
-    .offer > .wrapper.badOffer > .button {
+    .offer > .wrapper.badOffer > .buttons > .button {
         background: #818181;
     }
-    .wrapper > .button {
+    .wrapper > .buttons {
+        display: grid;
+        grid-template-columns: 1fr 32px!important;
+        grid-column-gap: 8px;
+    }
+
+    .wrapper > .buttons > .button:last-child {
+        background: #e5e5e5!important;
+        box-shadow: 0 0 7px -4px #777777;
+    }
+
+    .wrapper > .buttons > .button {
         width: 100%;
         height: 32px;
         background: rgba(26, 171, 72, 1);
         box-sizing: border-box;
         margin: 0 auto 0 auto;
         font-style: italic;
+        font-size: 17px;
         color: white;
         display: flex;
         align-items: center;

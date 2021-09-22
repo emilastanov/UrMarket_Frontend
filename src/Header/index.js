@@ -8,7 +8,7 @@ import './style.css';
 const Header = props => {
     const [activeTap, setActiveTap] = useState(true);
     return <header>
-        <Link to="/"><img className="logotype" src="https://res.cloudinary.com/urmarket-online/image/upload/v1630921659/logotype.svg" alt="Logotype"/></Link>
+        <Link to="/"><img onClick={()=>props.loader(true)} className="logotype" src="https://res.cloudinary.com/urmarket-online/image/upload/v1630921659/logotype.svg" alt="Logotype"/></Link>
         <div className="menu" style={{display: 'none'}}>
             <span onClick={()=>setActiveTap(!activeTap)} className={activeTap ? "active" : ""}>Микрозаймы</span>
             <span onClick={()=>setActiveTap(!activeTap)} className={!activeTap ? "active" : ""}>Кредитные карты</span>

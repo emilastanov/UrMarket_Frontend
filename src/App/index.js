@@ -6,11 +6,18 @@ import {
     Redirect
 } from "react-router-dom";
 import './style.css'
-import Main from "../pages/Main";
+
 import PageLoader from "../components/PageLoader";
 import Page404 from "../components/Page404";
-const AdminPanel = lazy(() => import("../pages/AdminPanel"));
-const Login = lazy(() => import("../pages/Login"));
+const Main = lazy(()=>(
+    import("../pages/Main")
+));
+const AdminPanel = lazy(() => (
+    import("../pages/AdminPanel")
+));
+const Login = lazy(() => (
+    import("../pages/Login")
+));
 
 
 
@@ -32,19 +39,36 @@ const App = props => {
             });
     },[country])
 
+    const fallback = () => (
+        <div style={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
+            margin: "auto",
+            width: 100,
+            height: 50
+        }}>...</div>
+    );
+
     return <Router>
         <PageLoader state={isLoading}/>
         <Switch>
             <Route path="/admin">
-                <Suspense fallback={"..."}>
+                <Suspense fallback={fallback}>
                     {token ? <AdminPanel loader={setIsLoading}/> : <Login loader={setIsLoading}/>}
                 </Suspense>
             </Route>
             <Route path="/404">
-                <Page404 loader={setIsLoading}/>
+                <Suspense fallback={fallback}>
+                    <Page404 loader={setIsLoading}/>
+                </Suspense>
             </Route>
             <Route path="/:market">
-                <Main language="ru" loader={setIsLoading} country={country}/>
+                <Suspense fallback={fallback}>
+                    <Main language="ru" loader={setIsLoading} country={country}/>
+                </Suspense>
             </Route>
             <Route path="/">
                 {/*{country ? <Redirect to={`/${country}?language=ru`}/> : ""}*/}

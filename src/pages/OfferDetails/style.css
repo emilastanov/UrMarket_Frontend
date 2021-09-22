@@ -1,0 +1,62 @@
+
+.offerDetails {
+    width: calc(100% - var(--offset) * 2);
+    background: white;
+    margin: 24px auto 20px auto;
+    box-shadow: 0 0 10px -8px grey;
+    box-sizing: border-box;
+    border: 1px solid #efefef;
+    border-radius: 8px;
+    height: 500px;
+}
+
+.offerDetails > .header {
+    font-family: "Ubuntu", sans-serif;
+    color: #535353;
+    margin: 24px 32px;
+    font-size: 16px;
+}
+
+.offerDetails > .image {
+    width: 103%;
+    height: 75px;
+    position: relative;
+    right: 1.5%;
+    background: #f5f5f5;
+    border-radius: 4px;
+    border: .3px solid #e0e0e0;
+    box-shadow: 0 0 10px -4px grey
+}
+
+.offerDetails > .image > img {
+    height: 100%;
+    margin: 0 0 0 16px;
+}
+
+.offerDetails > .conditions {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 24px 0 0 0;
+    padding: 0 24px;
+}
+.offerDetails > .conditions > .condition {
+    width: 200px;
+    margin: 0 auto;
+}
+
+.offerDetails > .conditions > .condition > span {
+    display: block;
+    font-family: "OpenSans", sans-serif;
+}
+
+.offerDetails > .conditions > .condition > span:first-child {
+    display: block;
+    color: #535353;
+}
+
+.offerDetails > .conditions > .condition > span:last-child {
+    display: block;
+    font-weight: bold;
+    font-size: 18px;
+    margin: 4px;
+}

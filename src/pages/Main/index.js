@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {useHistory} from "react-router-dom";
+import {useHistory, useRouteMatch, Route} from "react-router-dom";
 import Calculator from "../../Calculator";
 import OffersList from "../../OffersList";
 import TopTable from "../../TopTable";
@@ -7,6 +7,7 @@ import FAQ from "../../FAQ";
 import Reviews from "../../Reviews";
 import Footer from "../../Footer";
 import Header from "../../Header";
+import OfferDetails from "../OfferDetails";
 
 import {getContent, getFAQ, getLanguages, getOffers, getReviews} from "./reducer.js"
 import {useLocation, useParams} from "react-router-dom";
@@ -29,6 +30,7 @@ const Main = props => {
     const history = useHistory();
     let {market} = useParams();
     let query = useQuery();
+    let { path } = useRouteMatch();
 
 
     const language = query.get("language")? query.get("language") : "ru"
@@ -98,6 +100,7 @@ const Main = props => {
 
     return content ? <React.Fragment>
         <Header
+            loader={props.loader}
             changeLanguage={market !== 'ru'}
             language={{selected: language, languages: languages}} change={()=>{
                 props.loader(true)
@@ -105,32 +108,38 @@ const Main = props => {
                     search: `?language=${languages.filter(item=>item!==language)[0]}`
                 })
         }} />
-        <Calculator
-            header={content ? content.header : ""}
-            description={content ? content.description: ""}
-            amount = {content ? content.calc.amount: ""}
-            term = {content ? content.calc.term : ""}
-            button = {content ? content.calc.button : ""}
-            ads = {content ? content.ads : ""}
-            count_offers = {offers ? offers.length : 0}
-            setFilters = {setFilters}
-            offers={offersData}
-        />
-        <OffersList
-            offers={offers? offers : []}
-            filter={content? content.filter: null}
-            offersData={offersData ? offersData : []}
-            card={content ? content.offer : null}
-        />
-        <TopTable
-            header={content ? content.top.title : ""}
-            columns={content ? content.top.table_columns : ""}
-            offers={offers? offers.sort((a,b)=>(b.rating - a.rating)).slice(0,5) : []}
-        />
-        <FAQ
-            questions={faq ? faq : null}
-            header={content ? content.faq_header : ""}
-        />
+        <Route exact path={`${path}/`}>
+            <Calculator
+                header={content ? content.header : ""}
+                description={content ? content.description: ""}
+                amount = {content ? content.calc.amount: ""}
+                term = {content ? content.calc.term : ""}
+                button = {content ? content.calc.button : ""}
+                ads = {content ? content.ads : ""}
+                count_offers = {offers ? offers.length : 0}
+                setFilters = {setFilters}
+                offers={offersData}
+            />
+            <OffersList
+                offers={offers? offers : []}
+                filter={content? content.filter: null}
+                offersData={offersData ? offersData : []}
+                card={content ? content.offer : null}
+                loader={props.loader}
+            />
+            <TopTable
+                header={content ? content.top.title : ""}
+                columns={content ? content.top.table_columns : ""}
+                offers={offers? offers.sort((a,b)=>(b.rating - a.rating)).slice(0,5) : []}
+            />
+            <FAQ
+                questions={faq ? faq : null}
+                header={content ? content.faq_header : ""}
+            />
+        </Route>
+        <Route path={`${path}/offer/:offer`}>
+            <OfferDetails loader={props.loader} content={content.offer}/>
+        </Route>
         <Reviews
             updateReviews={updateReviews}
             market={content ? content.market : null}
