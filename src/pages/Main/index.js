@@ -97,11 +97,13 @@ const Main = props => {
 
 
     return content ? <React.Fragment>
-        <Header language={{selected: language, languages: languages}} change={()=>{
-            props.loader(true)
-            history.push({
-                search: `?language=${languages.filter(item=>item!==language)[0]}`
-            })
+        <Header
+            changeLanguage={market !== 'ru'}
+            language={{selected: language, languages: languages}} change={()=>{
+                props.loader(true)
+                history.push({
+                    search: `?language=${languages.filter(item=>item!==language)[0]}`
+                })
         }} />
         <Calculator
             header={content ? content.header : ""}
