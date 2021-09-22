@@ -13,13 +13,13 @@ const Header = props => {
             <span onClick={()=>setActiveTap(!activeTap)} className={activeTap ? "active" : ""}>Микрозаймы</span>
             <span onClick={()=>setActiveTap(!activeTap)} className={!activeTap ? "active" : ""}>Кредитные карты</span>
         </div>
-        <div className="changeLang" onClick={props.change}>
+        {props.changeLanguage ? <div className="changeLang" onClick={props.change}>
             <div>
                 <span className={props.language.selected === props.language.languages[0]? "selected" : ""}>{props.language.languages[0]}</span>
                 <span style={{color: "#00ACFF"}}> | </span>
                 <span className={props.language.selected === props.language.languages[1]? "selected" : ""}>{props.language.languages[1]}</span>
             </div>
-        </div>
+        </div> : ""}
     </header>
 }
 
