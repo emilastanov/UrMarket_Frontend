@@ -23,10 +23,9 @@ const Page404 = props => {
                 <p>Запрашиваемая страница не найдена!</p>
             </div>
             <div className="links">
-                {/*{markets.map((item,key)=>(*/}
-                {/*    <Link key={key} to={`/${item}`} onClick={()=>props.loader(true)}>{item}</Link>*/}
-                {/*))}*/}
-                <Link to="ua" onClick={()=>props.loader(true)}>ua</Link>
+                {markets.map((item,key)=>(
+                    <Link key={key} to={`/${item}`} onClick={()=>props.loader(true)}>{item}</Link>
+                ))}
             </div>
         </div>
     </div>
