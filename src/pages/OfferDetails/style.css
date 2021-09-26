@@ -7,13 +7,15 @@
     box-sizing: border-box;
     border: 1px solid #efefef;
     border-radius: 8px;
-    height: 500px;
+    padding-bottom: 24px;
+    position: relative;
+    height: 600px;
 }
 
 .offerDetails > .header {
     font-family: "Ubuntu", sans-serif;
     color: #535353;
-    margin: 24px 32px;
+    margin: 24px 10%;
     font-size: 16px;
 }
 
@@ -30,7 +32,7 @@
 
 .offerDetails > .image > img {
     height: 100%;
-    margin: 0 0 0 16px;
+    margin: 0 0 0 10%;
 }
 
 .offerDetails > .conditions {
@@ -42,6 +44,54 @@
 .offerDetails > .conditions > .condition {
     width: 200px;
     margin: 0 auto;
+}
+
+.offerDetails > .requirements {
+    margin-top: 48px;
+    padding-left: 10%;
+}
+
+.offerDetails > hr {
+    border-top: 1px solid #bebebe;
+    width: 80%;
+    margin-top: 48px;
+}
+
+.offerDetails > .button {
+    width: 185px;
+    height: 48px;
+    position: absolute;
+    background: rgba(26, 171, 72, 1);
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-style: italic;
+    font-size: 17px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    bottom: 24px;
+    right: 10%;
+}
+
+.offerDetails > .description {
+    padding: 24px 10% 0 10%;
+    color: #222222;
+}
+
+.offerDetails > .requirements > li {
+    margin: 12px 0;
+    list-style: none;
+    color: #535353;
+    font-style: italic;
+}
+
+.offerDetails > .requirements > li > span {
+    font-weight: bold;
+    color: #222222;
 }
 
 .offerDetails > .conditions > .condition > span {

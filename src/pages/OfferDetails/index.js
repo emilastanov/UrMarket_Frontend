@@ -1,7 +1,11 @@
 import React, {useEffect, useState} from "react";
+import {useParams} from "react-router-dom";
 
 import {getOffer_reducer} from "./reducer";
-import {useParams} from "react-router-dom";
+
+import Button from "../../components/Button";
+
+import {Done} from "../../icons";
 
 import './style.css';
 
@@ -14,13 +18,13 @@ const OfferDetails = props => {
     const getOffer = () => {
         getOffer_reducer(offer).then(response=>{
             setOfferData(response.data.data.getOffer.offer);
-            props.loader(false)
+            props.loader(false);
+            console.log(response.data.data.getOffer.offer)
         })
     }
 
     useEffect(()=>{
         if (!offerData) {getOffer();}
-        console.log(props.content)
     },[setOfferData])
 
     return offerData ? <div className="offerDetails">
@@ -54,6 +58,15 @@ const OfferDetails = props => {
                 </span>
             </div>
         </div>
+        <p className="description">{offerData.description}</p>
+        <ul className="requirements">
+            <li><Done/>Получение: <span>{offerData.processing_methods.join(', ')}</span></li>
+            <li><Done/>Рассмотрение: <span>до {offerData.processing_time.max} {props.content.time.units}</span></li>
+            <li><Done/>Документы: <span> {offerData.requirements.documents.join(', ')}</span></li>
+            <li><Done/>Возраст: <span>от {offerData.requirements.age.min} до {offerData.requirements.age.max} лет</span></li>
+        </ul>
+        <hr/>
+        <a href={offerData.link} className="button">получить деньги</a>
     </div>: ""
 }
 
