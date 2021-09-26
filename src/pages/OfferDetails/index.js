@@ -3,8 +3,6 @@ import {useParams} from "react-router-dom";
 
 import {getOffer_reducer} from "./reducer";
 
-import Button from "../../components/Button";
-
 import {Done} from "../../icons";
 
 import './style.css';
