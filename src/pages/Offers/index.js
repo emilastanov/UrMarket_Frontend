@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {getOffers} from "../Main/reducer";
-import {offerSwitcher, addOffer, uploadImg, removeOffer} from "./reducer";
-import {Form, Field} from "react-final-form";
+import {addOrUpdateOffer, offerSwitcher, removeOffer, uploadImg} from "./reducer";
+import {Field, Form} from "react-final-form";
 
 const Offers = props => {
 
@@ -9,6 +9,8 @@ const Offers = props => {
     const [offers, setOffers] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [file, setFile] = useState(null);
+    const [showEditForm, setEditForm] = useState(false);
+    const [editOffer, setEditOffer] = useState(null);
 
 
     const offersList = () => {
@@ -17,6 +19,11 @@ const Offers = props => {
             setOffers(resp.data.listOffers.offers.sort((a,b)=>(a.id-b.id)))
             setIsLoading(false)
         })
+    }
+
+    const switchToEditForm = (id) => {
+        setEditForm(true);
+        setEditOffer(offers.filter((item)=>(item.id === id))[0]);
     }
 
 
@@ -34,101 +41,49 @@ const Offers = props => {
         })
     }
 
-    const _addOffer = (e,f) => {
+    const _addOrUpdateOffer = (e,f) => {
         setIsLoading(true)
-        uploadImg(file).then((response)=>{
-            const logotype = response.data.out;
-            addOffer(
-                props.user.key,
-                e.title,
-                e.description,
-                logotype,
-                e.link,
-                e.rate,
-                e.isShow === undefined? false : e.isShow,
-                e.amountMin,
-                e.amountMax,
-                e.amountSymbol,
-                e.termMin,
-                e.termMax,
-                e.rating,
-                e.processingTimeMin,
-                e.processingTimeMax,
-                e.processingMethods,
-                e.requirementsAgeMin,
-                e.requirementsAgeMax,
-                e.requirementsIncome ? e.requirementsIncome : 0,
-                e.requirementsIncomeProof === undefined ? false : e.requirementsIncomeProof,
-                e.requirementsDocuments,
-                e.requirementsUkrainNationality === undefined ? false : e.requirementsUkrainNationality,
-                e.requirementsSpecial ? e.requirementsSpecial : "",
-                market
-            ).then(resp=>{
-                offersList();
-                f.reset();
+        if (showEditForm){
+            if (file) {
+                uploadImg(file).then((response)=>{
+                    e.logotype = response.data.out;
+                    addOrUpdateOffer(
+                        props.user.key,
+                        e,
+                        showEditForm
+                    ).then(resp=>{
+                        offersList();
+                        f.reset();
+                    })
+                })
+            } else {
+                addOrUpdateOffer(
+                    props.user.key,
+                    e,
+                    showEditForm
+                ).then(resp=>{
+                    offersList();
+                })
+            }
+        } else {
+            uploadImg(file).then((response)=>{
+                e.logotype = response.data.out;
+                e.isShow = e.isShow === undefined ? false : e.isShow;
+                e.requirementsIncome = e.requirementsIncome ? e.requirementsIncome : 0;
+                e.requirementsIncomeProof = e.requirementsIncomeProof === undefined ? false : e.requirementsIncomeProof;
+                e.requirementsUkrainNationality = e.requirementsUkrainNationality === undefined ? false : e.requirementsUkrainNationality;
+                e.requirementsSpecial = e.requirementsSpecial ? e.requirementsSpecial : "";
+                e.market = market
+                addOrUpdateOffer(
+                    props.user.key,
+                    e,
+                    showEditForm
+                ).then(resp=>{
+                    offersList();
+                    f.reset();
+                })
             })
-        })
-    }
-
-    const _addOfferValidator = (values) => {
-        const errors = {}
-
-        if (!values.title){
-            errors.title = "required"
         }
-        if (!values.description){
-            errors.description = "required"
-        }
-        if (!values.logotype){
-            errors.logotype = "required"
-        }
-        if (values.logotype && values.logotype.split('.').slice(-1)[0] !== "png") {
-            errors.logotype = "bad_format"
-        }
-        if (!values.link){
-            errors.link = "required"
-        }
-        if (!values.rate){
-            errors.rate = "required"
-        }
-        if (!values.amountMin){
-            errors.amountMin = "required"
-        }
-        if (!values.amountMax){
-            errors.amountMax = "required"
-        }
-        if (!values.amountSymbol){
-            errors.amountSymbol = "required"
-        }
-        if (!values.termMin){
-            errors.termMin = "required"
-        }
-        if (!values.termMax){
-            errors.termMax = "required"
-        }
-        if (!values.rating){
-            errors.rating = "required"
-        }
-        if (!values.processingTimeMin){
-            errors.processingTimeMin = "required"
-        }
-        if (!values.processingTimeMax){
-            errors.processingTimeMax = "required"
-        }
-        if (!values.processingMethods){
-            errors.processingMethods = "required"
-        }
-        if (!values.requirementsAgeMin){
-            errors.requirementsAgeMin = "required"
-        }
-        if (!values.requirementsAgeMax){
-            errors.requirementsAgeMax = "required"
-        }
-        if (!values.requirementsDocuments){
-            errors.requirementsDocuments = "required"
-        }
-
-        return errors
     }
 
     useEffect(()=>{
@@ -189,7 +144,7 @@ const Offers = props => {
                     <tbody>
                     {offers ? offers.map((item,key)=>(
                         <tr key={key}>
-                            <th scope="row">{item.id}</th>
+                            <th scope="row"><a className="btn btn-link" onClick={()=>{switchToEditForm(item.id)}}>{item.id}</a></th>
                             <td>{item.title}</td>
                             <td>{item.market}</td>
                             <td>{item.rating}</td>
@@ -208,13 +163,59 @@ const Offers = props => {
             <div className="col-4">
                 <h2>Добавление оффера</h2>
                 <Form
-                    onSubmit={_addOffer}
-                    validate={_addOfferValidator}
+                    onSubmit={_addOrUpdateOffer}
+                    mutators={{
+                        fillForm: ([values], state, {changeValue})=>{
+                            changeValue(state, "id", ()=> values.offer.id);
+                            changeValue(state, "title", ()=> values.offer.title);
+                            changeValue(state, "description", ()=> values.offer.description);
+                            changeValue(state, "link", ()=> values.offer.link);
+                            changeValue(state, "rate", ()=> values.offer.rate);
+                            changeValue(state, "isShow", ()=> values.offer.is_show);
+                            changeValue(state, "amountMin", ()=> values.offer.amount.min);
+                            changeValue(state, "amountMax", ()=> values.offer.amount.max);
+                            changeValue(state, "amountSymbol", ()=> values.offer.amount.symbol);
+                            changeValue(state, "termMin", ()=> values.offer.term.min);
+                            changeValue(state, "termMax", ()=> values.offer.term.max);
+                            changeValue(state, "rating", ()=> values.offer.rating);
+                            changeValue(state, "processingTimeMin", ()=> values.offer.processing_time.min);
+                            changeValue(state, "processingTimeMax", ()=> values.offer.processing_time.max);
+                            changeValue(state, "processingMethods", ()=> values.offer.processing_methods.join(','));
+                            changeValue(state, "requirementsAgeMin", ()=> values.offer.requirements.age.min);
+                            changeValue(state, "requirementsAgeMax", ()=> values.offer.requirements.age.max);
+                            changeValue(state, "requirementsIncome", ()=> values.offer.requirements.income);
+                            changeValue(state, "requirementsIncomeProof", ()=> values.offer.requirements.income_proof);
+                            changeValue(state, "requirementsDocuments", ()=> values.offer.requirements.documents.join(','));
+                            changeValue(state, "requirementsUkrainNationality", ()=> values.offer.requirements.ukrain_nationality);
+                            changeValue(state, "requirementsSpecial", ()=> values.offer.requirements.special);
+                            changeValue(state, "market", ()=> values.offer.market);
+                        },
+                        resetIdField: (args,state,{changeValue}) => {
+                            changeValue(state,'id',()=>null)
+                        }
+                    }}
                     render={({form, handleSubmit})=>(
                         <form onSubmit={event=>handleSubmit(event,form)}>
+                            {showEditForm ? <div className="btn-group">
+                                <a className="btn btn-primary" onClick={()=>{
+                                    form.mutators.fillForm({offer: editOffer})
+                                }}>Заполнить</a>
+                                <a className="btn btn-danger ml-5" onClick={()=>{
+                                    form.mutators.resetIdField()
+                                    setEditForm(false);
+                                }}>Отменить</a>
+                            </div> : ''}
+                            {showEditForm ? <div className="mb-3">
+                                <label htmlFor="exampleInputEmail1" className="form-label">Идентификатор</label>
+                                <Field name="id">
+                                    {({input, meta})=>(
+                                        <input required={true} {...input} className="form-control" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                                    )}
+                                </Field>
+                            </div> : ""}
                             <div className="mb-3">
                                 <label htmlFor="formFile" className="form-label">Обложка оффера</label>
-                                <Field name="logotype">
+                                <Field name="logotype" >
                                     {({input, meta})=>(
                                         <React.Fragment>
                                             <input {...input} onChange={(e)=>{input.onChange(e); setFile(e.target.files[0])}} className="form-control" type="file" id="formFile" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
@@ -229,7 +230,7 @@ const Offers = props => {
                                 <label htmlFor="exampleInputEmail1" className="form-label">Название МФО</label>
                                 <Field name="title">
                                     {({input, meta})=>(
-                                        <input {...input} className="form-control" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                                        <input required={true} {...input} className="form-control" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
                                     )}
                                 </Field>
                             </div>
@@ -237,7 +238,7 @@ const Offers = props => {
                                 <label htmlFor="exampleInputEmail1" className="form-label">Описание</label>
                                 <Field name="description">
                                     {({input, meta})=>(
-                                        <input {...input} className="form-control" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                                        <input required={true} {...input} className="form-control" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
                                     )}
                                 </Field>
                             </div>
@@ -245,7 +246,7 @@ const Offers = props => {
                                 <label htmlFor="exampleInputEmail1" className="form-label">Реферальная ссылка</label>
                                 <Field name="link">
                                     {({input, meta})=>(
-                                        <input {...input} className="form-control" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                                        <input required={true} {...input} className="form-control" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
                                     )}
                                 </Field>
                             </div>
@@ -253,7 +254,7 @@ const Offers = props => {
                                 <label htmlFor="exampleInputEmail1" className="form-label">Ставка</label>
                                 <Field name="rate">
                                     {({input, meta})=>(
-                                        <input {...input} className="form-control" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                                        <input required={true} {...input} className="form-control" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
                                     )}
                                 </Field>
                             </div>
@@ -261,7 +262,7 @@ const Offers = props => {
                                 <label htmlFor="exampleInputEmail1" className="form-label">Приоритет</label>
                                 <Field name="rating">
                                     {({input, meta})=>(
-                                        <input {...input} className="form-control" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                                        <input required={true} {...input} className="form-control" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
                                     )}
                                 </Field>
                             </div>
@@ -270,17 +271,17 @@ const Offers = props => {
                                 <div className="input-group">
                                     <Field name="amountMin">
                                         {({input, meta})=>(
-                                            <input {...input} className="form-control" placeholder="Минимальная" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                                            <input required={true} {...input} className="form-control" placeholder="Минимальная" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
                                         )}
                                     </Field>
                                     <Field name="amountMax">
                                         {({input, meta})=>(
-                                            <input {...input} className="form-control" placeholder="Максимальная" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                                            <input required={true} {...input} className="form-control" placeholder="Максимальная" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
                                         )}
                                     </Field>
                                     <Field name="amountSymbol">
                                         {({input, meta})=>(
-                                            <select {...input} defaultValue={0} className="form-control" placeholder="Валюта" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}>
+                                            <select required={true} {...input} defaultValue={0} className="form-control" placeholder="Валюта" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}>
                                                 <option value={0} hidden={true}>
                                                     Выбрать
                                                 </option>
@@ -297,12 +298,12 @@ const Offers = props => {
                                 <div className="input-group">
                                     <Field name="termMin">
                                         {({input, meta})=>(
-                                            <input {...input} className="form-control" placeholder="Минимальный" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                                            <input required={true} {...input} className="form-control" placeholder="Минимальный" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
                                         )}
                                     </Field>
                                     <Field name="termMax">
                                         {({input, meta})=>(
-                                            <input {...input} className="form-control" placeholder="Максимальный" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                                            <input required={true} {...input} className="form-control" placeholder="Максимальный" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
                                         )}
                                     </Field>
                                 </div>
@@ -312,12 +313,12 @@ const Offers = props => {
                                 <div className="input-group">
                                     <Field name="processingTimeMin">
                                         {({input, meta})=>(
-                                            <input {...input} className="form-control" placeholder="Минимальное" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                                            <input required={true} {...input} className="form-control" placeholder="Минимальное" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
                                         )}
                                     </Field>
                                     <Field name="processingTimeMax">
                                         {({input, meta})=>(
-                                            <input {...input} className="form-control" placeholder="Максимальное" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                                            <input required={true} {...input} className="form-control" placeholder="Максимальное" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
                                         )}
                                     </Field>
                                 </div>
@@ -393,7 +394,7 @@ const Offers = props => {
                                 </Field>
                                 <label className="form-check-label" htmlFor="flexSwitchCheckDefault1">Отобразить в выдаче</label>
                             </div>
-                            <button className="btn btn-primary" style={{marginTop: 10}}>Добавить</button>
+                            <button className={`btn btn-${showEditForm ? 'danger' : 'primary'}`} style={{marginTop: 10}}>{showEditForm ? "Сохранить" : "Добавить"}</button>
                         </form>
                     )}
                 />
