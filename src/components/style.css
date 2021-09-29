@@ -1,4 +1,56 @@
 @media screen and (min-width: 901px) {
+
+    .dialog_msg {
+        width: 350px;
+        height: 175px;
+        position: fixed;
+        top: 64px;
+        left: 48px;
+        background: white;
+        border-radius: 5px;
+        box-shadow: 0 0 7px -2px black;
+        z-index: 98;
+    }
+    .dialog_msg > .title {
+        font-family: "Ubuntu", sans-serif;
+        color: #535353;
+        margin: 24px 10%;
+        font-size: 16px;
+    }
+
+    .dialog_msg > .button_wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 75px;
+    }
+
+    .dialog_msg > .button_wrapper > .button{
+        text-decoration: none;
+        background: #1aab48;
+        color: white;
+        width: 100px;
+        height: 35px;
+        font-size: 16px;
+        border-radius: 5px;
+        box-sizing: border-box;
+        margin: 0 auto;
+    }
+
+    .dialog_msg > select {
+        font-family: 'OpenSans', sans-serif;
+        font-size: 16px;
+        width: calc(100% - 64px);
+        margin: 0 32px;
+        padding: 5px 18px;
+        color: grey !important;
+        border: 1px solid #dce1e6;
+        box-sizing: border-box;
+        display: block;
+        border-radius: 6px !important;
+    }
+
     .button {
         float: left;
         border-radius: 8px;
@@ -371,7 +423,7 @@
         justify-content: center;
         margin: 16px 0;
         cursor: pointer;
-        font-size: 18px;
+        font-size: 16px;
         font-style: italic;
         z-index: 3;
     }
@@ -445,8 +497,8 @@
     }
 
     .ads > img {
-        max-height: 80px;
-        margin: -6px 0 0 24px;
+        max-height: 68px;
+        margin: 6px 0 0 2%;
     }
 
     .ads > p {
@@ -483,7 +535,7 @@
     .offer {
         position: relative;
         width: 100%;
-        height: 210px;
+        height: 185px;
         overflow: hidden;
         box-shadow: 0 0 10px -8px grey;
         box-sizing: border-box;
@@ -519,7 +571,7 @@
     .offer > .wrapper > div:first-child > span:last-child {
         font-family: "Ubuntu", sans-serif;
         color: #535353;
-        font-size: 13px;
+        font-size: 10px;
         font-style: normal;
     }
     .offer > .wrapper.badOffer > div:nth-child(2) > span:last-child {
@@ -692,5 +744,86 @@
         margin-top: 0;
         text-align: center;
         color: #535353;
+    }
+
+    .wrapper > .buttons {
+        display: grid;
+        grid-template-columns: 1fr 25px!important;
+        grid-column-gap: 8px;
+    }
+
+    .wrapper > .buttons > .button:last-child {
+        background: #e5e5e5!important;
+        box-shadow: 0 0 7px -4px #777777;
+    }
+
+    .wrapper > .buttons > .button {
+        width: 100%;
+        height: 25px;
+        background: rgba(26, 171, 72, 1);
+        box-sizing: border-box;
+        margin: 0 auto 0 auto;
+        font-style: italic;
+        font-size: 9px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        box-shadow: 0 -2px 4px -2px rgba(17, 60, 143, 0.05), 0 5px 20px -5px rgba(17, 60, 143, 0.25);
+        cursor: pointer;
+        text-decoration: none;
+    }
+    .dialog_msg {
+        width: 95%;
+        height: 175px;
+        position: fixed;
+        top: 72px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        background: white;
+        border-radius: 5px;
+        box-shadow: 0 0 7px -2px black;
+        z-index: 98;
+    }
+    .dialog_msg > .title {
+        font-family: "Ubuntu", sans-serif;
+        color: #535353;
+        margin: 24px 10%;
+        font-size: 16px;
+    }
+
+    .dialog_msg > .button_wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 75px;
+    }
+
+    .dialog_msg > .button_wrapper > .button{
+        text-decoration: none;
+        background: #1aab48;
+        color: white;
+        width: 100px;
+        height: 35px;
+        font-size: 16px;
+        border-radius: 5px;
+        box-sizing: border-box;
+        margin: 0 auto;
+    }
+
+    .dialog_msg > select {
+        font-family: 'OpenSans', sans-serif;
+        font-size: 16px;
+        width: calc(100% - 64px);
+        margin: 0 32px;
+        padding: 5px 18px;
+        color: grey !important;
+        border: 1px solid #dce1e6;
+        box-sizing: border-box;
+        display: block;
+        border-radius: 6px !important;
     }
 }

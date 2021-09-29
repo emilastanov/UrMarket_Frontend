@@ -12,9 +12,8 @@ const Header = props => {
     return <header>
         <a onClick={()=>{
             if (window.location.pathname.split('/').length > 2) {
-                props.loader(true);
                 setTimeout(()=>{
-                    history.push({pathname: '/'})
+                    history.goBack();
                 },200);
             }
         }} style={{cursor: 'pointer'}}><img  className="logotype" src="https://res.cloudinary.com/urmarket-online/image/upload/v1630921659/logotype.svg" alt="Logotype"/></a>

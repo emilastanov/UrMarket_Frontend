@@ -64,7 +64,9 @@ const OfferDetails = props => {
             <li><Done/>Возраст: <span>от {offerData.requirements.age.min} до {offerData.requirements.age.max} лет</span></li>
         </ul>
         <hr/>
-        <a href={offerData.link} className="button">получить деньги</a>
+        <div className="button_wrapper">
+            <a href={offerData.link} className="button">получить деньги</a>
+        </div>
     </div>: ""
 }
 

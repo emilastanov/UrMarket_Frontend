@@ -8,6 +8,7 @@ import Reviews from "../../Reviews";
 import Footer from "../../Footer";
 import Header from "../../Header";
 import OfferDetails from "../OfferDetails";
+import Dialog from "../../components/Dialog";
 
 import {getContent, getFAQ, getLanguages, getOffers, getReviews} from "./reducer.js"
 import {useLocation, useParams} from "react-router-dom";
@@ -26,6 +27,7 @@ const Main = props => {
     const [reviews, setReviews] = useState(null);
     const [filters, setFilters] = useState({amount: null, term: null})
     const [languages, setLanguages] = useState([]);
+    const [markets, setMarkets] = useState([]);
 
     const history = useHistory();
     let {market} = useParams();
@@ -47,6 +49,7 @@ const Main = props => {
     useEffect(()=>{
         getMarkets().then((response)=>{
             const existMarket = response.data.data.listMarkets.markets.map((item)=>(item.value));
+            setMarkets(response.data.data.listMarkets.markets);
             if (existMarket.indexOf(market) !== -1) {
                 getContent(market, language).then((response)=>{
                     const data = response.data.data.getContent;
@@ -81,7 +84,7 @@ const Main = props => {
                 })
             }
         })
-    }, [setContent, language])
+    }, [setContent, language ])
 
     useEffect(()=>{
         if (offers) {
@@ -101,6 +104,7 @@ const Main = props => {
     return content ? <React.Fragment>
         <Header
             loader={props.loader}
+            market={market}
             changeLanguage={market !== 'ru'}
             language={{selected: language, languages: languages}} change={()=>{
                 props.loader(true)
@@ -109,6 +113,7 @@ const Main = props => {
                 })
         }} />
         <Route exact path={`${path}/`}>
+            {localStorage.getItem('market') ? "" : <Dialog selectedMarket={market} markets={markets}/>}
             <Calculator
                 header={content ? content.header : ""}
                 description={content ? content.description: ""}

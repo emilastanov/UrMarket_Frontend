@@ -34,7 +34,7 @@ const Offer = props => {
                     setTimeout(()=>{
                         history.push({pathname: `${props.market}/offer/${props.id}`});
                     },200)
-                }}><Info/></a>
+                }}><Info size={window.innerWidth < 900? "S" : "L"}/></a>
             </div>
         </div>
     </div>
