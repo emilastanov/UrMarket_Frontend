@@ -12,7 +12,6 @@ const Page404 = props => {
 
     useEffect(()=>{
         props.loader(false)
-        console.log(markets)
     }, [props.loader])
 
     return <div className="page404" style={{"zIndex": 100, "opacity": 1}}>

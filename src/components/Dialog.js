@@ -10,7 +10,6 @@ const Dialog = (props) => {
         <h1 className="title">Выберете страну.</h1>
         <select onChange={(item)=>{
             setMarket(item.target.value)
-            console.log(item)
         }} defaultValue={props.selectedMarket}>
             {props.markets.map((item,key)=>(
                 <option key={key} value={item.value}>{item.description}</option>

@@ -17,7 +17,6 @@ const OfferDetails = props => {
         getOffer_reducer(offer).then(response=>{
             setOfferData(response.data.data.getOffer.offer);
             props.loader(false);
-            console.log(response.data.data.getOffer.offer)
         })
     }
 
