@@ -10,7 +10,7 @@ const ReviewsList = props => {
         </h1>
         <div className="list">
             {props.reviews.map((item,key)=>(
-                <div key={key} className="review" id="review_33">
+                <div key={key} className="review">
                     <h4 style={{marginBottom: 0}}>{item.name}</h4>
                     <div>
                         <span>{item.company.title}</span>

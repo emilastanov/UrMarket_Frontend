@@ -6,11 +6,18 @@ import {
     Redirect
 } from "react-router-dom";
 import './style.css'
-import Main from "../pages/Main";
+
 import PageLoader from "../components/PageLoader";
 import Page404 from "../components/Page404";
-const AdminPanel = lazy(() => import("../pages/AdminPanel"));
-const Login = lazy(() => import("../pages/Login"));
+const Main = lazy(()=>(
+    import("../pages/Main")
+));
+const AdminPanel = lazy(() => (
+    import("../pages/AdminPanel")
+));
+const Login = lazy(() => (
+    import("../pages/Login")
+));
 
 
 
@@ -32,19 +39,25 @@ const App = props => {
             });
     },[country])
 
+
+
     return <Router>
         <PageLoader state={isLoading}/>
         <Switch>
             <Route path="/admin">
-                <Suspense fallback={"..."}>
+                <Suspense fallback={""}>
                     {token ? <AdminPanel loader={setIsLoading}/> : <Login loader={setIsLoading}/>}
                 </Suspense>
             </Route>
             <Route path="/404">
-                <Page404 loader={setIsLoading}/>
+                <Suspense fallback={""}>
+                    <Page404 loader={setIsLoading}/>
+                </Suspense>
             </Route>
             <Route path="/:market">
-                <Main language="ru" loader={setIsLoading} country={country}/>
+                <Suspense fallback={""}>
+                    <Main language="ru" loader={setIsLoading} country={country}/>
+                </Suspense>
             </Route>
             <Route path="/">
                 {/*{country ? <Redirect to={`/${country}?language=ru`}/> : ""}*/}

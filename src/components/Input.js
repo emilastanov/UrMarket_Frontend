@@ -7,7 +7,7 @@ const Input = props => {
     return <div className="input" onClick={(elem)=>{
             setFocus(true);
             if (elem.target.children.length > 0) {
-                console.log(elem.target.children[1].focus())
+                elem.target.children[1].focus()
             } else if (elem.target.tagName === "LABEL") {
                 elem.target.parentNode.children[1].focus()
             }

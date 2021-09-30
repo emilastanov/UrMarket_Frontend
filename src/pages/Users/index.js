@@ -17,7 +17,6 @@ const Users = props => {
     const getUsersList = () => {
         userList(props.data.key).then((response)=> {
             const users = response.data.data.listUsers.users
-            console.log(users)
             setUsersList(users)
             setIsLoading(false)
         })
@@ -26,7 +25,6 @@ const Users = props => {
     const addUser = (e) => {
         addNewUser(props.data.key, e.name, e.role).then((response)=>{
             const resp = response.data;
-            console.log(resp)
             if (resp.data.addUser.success){
                 getUsersList();
                 setIsShowForm(false);
@@ -37,7 +35,6 @@ const Users = props => {
     const deleteUserById = (id) => {
         deleteUser(props.data.key, id).then((response)=>{
             const resp = response.data;
-            console.log(resp)
             if (resp.data.removeUser.success){
                 getUsersList();
             }

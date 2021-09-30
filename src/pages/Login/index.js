@@ -13,7 +13,6 @@ const Login = props => {
     const submitForm = (e) => {
         login(e.auth_key).then((response)=>{
             const resp = response.data;
-            console.log(resp)
             if (!resp.data.login.success){
                 setError(true)
             } else {

@@ -46,6 +46,7 @@ const OffersList = props => {
         <div className="list" id="offersList">
             {offers ? offers.filter((a)=>(a.is_show)).map((item,key)=>(
                 <Offer
+                    id={item.id}
                     data={props.card}
                     key={key}
                     image={item.logotype}
@@ -54,6 +55,8 @@ const OffersList = props => {
                     term={item.term}
                     time={item.processing_time}
                     rate={item.rate}
+                    market={item.market}
+                    loader={props.loader}
                 />
             )) : ""}
         </div>
@@ -61,6 +64,7 @@ const OffersList = props => {
         <div className="list">
             {badOffers ? badOffers.filter((a)=>(a.is_show)).map((item,key)=>(
                 <Offer
+                    id={item.id}
                     isBad={true}
                     data={props.card}
                     key={key}
@@ -70,6 +74,8 @@ const OffersList = props => {
                     term={item.term}
                     time={item.processing_time}
                     rate={item.rate}
+                    market={item.market}
+                    loader={props.loader}
                 />
             )) : ""}
         </div>

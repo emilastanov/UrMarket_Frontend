@@ -59,7 +59,7 @@ const Reviews = props => {
                         <div className="company">
                             <Field name="company">
                                 {({input,meta})=>(
-                                    <select {...input} defaultValue={0} style={!success && meta.touched && meta.error ? {boxShadow: "0 0 5px -2px red"} : {}}>
+                                    <select {...input} style={!success && meta.touched && meta.error ? {boxShadow: "0 0 5px -2px red"} : {}}>
                                         <option value={0} hidden={true}>
                                             {props.data ? props.data.form.select_organization : ""}
                                         </option>

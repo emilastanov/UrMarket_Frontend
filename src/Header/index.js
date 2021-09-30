@@ -1,14 +1,22 @@
 import React, {useState} from 'react';
 
-import {Link} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
 
 import './style.css';
 
 const Header = props => {
+    const history = useHistory();
+
     const [activeTap, setActiveTap] = useState(true);
     return <header>
-        <Link to="/"><img className="logotype" src="https://res.cloudinary.com/urmarket-online/image/upload/v1630921659/logotype.svg" alt="Logotype"/></Link>
+        <a onClick={()=>{
+            if (window.location.pathname.split('/').length > 2) {
+                setTimeout(()=>{
+                    history.goBack();
+                },200);
+            }
+        }} style={{cursor: 'pointer'}}><img  className="logotype" src="https://res.cloudinary.com/urmarket-online/image/upload/v1630921659/logotype.svg" alt="Logotype"/></a>
         <div className="menu" style={{display: 'none'}}>
             <span onClick={()=>setActiveTap(!activeTap)} className={activeTap ? "active" : ""}>Микрозаймы</span>
             <span onClick={()=>setActiveTap(!activeTap)} className={!activeTap ? "active" : ""}>Кредитные карты</span>

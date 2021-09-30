@@ -20,7 +20,6 @@ const FAQ = props => {
     const addFAQ = (values, f) => {
         setIsLoading(true)
         addFaq(props.user.key,values.question,values.answer,language, market).then((response)=>{
-            console.log(response.data.data.success);
             getFaq();
             f.reset();
         })
