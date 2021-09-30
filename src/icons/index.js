@@ -7,3 +7,9 @@ export const Info = ({size}) => (
 export const Done = () => (
     <svg fill="none" width="18" height="14" viewBox="0 0 18 14" xmlns="http://www.w3.org/2000/svg"><path d="M12.4956 4.30993C12.806 3.93462 13.3474 3.89456 13.7048 4.22045C14.0225 4.51013 14.088 4.99145 13.8806 5.35843L13.79 5.49009L7.83587 12.6901C7.55354 13.0315 7.08174 13.0944 6.73095 12.8611L6.60569 12.7598L2.27417 8.54008C1.92714 8.20202 1.90682 7.63257 2.22879 7.26819C2.51499 6.94429 2.9753 6.89145 3.31779 7.12115L3.44012 7.22055L7.12228 10.8076L12.4956 4.30993Z" fill="#1AAB48"/></svg>
 )
+
+export const SelectorArrow = () => (
+    <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 2L4 5L7 2" stroke="#4D4D4D"/>
+    </svg>
+)

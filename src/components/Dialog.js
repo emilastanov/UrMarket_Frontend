@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 
 import './style.css';
+import {SelectorArrow} from "../icons";
 
 const Dialog = (props) => {
 
@@ -12,6 +13,11 @@ const Dialog = (props) => {
         {selectorShowed ?
             <React.Fragment>
                 <h1 className="title">Выберите страну:</h1>
+                <i style={{
+                    position: 'absolute',
+                    right: 42,
+                    top: 55
+                }}><SelectorArrow/></i>
                 <select onChange={(item)=>{
                     setMarket(item.target.value)
                 }} defaultValue={props.selectedMarket}>
