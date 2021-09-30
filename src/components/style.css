@@ -1,8 +1,8 @@
 @media screen and (min-width: 901px) {
 
     .dialog_msg {
-        width: 350px;
-        height: 175px;
+        width: 300px;
+        height: 125px;
         position: fixed;
         top: 64px;
         left: 48px;
@@ -12,30 +12,45 @@
         z-index: 98;
     }
     .dialog_msg > .title {
-        font-family: "Ubuntu", sans-serif;
+        font-family: "OpenSans", sans-serif;
         color: #535353;
-        margin: 24px 10%;
+        margin: 16px 10% 12px 10%;
         font-size: 16px;
+    }
+
+    .dialog_msg > .title > b {
+        font-family: "Ubuntu", sans-serif;
     }
 
     .dialog_msg > .button_wrapper {
         display: flex;
-        flex-direction: column;
+        width: 80%;
+        margin: 18px auto;
         justify-content: center;
-        align-items: center;
-        height: 75px;
+        align-items: flex-start;
+        height: 45px;
     }
 
     .dialog_msg > .button_wrapper > .button{
         text-decoration: none;
         background: #1aab48;
         color: white;
-        width: 100px;
+        width: 110px;
         height: 35px;
         font-size: 16px;
         border-radius: 5px;
         box-sizing: border-box;
         margin: 0 auto;
+    }
+
+    .dialog_msg > .button_wrapper > .button:last-child {
+        background: none;
+        color: #222222;
+        text-decoration: underline;
+    }
+
+    .dialog_msg > .button_wrapper > .button:last-child:hover {
+        box-shadow: none;
     }
 
     .dialog_msg > select {
@@ -776,7 +791,7 @@
     }
     .dialog_msg {
         width: 95%;
-        height: 175px;
+        height: 125px;
         position: fixed;
         top: 72px;
         left: 0;
@@ -788,30 +803,45 @@
         z-index: 98;
     }
     .dialog_msg > .title {
-        font-family: "Ubuntu", sans-serif;
+        font-family: "OpenSans", sans-serif;
         color: #535353;
-        margin: 24px 10%;
+        margin: 16px 10% 12px 10%;
         font-size: 16px;
+    }
+
+    .dialog_msg > .title > b {
+        font-family: "Ubuntu", sans-serif;
     }
 
     .dialog_msg > .button_wrapper {
         display: flex;
-        flex-direction: column;
+        width: 80%;
+        margin: 18px auto;
         justify-content: center;
-        align-items: center;
-        height: 75px;
+        align-items: flex-start;
+        height: 45px;
     }
 
     .dialog_msg > .button_wrapper > .button{
         text-decoration: none;
         background: #1aab48;
         color: white;
-        width: 100px;
+        width: 110px;
         height: 35px;
         font-size: 16px;
         border-radius: 5px;
         box-sizing: border-box;
         margin: 0 auto;
+    }
+
+    .dialog_msg > .button_wrapper > .button:last-child {
+        background: none;
+        color: #222222;
+        text-decoration: underline;
+    }
+
+    .dialog_msg > .button_wrapper > .button:last-child:hover {
+        box-shadow: none;
     }
 
     .dialog_msg > select {
