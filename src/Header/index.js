@@ -10,16 +10,16 @@ const Header = props => {
 
     const [activeTap, setActiveTap] = useState(true);
     return <header>
-        <a onClick={()=>{
+        <a className="logotype" onClick={()=>{
             if (window.location.pathname.split('/').length > 2) {
                 setTimeout(()=>{
                     history.goBack();
                 },200);
             }
-        }} style={{cursor: 'pointer'}}><img  className="logotype" src="https://res.cloudinary.com/urmarket-online/image/upload/v1630921659/logotype.svg" alt="Logotype"/></a>
-        <div className="menu" style={{display: 'none'}}>
-            <span onClick={()=>setActiveTap(!activeTap)} className={activeTap ? "active" : ""}>Микрозаймы</span>
-            <span onClick={()=>setActiveTap(!activeTap)} className={!activeTap ? "active" : ""}>Кредитные карты</span>
+        }} style={{cursor: 'pointer'}}><img  src="https://res.cloudinary.com/urmarket-online/image/upload/v1630921659/logotype.svg" alt="Logotype"/></a>
+        <div className="menu" >
+            <span className="active">Микрозаймы</span>
+            <span>Кредитные карты</span>
         </div>
         {props.changeLanguage ? <div className="changeLang" onClick={props.change}>
             <div>

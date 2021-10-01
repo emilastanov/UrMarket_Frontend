@@ -5,7 +5,7 @@
         z-index: 6;
         box-shadow: 0 0 10px -4px grey;
         box-sizing: border-box;
-        height: 80px;
+        height: 60px;
         padding: 18px var(--offset);
         flex-direction: row;
     }
@@ -14,12 +14,23 @@
         flex: 5;
     }
 
+    header > .logotype {
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    header > .logotype > img{
+        width: 175px;
+    }
+
     header > .changeLang {
-        display: inline-block;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
         flex: 1;
         cursor: pointer;
         font-family: "Quicksand", sans-serif;
-        font-size: 28px;
+        font-size: 24px;
         color: #828282;
         -webkit-touch-callout: none; /* iOS Safari */
         -webkit-user-select: none; /* Safari */
@@ -37,14 +48,14 @@
 
     header > .changeLang .selected {
         color: #1AAB48;
-        font-size: 30px;
+        font-size: 26px;
     }
 
     header > .changeLang > img {
         height: 100%;
     }
     header > a {
-        flex: 2;
+        flex: 1;
     }
     .menu {
         display: flex;
@@ -55,40 +66,47 @@
 
     .menu > span {
         font-family: "OpenSans", sans-serif;
-        font-size: 20px;
-        color: #535353;
+        font-size: 14px;
+        /*font-weight: 700;*/
+        color: #142438;
         cursor: pointer;
         margin: 8px;
     }
 
     .menu > span.active {
-        color: white;
-        font-weight: bold;
-        background: rgb(0, 172, 255);
-        border-radius: 4px;
-        box-shadow: 0 0 10px -4px rgb(43, 91, 112);
-        padding: 4px;
+        font-weight: 700;
     }
 }
 @media screen and (max-width: 900px) {
     header {
-        position: fixed;
-        top: 0;
-        display: block;
+        display: flex;
         width: 100%;
         z-index: 6;
-        background: #ffffff;
         box-shadow: 0 0 10px -4px grey;
+        box-sizing: border-box;
+        height: 60px;
+        padding: 0 8px;
+        flex-direction: row;
+    }
+
+    header > div {
+        flex: 5;
+    }
+
+    header > .logotype {
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    header > .logotype > img{
+        width: 175px;
     }
 
     header > .changeLang {
-        position: absolute;
-        right: 6px;
-        top: 8px;
         display: flex;
-        justify-content: center;
         align-items: center;
-        height: 40px;
+        justify-content: flex-end;
+        flex: 1;
         cursor: pointer;
         font-family: "Quicksand", sans-serif;
         font-size: 24px;
@@ -103,42 +121,38 @@
                                          supported by Chrome, Edge, Opera and Firefox */
     }
 
+    header > .changeLang > div {
+        float: right;
+    }
+
     header > .changeLang .selected {
         color: #1AAB48;
         font-size: 26px;
     }
 
-    header img {
-        height: 42px;
-        width: 180px;
-        margin: 8px;
+    header > .changeLang > img {
+        height: 100%;
+    }
+    header > .logotype {
+        flex: 1;
     }
     .menu {
-        position: fixed;
-        display: flex;
-        background: white;
-        width: 100%;
-        bottom: 0;
+        display: none;
         margin: 0;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
-        box-shadow: 0 0 10px -2px grey;
     }
 
     .menu > span {
         font-family: "OpenSans", sans-serif;
-        font-size: 20px;
-        color: #535353;
+        font-size: 14px;
+        /*font-weight: 700;*/
+        color: #142438;
         cursor: pointer;
         margin: 8px;
     }
 
     .menu > span.active {
-        color: white;
-        font-weight: bold;
-        background: rgb(0, 172, 255);
-        border-radius: 4px;
-        box-shadow: 0 0 10px -4px rgb(43, 91, 112);
-        padding: 4px;
+        font-weight: 700;
     }
 }
