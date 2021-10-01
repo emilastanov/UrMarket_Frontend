@@ -9,7 +9,7 @@ import Ads from "../components/Ads";
 
 const Calculator = props => {
     const [amount, setAmount] = useState("");
-    const [term, setTerm] = useState("");
+    // const [term, setTerm] = useState("");
     const [count, setCount] = useState(null);
 
     useEffect(()=>{
