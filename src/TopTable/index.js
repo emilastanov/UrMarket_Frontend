@@ -16,16 +16,16 @@ const TopTable = props => (
                 <div className="top_table_column">
                     {props.columns ? props.columns.rate : ""}
                 </div>
-                <div className="top_table_column">
-                    {props.columns ? props.columns.term : ""}
-                </div>
+                {/*<div className="top_table_column">*/}
+                {/*    {props.columns ? props.columns.term : ""}*/}
+                {/*</div>*/}
             </div>
             {props.offers.map((item,key)=>(
                 <div className="top_table_row" key={key}>
                     <div className="top_table_column">{item.title}</div>
                     <div className="top_table_column">{item.amount.min} - {item.amount.max}</div>
                     <div className="top_table_column">от {item.rate}%</div>
-                    <div className="top_table_column">{item.term.min} - {item.term.max} дней</div>
+                    {/*<div className="top_table_column">{item.term.min} - {item.term.max} дней</div>*/}
                 </div>
             ))}
         </div>
