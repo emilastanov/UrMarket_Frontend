@@ -34,7 +34,6 @@
     .calculator {
         box-sizing: border-box;
         background: rgba(26, 171, 72, 1);
-        margin-top: 58px;
         padding: 16px calc(var(--offset)/9) 8px calc(var(--offset)/9);
     }
 
