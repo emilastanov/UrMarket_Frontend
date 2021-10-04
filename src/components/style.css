@@ -33,7 +33,8 @@
 
     .dialog_msg > .button_wrapper > .button{
         text-decoration: none;
-        background: #1aab48;
+        background: var(--green);
+        border: none;
         color: white;
         width: 110px;
         height: 35px;
@@ -72,6 +73,8 @@
         font-family: "OpenSans", sans-serif;
         display: flex;
         align-items: center;
+        background: var(--blue);
+        border: 0.2px solid var(--blue);
         justify-content: center;
         margin-left: 24px;
         cursor: pointer;
@@ -246,7 +249,7 @@
     }
     .offer > .wrapper > div:nth-child(2) > span:last-child {
         font-family: "Ubuntu", sans-serif;
-        color: rgba(26, 171, 72, 1);
+        color: var(--green);
         font-size: 18px;
         font-style: normal;
     }
@@ -285,7 +288,8 @@
     .wrapper > .buttons > .button {
         width: 100%;
         height: 32px;
-        background: rgba(26, 171, 72, 1);
+        background: var(--green);
+        border: none;
         box-sizing: border-box;
         margin: 0 auto 0 auto;
         font-style: italic;
@@ -406,7 +410,7 @@
         margin: 0;
         font-family: 'Quicksand', sans-serif;
         text-align: center;
-        color: #1aab48;
+        color: var(--green);
     }
     .page404 > .content > .links {
         display: flex;
@@ -433,6 +437,8 @@
         float: left;
         border-radius: 8px;
         font-family: "OpenSans", sans-serif;
+        border: 0.2px solid var(--blue);
+        background: var(--blue);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -594,7 +600,7 @@
     }
     .offer > .wrapper > div:nth-child(2) > span:last-child {
         font-family: "Ubuntu", sans-serif;
-        color: rgba(26, 171, 72, 1);
+        color: var(--green);
         font-size: 12px;
         font-style: normal;
     }
@@ -740,7 +746,7 @@
         margin: 0;
         font-family: 'Quicksand', sans-serif;
         text-align: center;
-        color: #1aab48;
+        color: var(--green);
     }
     .page404 > .content > .links {
         display: flex;
@@ -775,7 +781,8 @@
     .wrapper > .buttons > .button {
         width: 100%;
         height: 25px;
-        background: rgba(26, 171, 72, 1);
+        background: var(--green);
+        border: none!important;
         box-sizing: border-box;
         margin: 0 auto 0 auto;
         font-style: italic;
@@ -824,7 +831,8 @@
 
     .dialog_msg > .button_wrapper > .button{
         text-decoration: none;
-        background: #1aab48;
+        background: var(--green);
+        border: none;
         color: white;
         width: 110px;
         height: 35px;

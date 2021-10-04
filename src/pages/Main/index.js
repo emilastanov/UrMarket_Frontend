@@ -9,6 +9,7 @@ import Footer from "../../Footer";
 import Header from "../../Header";
 import OfferDetails from "../OfferDetails";
 import Dialog from "../../components/Dialog";
+import CreditCards from '../CreditCards';
 
 import {getContent, getFAQ, getLanguages, getOffers, getReviews} from "./reducer.js"
 import {useLocation, useParams} from "react-router-dom";
@@ -112,7 +113,10 @@ const Main = props => {
                     search: `?language=${languages.filter(item=>item!==language)[0]}`
                 })
         }} />
-        <Route exact path={`${path}/`}>
+        <Route path={`${path}/cards`}>
+            <CreditCards/>
+        </Route>
+        <Route exact path={`${path}`}>
             {localStorage.getItem('market') ? "" : <Dialog selectedMarket={market} markets={markets}/>}
             <Calculator
                 header={content ? content.header : ""}

@@ -1,3 +1,6 @@
+.blue_color {
+    color: var(--blue);
+}
 @media screen and (min-width: 901px) {
     header {
         display: flex;
@@ -47,7 +50,7 @@
     }
 
     header > .changeLang .selected {
-        color: #1AAB48;
+        color: var(--green);
         font-size: 26px;
     }
 
@@ -64,16 +67,19 @@
         align-items: center;
     }
 
-    .menu > span {
+    .menu > a > span {
         font-family: "OpenSans", sans-serif;
         font-size: 14px;
-        /*font-weight: 700;*/
         color: #142438;
         cursor: pointer;
         margin: 8px;
     }
 
-    .menu > span.active {
+    .menu > a {
+        text-decoration: none;
+    }
+
+    .menu > a > span.active {
         font-weight: 700;
     }
 }
@@ -126,7 +132,7 @@
     }
 
     header > .changeLang .selected {
-        color: #1AAB48;
+        color: var(--green);
         font-size: 26px;
     }
 

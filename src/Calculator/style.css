@@ -2,7 +2,7 @@
 @media screen and (min-width: 901px) {
     .calculator {
         box-sizing: border-box;
-        background: rgba(26, 171, 72, 1);
+        background: var(--green);
         height: 400px;
         padding: 48px var(--offset);
     }
@@ -33,7 +33,7 @@
 @media screen and (max-width: 900px) {
     .calculator {
         box-sizing: border-box;
-        background: rgba(26, 171, 72, 1);
+        background: var(--green);
         padding: 16px calc(var(--offset)/9) 8px calc(var(--offset)/9);
     }
 
