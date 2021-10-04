@@ -44,6 +44,8 @@ select{
 }
 :root {
     --offset: 72px;
+    --green: #1aab48;
+    --blue: #00acff;
 }
 body {
     margin: 0;

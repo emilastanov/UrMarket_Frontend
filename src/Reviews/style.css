@@ -81,7 +81,7 @@
         height: 40px;
         width: 200px;
         border-radius: 10px;
-        background: rgb(0, 172, 255);
+        background: var(--blue);
         color: white;
         font-family: "OpenSans", sans-serif;
         display: flex;
@@ -90,14 +90,14 @@
         cursor: pointer;
         font-size: 18px;
         font-style: italic;
-        border: 0.2px solid #00acff;
+        border: 0.2px solid var(--blue);
         float: right;
     }
 
     .success_msg {
         float: right;
         margin-top: 8px;
-        color: rgba(26, 171, 72, 1);
+        color: var(--green);
     }
 
     #rating {
@@ -205,7 +205,7 @@
         height: 40px;
         width: 90%;
         border-radius: 10px;
-        background: rgb(0, 172, 255);
+        background: var(--blue);
         color: white;
         font-family: "OpenSans", sans-serif;
         display: flex;
@@ -214,14 +214,14 @@
         cursor: pointer;
         font-size: 18px;
         font-style: italic;
-        border: 0.2px solid #00acff;
+        border: 0.2px solid var(--blue);
         float: right;
     }
 
     .success_msg {
         float: right;
         margin-top: 8px;
-        color: rgba(26, 171, 72, 1);
+        color: var(--green);
     }
 
 
