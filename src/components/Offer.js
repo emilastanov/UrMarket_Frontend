@@ -25,7 +25,7 @@ const Offer = props => {
             {/*</div>*/}
             <div className="rate">
                 <span>{props.data? props.data.rate.title : ""}</span>
-                <span>{props.data? props.data.rate.units : ""} {props.rate*365}%</span>
+                <span>{props.data? props.data.rate.units : ""} {props.rate}%</span>
             </div>
             <div className="buttons">
                 <a className="button" href={props.link} target="_black" onClick={()=>{window.gtag_report_conversion()}}>{props.data? props.data.button : ""}</a>
