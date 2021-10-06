@@ -1,0 +1,12 @@
+
+@media screen and (min-width: 901px){
+    .card_offer_list {
+        padding: 24px var(--offset);
+    }
+}
+
+@media screen and (max-width: 900px){
+    .card_offer_list {
+        padding: 18px calc(var(--offset)/9);
+    }
+}

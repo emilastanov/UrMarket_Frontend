@@ -2,8 +2,8 @@ import React, {useEffect, useState} from "react";
 
 import './style.css';
 
-import Filter from "../components/Filter";
-import Offer from "../components/Offer";
+import Filter from "../Filter";
+import Offer from "../Offer";
 
 
 const OffersList = props => {

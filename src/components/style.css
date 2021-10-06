@@ -321,10 +321,10 @@
         margin: 15px 0 0 0;
     }
 
-    .reviewsList > .list > .review > div > span > img {
-        width: 20px;
+    .reviewsList > .list > .review > div > span:nth-child(2)  {
         position: relative;
-        top: -2px;
+        top: 2px;
+        right: 2px;
     }
 
     .reviewsList > .list > .review > div > span:last-child {
