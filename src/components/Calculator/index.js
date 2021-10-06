@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react';
 
 import './style.css';
 
-import InputGroup from "../components/InputGroup";
-import Input from "../components/Input";
-import Button from "../components/Button";
-import Ads from "../components/Ads";
+import InputGroup from "../InputGroup";
+import Input from "../Input";
+import Button from "../Button";
+import Ads from "../Ads";
 
 const Calculator = props => {
     const [amount, setAmount] = useState("");

@@ -1,5 +1,7 @@
 import React from "react";
 
+import {Star} from "../icons";
+
 import "./style.css";
 
 const ReviewsList = props => {
@@ -15,7 +17,7 @@ const ReviewsList = props => {
                     <div>
                         <span>{item.company.title}</span>
                         <span>
-                            <img src="https://res.cloudinary.com/urmarket-online/image/upload/v1631037912/star.png" alt="star" />
+                            <Star />
                         </span>
                         <span >{item.rating}</span>
                     </div>

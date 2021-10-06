@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import {useHistory} from "react-router-dom";
 
@@ -10,7 +10,6 @@ import './style.css';
 const Header = props => {
     const history = useHistory();
 
-    const [activeTap, setActiveTap] = useState(true);
     return <header>
         <a className="logotype" onClick={()=>{
             if (window.location.pathname.split('/').length > 2) {
@@ -18,7 +17,7 @@ const Header = props => {
                     history.goBack();
                 },200);
             }
-        }} style={{cursor: 'pointer'}}><img  src="https://res.cloudinary.com/urmarket-online/image/upload/v1630921659/logotype.svg" alt="Logotype"/></a>
+        }} style={{cursor: 'pointer'}}><img  src="/logotype.svg" alt="Logotype"/></a>
         <div className="menu" >
             <NavLink exact to={`/${props.market}`} activeStyle={{fontWeight: 'bold'}}><span>Микрозаймы</span></NavLink>
             <NavLink exact to={`/${props.market}/cards`} activeStyle={{fontWeight: 'bold'}}><span>Кредитные карты</span></NavLink>

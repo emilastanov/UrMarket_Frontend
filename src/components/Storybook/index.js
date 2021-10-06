@@ -1,11 +1,11 @@
 import React from 'react'
 
-import Button from "../components/Button";
-import InputGroup from "../components/InputGroup";
-import Input from "../components/Input";
-import Ads from "../components/Ads";
-import Filter from "../components/Filter";
-import Offer from "../components/Offer";
+import Button from "../Button";
+import InputGroup from "../InputGroup";
+import Input from "../Input";
+import Ads from "../Ads";
+import Filter from "../Filter";
+import Offer from "../Offer";
 
 const Storybook = props => {
     return <div>

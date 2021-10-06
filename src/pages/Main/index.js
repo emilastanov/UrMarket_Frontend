@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from "react";
 import {useHistory, useRouteMatch, Route} from "react-router-dom";
-import Calculator from "../../Calculator";
-import OffersList from "../../OffersList";
-import TopTable from "../../TopTable";
-import FAQ from "../../FAQ";
-import Reviews from "../../Reviews";
-import Footer from "../../Footer";
-import Header from "../../Header";
+import Calculator from "../../components/Calculator";
+import OffersList from "../../components/OffersList";
+import TopTable from "../../components/TopTable";
+import FAQ from "../../components/FAQ";
+import Reviews from "../../components/Reviews";
+import Footer from "../../components/Footer";
+import Header from "../../components/Header";
 import OfferDetails from "../OfferDetails";
 import Dialog from "../../components/Dialog";
 import CreditCards from '../CreditCards';
@@ -145,17 +145,24 @@ const Main = props => {
                 questions={faq ? faq : null}
                 header={content ? content.faq_header : ""}
             />
+            <Reviews
+                updateReviews={updateReviews}
+                market={content ? content.market : null}
+                data={content ? content.review : null}
+                offers={offers? offers: []}
+                reviews={reviews? reviews: []}
+            />
         </Route>
         <Route path={`${path}/offer/:offer`}>
             <OfferDetails loader={props.loader} content={content.offer}/>
+            <Reviews
+                updateReviews={updateReviews}
+                market={content ? content.market : null}
+                data={content ? content.review : null}
+                offers={offers? offers: []}
+                reviews={reviews? reviews: []}
+            />
         </Route>
-        <Reviews
-            updateReviews={updateReviews}
-            market={content ? content.market : null}
-            data={content ? content.review : null}
-            offers={offers? offers: []}
-            reviews={reviews? reviews: []}
-        />
         <Footer data={content ? content.footer : null} partners={offers ? offers.map((item)=> (item.title)) : []}/>
     </React.Fragment> : ''
 };

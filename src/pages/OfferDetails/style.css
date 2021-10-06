@@ -65,7 +65,8 @@
         width: 185px;
         height: 48px;
         position: absolute;
-        background: rgba(26, 171, 72, 1);
+        background: var(--green);
+        border: none;
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
         font-style: italic;
@@ -181,7 +182,8 @@
         width: 160px;
         height: 32px;
         position: absolute;
-        background: rgba(26, 171, 72, 1);
+        background: var(--green);
+        border: none;
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
         font-style: italic;

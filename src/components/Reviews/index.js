@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { Form, Field } from 'react-final-form'
 import ReactStars from "react-rating-stars-component";
 
-import ReviewsList from "../components/ReviewsList";
+import ReviewsList from "../ReviewsList";
 
 import './style.css';
 import {addReview_reducer} from "./reducer";
