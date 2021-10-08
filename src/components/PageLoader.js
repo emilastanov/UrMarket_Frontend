@@ -17,7 +17,7 @@ const PageLoader = props => {
     },[props.state])
     return <div className="pageLoader" style={props.state ? {"zIndex": 100, "opacity": opacity} : {"opacity": opacity, "zIndex": -100}}>
         <div className="loader">
-            <img style={{display: "block", margin: "0 0 0 -15px"}} src="https://res.cloudinary.com/urmarket-online/image/upload/v1630921659/logotype.svg" alt=""/>
+            <img style={{display: "block", margin: "0 0 0 -15px"}} src="/logotype.svg" alt=""/>
             <div>
                 <img style={{display: "block", margin: "0 auto"}} src="/loader.svg" alt="" height={15}/>
             </div>
