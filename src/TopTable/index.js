@@ -16,9 +16,9 @@ const TopTable = props => (
                 <div className="top_table_column">
                     {props.columns ? props.columns.rate : ""}
                 </div>
-                {/*<div className="top_table_column">*/}
-                {/*    {props.columns ? props.columns.term : ""}*/}
-                {/*</div>*/}
+                <div className="top_table_column">
+                    {props.columns ? props.columns.term : ""}
+                </div>
             </div>
             {props.offers.map((item,key)=>(
                 <div className="top_table_row" key={key}>

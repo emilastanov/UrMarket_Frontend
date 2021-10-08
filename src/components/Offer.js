@@ -6,7 +6,7 @@ import {useHistory} from "react-router-dom";
 
 const Offer = props => {
     const history = useHistory();
-    return  <div className="offer" style={{height: window.innerHeight <= 900 ? 165 : 250}}>
+    return  <div className="offer" >
         <a href={props.link} target="_blank">
             <div className="logotype" style={{backgroundImage: `url("${props.image}")`}}/>
         </a>
@@ -19,10 +19,10 @@ const Offer = props => {
                 <span>{props.data? props.data.time.title : ""}</span>
                 <span>{props.time.max > 60 ? `до 24 ч` : `${props.time.min} - ${props.time.max} ${props.data? props.data.time.units : ""}`}</span>
             </div>
-            {/*<div className="term">*/}
-            {/*    <span>{props.data? props.data.term.title : ""}</span>*/}
-            {/*    <span>{props.term.min} - {props.term.max} {props.data? props.data.term.units : ""}</span>*/}
-            {/*</div>*/}
+            <div className="term">
+                <span>{props.data? props.data.term.title : ""}</span>
+                <span>{props.term.min} - {props.term.max} {props.data? props.data.term.units : ""}</span>
+            </div>
             <div className="rate">
                 <span>{props.data? props.data.rate.title : ""}</span>
                 <span>{props.data? props.data.rate.units : ""} {props.rate}%</span>
