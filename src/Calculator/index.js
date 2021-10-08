@@ -40,10 +40,10 @@ const Calculator = props => {
                 setAmount(e);
                 setCount(getCountOfFilteredOffers(e,term));
             }}/>
-            {/*<Input label={props.term ? props.term.label: ""} placeholder={props.term ? props.term.placeholder : ""} value={term} changeValue={(e)=>{*/}
-            {/*    setTerm(e);*/}
-            {/*    setCount(getCountOfFilteredOffers(amount, e));*/}
-            {/*}}/>*/}
+            <Input label={props.term ? props.term.label: ""} placeholder={props.term ? props.term.placeholder : ""} value={term} changeValue={(e)=>{
+                setTerm(e);
+                setCount(getCountOfFilteredOffers(amount, e));
+            }}/>
         </InputGroup>
         <Button width={window.innerWidth <= 900 ? 150 : null} height={50} onClick={()=>{
             props.setFilters({amount: parseInt(amount, 10), term: parseInt(term, 10)});

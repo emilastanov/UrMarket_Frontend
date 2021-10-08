@@ -27,11 +27,11 @@ const OffersList = props => {
                     sortedOffers = sortedOffers.sort((a,b)=>(b.amount.min - a.amount.min))
                     setOffers(sortedOffers)
                 }},
-            // {"name": props.filter ? props.filter.term : "", "filter": ()=>{
-            //         let sortedOffers = [...offers]
-            //         sortedOffers = sortedOffers.sort((a,b)=>(b.term.max - a.term.max))
-            //         setOffers(sortedOffers)
-            //     }},
+            {"name": props.filter ? props.filter.term : "", "filter": ()=>{
+                    let sortedOffers = [...offers]
+                    sortedOffers = sortedOffers.sort((a,b)=>(b.term.max - a.term.max))
+                    setOffers(sortedOffers)
+                }},
             {"name": props.filter ? props.filter.rate : "", "filter": ()=>{
                     let sortedOffers = [...offers]
                     sortedOffers = sortedOffers.sort((a,b)=>(a.rate - b.rate))
