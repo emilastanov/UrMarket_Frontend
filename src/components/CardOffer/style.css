@@ -1,0 +1,95 @@
+
+.offerCard {
+    position: relative;
+    box-sizing: border-box;
+    padding: 32px 0 8px 48px;
+    width: 100%;
+    height: 270px;
+    background: linear-gradient(90deg, rgba(226,217,226,0.63) 0%, rgba(234,234,234,0) 100%);
+    border-radius: 8px;
+    margin-bottom: 24px;
+    border: 0.5px solid #c2c2c2;
+    box-shadow: 0 0 10px -6px black;
+}
+
+.offerCard > .logotype {
+    width: 285px;
+    height: 180px;
+    border-radius: 15px;
+    box-shadow: -2px 2px 7px -2px black;
+    background-size: contain;
+    position: absolute;
+    right: 48px;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+}
+
+.offerCard > .header > h1 {
+    font-family: UbuntuMedium, sans-serif;
+    margin: 0;
+    color: #343434;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.offerCard > .header > span {
+    color: #898989;
+    font-family: OpenSans, sans-serif;
+    font-size: 13px;
+    position: relative;
+    bottom: 5px;
+}
+
+.offerCard > .conditions {
+    display: grid;
+    margin-top: 16px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-row-gap: 16px;
+    width: 80%;
+    height: 125px;
+}
+
+.offerCard > .conditions > .condition > span {
+    display: block;
+}
+
+.offerCard > .conditions > .condition > span:nth-child(1) {
+    color: #898989;
+    font-size: 13px;
+}
+.offerCard > .conditions > .condition > span:nth-child(2) {
+    color: #343434;
+    font-family: UbuntuMedium, sans-serif;
+    font-size: 18px;
+}
+.offerCard > .conditions > .condition > span:nth-child(3) {
+    color: #898989;
+    font-size: 11px;
+}
+
+.offerCard > .buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 8px;
+    width: 330px;
+}
+
+.offerCard > .buttons > .button  {
+    margin: 0;
+    color: white;
+    font-size: 14px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.offerCard > .buttons > .button.inner {
+    background: none;
+    color: var(--blue);
+    border: 1px solid var(--blue);
+}
+
+.offerCard > .buttons > .button.inner:hover {
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.35) inset;
+}

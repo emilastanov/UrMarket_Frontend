@@ -5,6 +5,12 @@
 }
 
 @font-face {
+    font-family: UbuntuMedium; /* Имя шрифта */
+    src: url(fonts/Ubuntu-Medium.ttf); /* Путь к файлу со шрифтом */
+    font-display: swap;
+}
+
+@font-face {
     font-family: OpenSans; /* Имя шрифта */
     src: url(fonts/OpenSans-Regular.ttf); /* Путь к файлу со шрифтом */
     font-display: swap;
@@ -45,7 +51,7 @@ select{
 :root {
     --offset: 72px;
     --green: #3C2679;
-    --blue: #CD6932;
+    --blue: #ED7938;
 }
 body {
     margin: 0;

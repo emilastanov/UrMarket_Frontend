@@ -80,7 +80,7 @@
         margin: 0 32px 16px 32px;
         height: 40px;
         width: 200px;
-        border-radius: 10px;
+        border-radius: 8px;
         background: var(--blue);
         color: white;
         font-family: "OpenSans", sans-serif;
@@ -204,7 +204,7 @@
         margin: 0 18px;
         height: 40px;
         width: 90%;
-        border-radius: 10px;
+        border-radius: 8px;
         background: var(--blue);
         color: white;
         font-family: "OpenSans", sans-serif;

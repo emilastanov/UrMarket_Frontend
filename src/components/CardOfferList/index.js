@@ -2,6 +2,7 @@ import React from "react";
 
 import "./style.css";
 import Filter from "../Filter";
+import CardOffer from "../CardOffer";
 
 const CardOfferList = props => {
 
@@ -11,6 +12,13 @@ const CardOfferList = props => {
                     console.log('CLICK')
                 }}
         ]}/>
+        <CardOffer/>
+        <CardOffer/>
+        <CardOffer/>
+        <CardOffer/>
+        <CardOffer/>
+        <CardOffer/>
+        <CardOffer/>
     </div>
 }
 
