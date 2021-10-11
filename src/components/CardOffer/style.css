@@ -3,14 +3,14 @@
     position: relative;
     box-sizing: border-box;
     padding: 32px 0 8px 48px;
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
     height: 290px;
     background: linear-gradient(90deg, rgba(226,217,226,0.63) 0%, rgba(234,234,234,0) 100%);
     border-radius: 8px;
     margin-bottom: 24px;
-    border: 0.5px solid #c2c2c2;
-    box-shadow: 0 0 10px -6px black;
+    border: 0.5px solid #e8e8e8;
+    box-shadow: 0 0 10px -8px black;
 }
 
 .offerCard > .logotype {
@@ -47,7 +47,7 @@
     margin-top: 16px;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    grid-row-gap: 16px;
+    grid-row-gap: 8px;
     width: 80%;
     height: 125px;
 }
@@ -66,7 +66,7 @@
     font-size: 18px;
 }
 .offerCard > .conditions > .condition > span:nth-child(3) {
-    color: #e7e7e7;
+    color: #898989;
     font-size: 11px;
 }
 
@@ -87,8 +87,8 @@
 
 .offerCard > .buttons > .button.inner {
     background: none;
-    color: var(--blue);
-    border: 1px solid var(--blue);
+    color: var(--detail);
+    border: 1px solid var(--detail);
 }
 
 .offerCard > .buttons > .button.inner:hover {

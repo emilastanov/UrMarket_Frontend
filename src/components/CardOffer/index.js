@@ -21,6 +21,7 @@ const CardOffer = props => (
             <div className="condition">
                 <span>Обслуживание</span>
                 <span>Бесплатно</span>
+                <span>* При тратах от 5000 р / мес</span>
             </div>
             <div className="condition">
                 <span>Ставка</span>

@@ -35,7 +35,7 @@
     font-display: swap;
 }
 
-textarea, input[type="text"], input[type="button"], input[type="submit"] {
+textarea, input, select {
     -webkit-appearance: none!important;
     border-radius: 0!important;
     outline: none;
@@ -50,8 +50,8 @@ select{
 }
 :root {
     --offset: 72px;
-    --green: #3C2679;
-    --blue: #ED7938;
+    --back: #3C2679;
+    --detail: #ED7938;
 }
 body {
     margin: 0;

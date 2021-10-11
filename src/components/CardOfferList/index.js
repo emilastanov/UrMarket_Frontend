@@ -12,13 +12,15 @@ const CardOfferList = props => {
                     console.log('CLICK')
                 }}
         ]}/>
-        <CardOffer/>
-        <CardOffer/>
-        <CardOffer/>
-        <CardOffer/>
-        <CardOffer/>
-        <CardOffer/>
-        <CardOffer/>
+        <div className="list">
+            <CardOffer/>
+            <CardOffer/>
+            <CardOffer/>
+            <CardOffer/>
+            <CardOffer/>
+            <CardOffer/>
+            <CardOffer/>
+        </div>
     </div>
 }
 

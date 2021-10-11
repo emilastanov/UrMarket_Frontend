@@ -44,7 +44,7 @@
     }
 
     .FAQ > .body > .questions > .question.active {
-        border-left: 4px solid var(--green);
+        border-left: 4px solid var(--back);
         background: #f5f5f5;
     }
 
@@ -110,7 +110,7 @@
     }
 
     .FAQ > .body > .questions > .question.active {
-        border-left: 4px solid var(--green);
+        border-left: 4px solid var(--back);
         background: #f5f5f5;
     }
 

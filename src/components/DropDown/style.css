@@ -1,0 +1,35 @@
+
+.dropdown_selector {
+    display: block;
+    position: relative;
+    box-sizing: border-box;
+    width: 250px;
+    height: 50px;
+    background: white;
+    border-radius: 8px;
+}
+.dropdown_selector > .title {
+    position: absolute;
+    color: #535353;
+    font-size: 13px;
+    left: 10px;
+    top: 3px;
+}
+
+.dropdown_selector > .arrow {
+    position: absolute;
+    top: 17px;
+    right: 8px;
+}
+
+.dropdown_selector > select {
+    position: absolute;
+    border: 0;
+    background: none;
+    bottom: 0;
+    left: 8px;
+    font-family: UbuntuMedium, sans-serif;
+    font-size: 18px;
+    color: #2d2d2d;
+    width: 100%;
+}

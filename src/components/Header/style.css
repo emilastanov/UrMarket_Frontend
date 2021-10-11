@@ -1,5 +1,5 @@
 .blue_color {
-    color: var(--blue);
+    color: var(--detail);
 }
 @media screen and (min-width: 901px) {
     header {
@@ -50,7 +50,7 @@
     }
 
     header > .changeLang .selected {
-        color: var(--green);
+        color: var(--back);
         font-size: 26px;
     }
 
@@ -132,7 +132,7 @@
     }
 
     header > .changeLang .selected {
-        color: var(--green);
+        color: var(--back);
         font-size: 26px;
     }
 
