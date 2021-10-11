@@ -47,7 +47,7 @@ const Calculator = props => {
         </InputGroup>
         <Button width={window.innerWidth <= 900 ? 150 : null} height={50} onClick={()=>{
             props.setFilters({amount: parseInt(amount, 10), term: parseInt(term, 10)});
-            document.getElementById('offersList').scrollIntoView({block: "top", behavior: "smooth"});
+            document.getElementById('offersList').scrollIntoView();
         }}>{props.button} ({count})</Button>
         <Ads
             text={props.ads ? props.ads.paragraph : ""}

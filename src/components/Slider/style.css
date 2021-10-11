@@ -1,0 +1,72 @@
+.horizontal-slider {
+    width: 220px;
+    max-width: 220px;
+    height: 20px;
+    position: absolute;
+    top: 30px;
+    margin: 0 auto;
+}
+.example-thumb {
+    cursor: pointer;
+    position: absolute;
+    z-index: 100;
+    background: var(--detail);
+    border: 1px solid var(--detail);
+    border-radius: 100%;
+    display: block;
+    box-shadow: 0 0 2px 0 rgb(0 0 0 / 44%);
+}
+
+.example-track {
+    position: absolute;
+    top: 0;
+    background: var(--detail);
+}
+
+.horizontal-slider .example-track {
+    top: 10px;
+    height: 2px;
+}
+.horizontal-slider .example-thumb {
+    top: 5px;
+    width: 10px;
+    outline: none;
+    height: 10px;
+    line-height: 38px;
+}
+
+.slider_wrapper {
+    display: block;
+    position: relative;
+    box-sizing: border-box;
+    width: 250px;
+    height: 50px;
+    background: white;
+    border-radius: 8px;
+}
+
+.slider_wrapper > .title {
+    position: absolute;
+    color: #535353;
+    font-size: 13px;
+    left: 10px;
+    top: 3px;
+}
+
+.slider_wrapper > .value {
+    position: absolute;
+    display: block;
+    width: 100px;
+    height: 20px;
+    top: 5px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    color: #2d2d2d;
+    margin: auto;
+    border: none;
+    background: none;
+    text-align: center;
+    font-family: UbuntuMedium, sans-serif;
+    font-size: 18px;
+}
