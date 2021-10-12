@@ -113,11 +113,11 @@ const Main = props => {
                     search: `?language=${languages.filter(item=>item!==language)[0]}`
                 })
         }} />
+        {localStorage.getItem('market') ? "" : <Dialog selectedMarket={market} markets={markets}/>}
         <Route path={`${path}/cards`}>
             <CreditCards/>
         </Route>
         <Route exact path={`${path}`}>
-            {localStorage.getItem('market') ? "" : <Dialog selectedMarket={market} markets={markets}/>}
             <Calculator
                 header={content ? content.header : ""}
                 description={content ? content.description: ""}

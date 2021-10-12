@@ -33,7 +33,7 @@
 @media screen and (max-width: 900px) {
     .calculator {
         box-sizing: border-box;
-        background: var(--back);
+        background: linear-gradient(90deg, var(--back) 0%, var(--detail) 100%);
         padding: 16px calc(var(--offset)/9) 8px calc(var(--offset)/9);
     }
 
