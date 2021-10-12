@@ -4,7 +4,9 @@
     height: 350px;
     background: linear-gradient(90deg, var(--back) 0%, var(--detail) 100%);
     box-sizing: border-box;
-    padding: 48px calc(var(--offset)*2);
+    padding: 48px var(--offset);
+    box-shadow: 0 0 10px -5px black;
+    z-index: 9;
 }
 
 .cardSelector > .header > h1 {

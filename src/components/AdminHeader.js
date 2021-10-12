@@ -30,6 +30,9 @@ const AdminHeader = props => (
                         <Link className={`nav-link ${window.location.pathname === "/admin/market"? "active" : ""}`} to="/admin/market">Рынки</Link>
                     </li>
                     <li className="nav-item">
+                        <Link className={`nav-link ${window.location.pathname === "/admin/cards"? "active" : ""}`} to="/admin/cards">Кредитные карты</Link>
+                    </li>
+                    <li className="nav-item">
                         <Link className={`nav-link ${window.location.pathname === "/admin"? "active" : ""}`} to="/admin">Пользователи</Link>
                     </li>
                 </ul>

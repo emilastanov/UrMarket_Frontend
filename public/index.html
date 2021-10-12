@@ -18,19 +18,62 @@
 
     <title>UrMarket.online</title>
 
-<!--    &lt;!&ndash; Global site tag (gtag.js) - Google Analytics &ndash;&gt;-->
-<!--    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-198885468-1">-->
-<!--    </script>-->
-<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
-<!--    <script>-->
-<!--      window.dataLayer = window.dataLayer || [];-->
-<!--      function gtag(){dataLayer.push(arguments);}-->
-<!--      gtag('js', new Date());-->
-<!--      gtag('config', 'AW-752745493');-->
-<!--      gtag('config', 'UA-198885468-1');-->
-<!--    </script>-->
-<!--    &lt;!&ndash; Event snippet for Исходящий клик conversion page-->
-<!--    In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. &ndash;&gt;-->
+    <style>
+      @media screen and (max-width: 900px) {
+        .pageLoader {
+          position: fixed;
+          width: 100%;
+          height: 100vh;
+          background: #f5f5f5;
+          transition: 500ms;
+        }
+
+        .pageLoader > .loader {
+          width: 256px;
+          height: 23px;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          margin: auto;
+        }
+      }
+      @media screen and (min-width: 901px) {
+        .pageLoader {
+          position: fixed;
+          width: 100%;
+          height: 100vh;
+          background: #f5f5f5;
+          transition: 500ms;
+        }
+
+        .pageLoader > .loader {
+          width: 256px;
+          height: 23px;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          margin: auto;
+        }
+      }
+    </style>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-198885468-1">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-752745493');
+      gtag('config', 'UA-198885468-1');
+    </script>
+    <!-- Event snippet for Исходящий клик conversion page
+    In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
     <script>
       function gtag_report_conversion(url) {
         var callback = function () {

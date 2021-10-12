@@ -49,7 +49,7 @@ select{
     padding: 5px;
 }
 :root {
-    --offset: 72px;
+    --offset: 144px;
     --back: #3C2679;
     --detail: #ED7938;
 }

@@ -12,6 +12,7 @@ import FAQ from "../FAQ";
 import Reviews from "../Reviews";
 import Market from "../Market";
 import Content from "../Content";
+import CardOffers from "../CardOffers";
 
 import "./style.css";
 import {login} from "../Login/reducer";
@@ -84,7 +85,9 @@ const AdminPanel = props => {
             <Route path={`${path}/content`}>
                 <Content user={user} markets={markets}/>
             </Route>
-
+            <Route path={`${path}/cards`}>
+                <CardOffers user={user} markets={markets}/>
+            </Route>
         </Switch>
     </div>
 };
