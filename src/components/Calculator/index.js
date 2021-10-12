@@ -14,7 +14,6 @@ const Calculator = props => {
 
     useEffect(()=>{
         setCount(props.count_offers)
-        console.log(setTerm)
     },[props.count_offers])
 
     const getCountOfFilteredOffers = (a,t) =>{

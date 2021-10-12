@@ -25,7 +25,7 @@ const TopTable = props => (
                     <div className="top_table_column">{item.title}</div>
                     <div className="top_table_column">{item.amount.min} - {item.amount.max}</div>
                     <div className="top_table_column">от {item.rate}%</div>
-                    {/*<div className="top_table_column">{item.term.min} - {item.term.max} дней</div>*/}
+                    <div className="top_table_column">{item.processing_time.min} - {item.processing_time.max} дней</div>
                 </div>
             ))}
         </div>
