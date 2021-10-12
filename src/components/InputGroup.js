@@ -15,7 +15,10 @@ const InputGroup = props => (
     <div className="inputGroup" style={{
         "gridTemplateColumns": window.innerWidth <= 900 ? "1fr" : repeatStringNumTimes('1fr ', props.children.length),
         "width": window.innerWidth <= 900 ? "100%" : props.width? props.width: "500px",
-        "height": window.innerWidth <= 900 ? 50*props.children.length : props.height? props.height: "60px"
+        "height": window.innerWidth <= 900 ?
+            props.children.length ?
+                50*props.children.length : 50 :
+            props.height ? props.height: "60px"
     }}>
         {props.children}
     </div>
