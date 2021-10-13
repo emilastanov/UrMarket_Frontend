@@ -6,7 +6,7 @@ import {useHistory} from "react-router-dom";
 
 const Offer = props => {
     const history = useHistory();
-    return  <div className="offer">
+    return  <div className="offer" >
         <a href={props.link} target="_blank">
             <div className="logotype" style={{backgroundImage: `url("${props.image}")`}}/>
         </a>
