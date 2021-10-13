@@ -107,7 +107,7 @@ export const addOrUpdateCreditCardOffer = async (key, values, edit) => {
             minimumCurrentWorkExperience: parseInt(values.minimumCurrentWorkExperience, 10),
             salaryMinimumSalary: parseInt(values.salaryMinimumSalary,10),
             salaryMinimumSalaryMainRegions: parseInt(values.salaryMinimumSalaryMainRegions,10),
-            salaryMainRegions: JSON.stringify(values.salaryMainRegions),
+            salaryMainRegions: values.salaryMainRegions,
             amountSymbol: values.amountSymbol
         }
     })
