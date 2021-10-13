@@ -13,13 +13,9 @@ const CardOfferList = props => {
                 }}
         ]}/>
         <div className="list">
-            <CardOffer/>
-            <CardOffer/>
-            <CardOffer/>
-            <CardOffer/>
-            <CardOffer/>
-            <CardOffer/>
-            <CardOffer/>
+            {props.creditCards && props.creditCards.map((item,key)=>(
+                <CardOffer card={item} key={key}/>
+            ))}
         </div>
     </div>
 }

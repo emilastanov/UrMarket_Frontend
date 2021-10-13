@@ -67,7 +67,7 @@ const Main = props => {
                     const offers = response.data.data.listOffers.offers;
 
                     setOffers(offers.sort((a,b)=>(a.rating.min - b.rating.min)));
-                    setOffersData(offers.sort((a,b)=>(a.rating.min - b.rating.min)))
+                    setOffersData(offers.sort((a,b)=>(a.rating.min - b.rating.min)));
 
                     props.loader(false)
                 });
@@ -115,7 +115,9 @@ const Main = props => {
         }} />
         {localStorage.getItem('market') ? "" : <Dialog selectedMarket={market} markets={markets}/>}
         <Route path={`${path}/cards`}>
-            <CreditCards/>
+            <CreditCards
+                market={market}
+            />
         </Route>
         <Route exact path={`${path}`}>
             <Calculator

@@ -2,7 +2,7 @@ import React from 'react';
 
 import {useHistory} from "react-router-dom";
 
-// import {NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 
 import './style.css';
@@ -18,10 +18,10 @@ const Header = props => {
                 },200);
             }
         }} style={{cursor: 'pointer'}}><img  src="/logotype.svg" alt="Logotype"/></a>
-        {/*<div className="menu" >*/}
-        {/*    <NavLink exact to={`/${props.market}`} activeStyle={{fontWeight: 'bold'}}><span>Микрозаймы</span></NavLink>*/}
-        {/*    <NavLink exact to={`/${props.market}/cards`} activeStyle={{fontWeight: 'bold'}}><span>Кредитные карты</span></NavLink>*/}
-        {/*</div>*/}
+        <div className="menu" >
+            <NavLink exact to={`/${props.market}`} activeStyle={{fontWeight: 'bold'}}><span>Микрозаймы</span></NavLink>
+            <NavLink exact to={`/${props.market}/cards`} activeStyle={{fontWeight: 'bold'}}><span>Кредитные карты</span></NavLink>
+        </div>
         {props.changeLanguage ? <div className="changeLang" onClick={props.change}>
             <div>
                 <span className={props.language.selected === props.language.languages[0]? "selected" : ""}>{props.language.languages[0]}</span>

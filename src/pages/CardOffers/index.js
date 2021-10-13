@@ -24,7 +24,7 @@ const CardOffers = props => {
         if (showEditForm) {
             if (file) {
                 uploadImg(file).then((response)=>{
-                    e.logotype = response.data.out;
+                    e.logotype = response.data.out_original;
                     addOrUpdateCreditCardOffer(
                         props.user.key,
                         e,
@@ -46,7 +46,7 @@ const CardOffers = props => {
             }
         } else {
             uploadImg(file).then((response)=>{
-                e.logotype = response.data.out;
+                e.logotype = response.data.out_original;
                 e.isShow = e.isShow === undefined ? false : e.isShow;
                 e.market = market
                 addOrUpdateCreditCardOffer(
