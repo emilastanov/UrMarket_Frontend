@@ -27,14 +27,14 @@ export const cardOfferSwitcher = async (key, id, state) => {
     return axios(config);
 }
 
-export const addOrUpdateCardOffer = async (key, values, edit) => {
+export const addOrUpdateCreditCardOffer = async (key, values, edit) => {
     const data = JSON.stringify({
         "query": `mutation AddCreditCardOffer(
             ${edit ? "$id: ID!" : ""}
             $title: String!
-            $logotype: String!
+            $logotype: ${edit ? 'String' : 'String!'}
             $isShow: Boolean!
-            $cashFee: Float!
+            $cashWithdrawal: String!
             $cardType: String!
             $market: String!
             $rating: Int!
@@ -53,16 +53,18 @@ export const addOrUpdateCardOffer = async (key, values, edit) => {
             $salaryMinimumSalary: Int!
             $salaryMinimumSalaryMainRegions: Int!
             $salaryMainRegions: String!
+            $amountSymbol: String!
         ){
-            ${edit ? "updateOffer" : "addOffer"}(
+            ${edit ? "updateCreditCardOffer" : "addCreditCardOffer"}(
                 ${edit ? "id: $id" : ""}
                 title: $title
                 logotype: $logotype
                 isShow: $isShow
-                cashFee: $cashFee
+                cashWithdrawal: $cashWithdrawal
                 cardType: $cardType
                 market: $market
                 rating: $rating
+                amountSymbol: $amountSymbol
                 link: $link
                 description: $description
                 gracePeriod: $gracePeriod
@@ -87,7 +89,7 @@ export const addOrUpdateCardOffer = async (key, values, edit) => {
             title: values.title,
             logotype: values.logotype,
             isShow: values.isShow,
-            cashFee: parseFloat(values.cashFee),
+            cashWithdrawal:values.cashWithdrawal,
             cardType: values.cardType,
             market: values.market,
             rating: parseInt(values.rating, 10),
@@ -105,7 +107,8 @@ export const addOrUpdateCardOffer = async (key, values, edit) => {
             minimumCurrentWorkExperience: parseInt(values.minimumCurrentWorkExperience, 10),
             salaryMinimumSalary: parseInt(values.salaryMinimumSalary,10),
             salaryMinimumSalaryMainRegions: parseInt(values.salaryMinimumSalaryMainRegions,10),
-            salaryMainRegions: values.salaryMainRegions
+            salaryMainRegions: JSON.stringify(values.salaryMainRegions),
+            amountSymbol: values.amountSymbol
         }
     })
 
@@ -125,7 +128,7 @@ export const addOrUpdateCardOffer = async (key, values, edit) => {
 
 export const removeCreditCardOffer = async (key, id) => {
     const data = JSON.stringify({
-        "query": `mutation{removeCardCreditOffer(id: ${id}){success}}`
+        "query": `mutation{removeCreditCardOffer(id: ${id}){success}}`
     });
 
     const config = {

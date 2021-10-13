@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {Field, Form} from "react-final-form";
 
-// import {cardOfferSwitcher, removeCreditCardOffer, addOrUpdateCardOffer} from "./reducer";
+import {cardOfferSwitcher, removeCreditCardOffer, addOrUpdateCreditCardOffer} from "./reducer";
 import {creditCardOffersList} from "../CreditCards/reducer";
+import {uploadImg} from "../Offers/reducer";
 
 
 const CardOffers = props => {
@@ -12,15 +13,70 @@ const CardOffers = props => {
     const [file, setFile] = useState(null);
     const [editOffer, setEditOffer] = useState(null);
 
+
     const getCardOfferList = () => {
         creditCardOffersList(market).then(res=>{
-            setCardOffers(res.data.data.listCreditCardOffers.credit_cards);
+            setCardOffers(res.data.data.listCreditCardOffers.credit_cards.sort((a,b)=>(a.id-b.id)));
+        })
+    }
+
+    const addOrUpdateCardOffer = (e,f) => {
+        if (showEditForm) {
+            if (file) {
+                uploadImg(file).then((response)=>{
+                    e.logotype = response.data.out;
+                    addOrUpdateCreditCardOffer(
+                        props.user.key,
+                        e,
+                        showEditForm
+                    ).then(resp=>{
+                        getCardOfferList();
+                        f.reset();
+                    })
+                })
+            } else {
+                addOrUpdateCreditCardOffer(
+                    props.user.key,
+                    e,
+                    showEditForm
+                ).then(resp=>{
+                    getCardOfferList();
+                    f.reset();
+                })
+            }
+        } else {
+            uploadImg(file).then((response)=>{
+                e.logotype = response.data.out;
+                e.isShow = e.isShow === undefined ? false : e.isShow;
+                e.market = market
+                addOrUpdateCreditCardOffer(
+                    props.user.key,
+                    e,
+                    showEditForm
+                ).then(resp=>{
+                    getCardOfferList();
+                    f.reset();
+                })
+            })
+        }
+    }
+
+    const removeCardOffer = (id) => {
+        removeCreditCardOffer(props.user.key, id).then((response)=>{
+            getCardOfferList()
+        })
+    }
+
+    const switchCardOffer = (id,state) => {
+        cardOfferSwitcher(props.user.key, id, state).then((response)=>{
+            getCardOfferList()
         })
     }
 
     useEffect(()=>{
         getCardOfferList()
         console.log(file);
+
     }, setCardOffers)
 
     const switchToEditForm = (id) => {
@@ -40,7 +96,7 @@ const CardOffers = props => {
                     )) : ""}
                 </select>
                 <button className="btn btn-primary" style={{margin: "24px auto", display: "block"}} onClick={()=>{
-
+                    getCardOfferList()
                 }}>Выбрать</button>
             </div>
             <div className="col-6" style={{borderRight: "1px solid grey"}}>
@@ -65,10 +121,10 @@ const CardOffers = props => {
                             <td>{item.rating}</td>
                             <td>{item.is_show ? "Да": "Нет"}</td>
                             <td>
-                                <button className={`btn btn-${item.is_show ? "danger" : "success"}`}>Показать</button>
+                                <button className={`btn btn-${item.is_show ? "danger" : "success"}`} onClick={()=>{switchCardOffer(item.id, !item.is_show)}}>{item.is_show ? "Скрыть" : "Показать"}</button>
                             </td>
                             <td>
-                                <button className={`btn btn-danger`} >x</button>
+                                <button className={`btn btn-danger`} onClick={()=>removeCardOffer(item.id)}>x</button>
                             </td>
                         </tr>
                     )) : ""}
@@ -78,12 +134,42 @@ const CardOffers = props => {
             <div className="col-4">
                 <h2>Добавление Кредитной карты</h2>
                 <Form
-                    onSubmit={()=>{}}
+                    onSubmit={addOrUpdateCardOffer}
+                    mutators={{
+                        fillForm: ([values], state, {changeValue})=>{
+                            changeValue(state, "id", ()=> values.cardOffers.id);
+                            changeValue(state, "title", ()=> values.cardOffers.title);
+                            changeValue(state, "description", ()=> values.cardOffers.description);
+                            changeValue(state, "link", ()=> values.cardOffers.link);
+                            changeValue(state, "rate", ()=> values.cardOffers.rate);
+                            changeValue(state, "isShow", ()=> values.cardOffers.is_show);
+                            changeValue(state, "amountSymbol", ()=> values.cardOffers.amount_symbol);
+                            changeValue(state, "rating", ()=> values.cardOffers.rating);
+                            changeValue(state, "market", ()=> values.cardOffers.market);
+                            changeValue(state, "cashWithdrawal", ()=> values.cardOffers.cash_withdrawal);
+                            changeValue(state, "cardType", ()=> values.cardOffers.card_type);
+                            changeValue(state, "gracePeriod", ()=> values.cardOffers.grace_period);
+                            changeValue(state, "servicePayment", ()=> values.cardOffers.service_payment);
+                            changeValue(state, "creditLimit", ()=> values.cardOffers.credit_limit);
+                            changeValue(state, "creditDocs", ()=> values.cardOffers.credit_docs);
+                            changeValue(state, "ageMin", ()=> values.cardOffers.age.min);
+                            changeValue(state, "ageMax", ()=> values.cardOffers.age.max);
+                            changeValue(state, "onlyIndividual", ()=> values.cardOffers.only_individual);
+                            changeValue(state, "minimumWorkExperience", ()=> values.cardOffers.minimum_work_experience);
+                            changeValue(state, "minimumCurrentWorkExperience", ()=> values.cardOffers.minimum_current_work_experience);
+                            changeValue(state, "salaryMinimumSalary", ()=> values.cardOffers.salary.minimum_salary);
+                            changeValue(state, "salaryMinimumSalaryMainRegions", ()=> values.cardOffers.salary.minimum_salary_main_regions);
+                            changeValue(state, "salaryMainRegions", ()=> values.cardOffers.salary.main_regions);
+                        },
+                        resetIdField: (args,state,{changeValue}) => {
+                            changeValue(state,'id',()=>null)
+                        }
+                    }}
                     render={({form, handleSubmit})=>(
                         <form onSubmit={event=>handleSubmit(event,form)}>
                             {showEditForm ? <div className="btn-group">
                                 <a className="btn btn-primary" onClick={()=>{
-                                    form.mutators.fillForm({offer: editOffer})
+                                    form.mutators.fillForm({cardOffers: editOffer})
                                 }}>Заполнить</a>
                                 <a className="btn btn-danger ml-5" onClick={()=>{
                                     form.mutators.resetIdField()
@@ -112,7 +198,7 @@ const CardOffers = props => {
                                 </Field>
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="exampleInputEmail1" className="form-label">Название МФО</label>
+                                <label htmlFor="exampleInputEmail1" className="form-label">Название Карты</label>
                                 <Field name="title">
                                     {({input, meta})=>(
                                         <input required={true} {...input} className="form-control" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
@@ -160,16 +246,31 @@ const CardOffers = props => {
                                 </Field>
                             </div>
                             <div className="mb-3">
+                                <label htmlFor="exampleInputEmail1" className="form-label">Символ валюты</label>
+                                <Field name="amountSymbol">
+                                    {({input, meta})=>(
+                                        <select required={true} {...input} defaultValue={0} className="form-control" placeholder="Валюта" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}>
+                                            <option value={0} hidden={true}>
+                                                Выбрать
+                                            </option>
+                                            <option value="₴">Гривна ₴</option>
+                                            <option value="₽">Рубль ₽</option>
+                                            <option value="₸">Тенге ₸</option>
+                                        </select>
+                                    )}
+                                </Field>
+                            </div>
+                            <div className="mb-3">
                                 <label htmlFor="exampleInputEmail1" className="form-label">Возраст</label>
                                 <div className="input-group">
-                                    <Field name="requirementsAgeMin">
+                                    <Field name="ageMin">
                                         {({input, meta})=>(
-                                            <input {...input} className="form-control" placeholder="Минимальный" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
+                                            <input required={true} {...input} className="form-control" placeholder="Минимальный" style={meta.error === "required" && meta.touched ? {boxShadow: "0 0 5px -2px red"} : {}}/>
                                         )}
                                     </Field>
-                                    <Field name="requirementsAgeMax">
+                                    <Field name="ageMax">
                                         {({input, meta})=>(
-                                            <input {...input} className="form-control" placeholder="Максимальный" />
+                                            <input required={true} {...input} className="form-control" placeholder="Максимальный" />
                                         )}
                                     </Field>
                                 </div>
@@ -178,7 +279,7 @@ const CardOffers = props => {
                                 <label htmlFor="exampleInputEmail1" className="form-label">Документы</label>
                                 <Field name="creditDocs">
                                     {({input, meta})=>(
-                                        <input {...input} className="form-control" placeholder="Например: [Паспорт], [Справка 2-ндфл, Справка по форме банка]" />
+                                        <input required={true} {...input} className="form-control" placeholder="Например: [Паспорт], [Справка 2-ндфл, Справка по форме банка]" />
                                     )}
                                 </Field>
                             </div>
@@ -186,7 +287,7 @@ const CardOffers = props => {
                                 <label htmlFor="exampleInputEmail1" className="form-label">Коммиссия за снятие</label>
                                 <Field name="cashWithdrawal">
                                     {({input, meta})=>(
-                                        <input {...input} className="form-control" placeholder="Например: 2%, мин 200р" />
+                                        <input required={true} {...input} className="form-control" placeholder="Например: 2%, мин 200р" />
                                     )}
                                 </Field>
                             </div>
@@ -194,7 +295,7 @@ const CardOffers = props => {
                                 <label htmlFor="exampleInputEmail1" className="form-label">Тип капты</label>
                                 <Field name="cardType">
                                     {({input, meta})=>(
-                                        <input {...input} className="form-control" placeholder="Например: Visa" />
+                                        <input required={true} {...input} className="form-control" placeholder="Например: Visa" />
                                     )}
                                 </Field>
                             </div>
@@ -202,7 +303,7 @@ const CardOffers = props => {
                                 <label htmlFor="exampleInputEmail1" className="form-label">Грейс период</label>
                                 <Field name="gracePeriod">
                                     {({input, meta})=>(
-                                        <input {...input} className="form-control"  />
+                                        <input required={true} {...input} className="form-control"  />
                                     )}
                                 </Field>
                             </div>
@@ -210,7 +311,7 @@ const CardOffers = props => {
                                 <label htmlFor="exampleInputEmail1" className="form-label">Плата за обслуживание</label>
                                 <Field name="servicePayment">
                                     {({input, meta})=>(
-                                        <input {...input} className="form-control"  />
+                                        <input required={true} {...input} className="form-control"  />
                                     )}
                                 </Field>
                             </div>
@@ -218,7 +319,7 @@ const CardOffers = props => {
                                 <label htmlFor="exampleInputEmail1" className="form-label">Минимальный доход</label>
                                 <Field name="salaryMinimumSalary">
                                     {({input, meta})=>(
-                                        <input {...input} className="form-control" />
+                                        <input required={true} {...input} className="form-control" />
                                     )}
                                 </Field>
                             </div>
@@ -226,7 +327,7 @@ const CardOffers = props => {
                                 <label htmlFor="exampleInputEmail1" className="form-label">Минимальный доход для регионов</label>
                                 <Field name="salaryMinimumSalaryMainRegions">
                                     {({input, meta})=>(
-                                        <input {...input} className="form-control" />
+                                        <input required={true} {...input} className="form-control" />
                                     )}
                                 </Field>
                             </div>
@@ -234,7 +335,23 @@ const CardOffers = props => {
                                 <label htmlFor="exampleInputEmail1" className="form-label">Регионы</label>
                                 <Field name="salaryMainRegions">
                                     {({input, meta})=>(
-                                        <input {...input} className="form-control" />
+                                        <input required={true} {...input} className="form-control" />
+                                    )}
+                                </Field>
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="exampleInputEmail1" className="form-label">Минимальный опыт работы на текущем месте</label>
+                                <Field name="minimumCurrentWorkExperience">
+                                    {({input, meta})=>(
+                                        <input required={true} {...input} className="form-control" />
+                                    )}
+                                </Field>
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="exampleInputEmail1" className="form-label">Минимальный опыт общий опыт работы</label>
+                                <Field name="minimumWorkExperience">
+                                    {({input, meta})=>(
+                                        <input required={true} {...input} className="form-control" />
                                     )}
                                 </Field>
                             </div>

@@ -21,6 +21,7 @@ export const creditCardOffersList = (market, main=false) => {
                     logotype
                     link
                     is_show
+                    amount_symbol
                     rating
                     market
                     description
