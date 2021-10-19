@@ -11,7 +11,7 @@ const CardOffer = props => (
         </div>
         <div className="conditions">
             <div className="condition">
-                <span>Льготный период</span>
+                <span>Грейс период</span>
                 <span>{props.card.grace_period} дней</span>
             </div>
             <div className="condition">
@@ -25,7 +25,7 @@ const CardOffer = props => (
             <div className="condition">
                 <span>Ставка</span>
                 <span>от {props.card.rate}%</span>
-                <span>* После льготного периода</span>
+                <span>* После окончания грейс периода</span>
             </div>
             <div className="condition">
                 <span>Мин. заработная плата</span>

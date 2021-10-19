@@ -76,6 +76,7 @@ const FAQ = props => {
                     <option value="ru">Русский</option>
                     <option value="ua">Украинский</option>
                     <option value="kz">Казахский</option>
+                    <option value="cc">Кредитные карты</option>
                 </select>
                 <button className="btn btn-primary" style={{margin: "24px auto", display: "block"}} onClick={()=>{
                     getFaq()

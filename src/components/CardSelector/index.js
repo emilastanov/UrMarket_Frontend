@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect} from "react";
 
 import './style.css';
 
@@ -9,11 +9,10 @@ import Button from "../Button";
 
 const CardSelector = props => {
 
-    const [amount ,setAmount] = useState(1000);
-    const [period ,setPeriod] = useState(55);
-    const [cardType ,setCardType] = useState(null);
-    const [freeService, setFreeService] = useState(false);
-    const [forBusiness, setForBusiness] = useState(false);
+    useEffect(()=>{
+        props.setAmount(props.filters && props.filters.amount.min);
+        props.setPeriod(props.filters && props.filters.grace_period.min);
+    }, [props.filters])
 
     return <div className="cardSelector">
         <div className="header">
@@ -22,42 +21,42 @@ const CardSelector = props => {
         </div>
         <div className="inputs">
             <Slider
-                value={amount}
-                onChange={setAmount}
+                value={props.amount}
+                onChange={props.setAmount}
                 title="Сумма"
-                min={1000}
-                max={1000000}
-                step={1000}
+                min={props.filters && props.filters.amount.min}
+                max={props.filters && props.filters.amount.max}
+                step={5000}
                 symbol=" р"
             />
             <Slider
-                value={period}
-                onChange={setPeriod}
+                value={props.period}
+                onChange={props.setPeriod}
                 title="Грейс период"
-                min={10}
-                max={120}
-                step={1}
+                min={props.filters && props.filters.grace_period.min}
+                max={props.filters && props.filters.grace_period.max}
+                step={5}
                 symbol=" д"
             />
             <DropDown
-                value={cardType}
-                onChange={setCardType}
+                value={props.cardType}
+                onChange={props.setCardType}
                 title="Платежная система"
-                selections={['Visa', 'MasterCard', 'МИР']}
+                selections={props.filters ? props.filters.card_types : ['Загрузка...']}
             />
             <Checkbox
-                value={freeService}
-                onChange={setFreeService}
+                value={props.freeService}
+                onChange={props.setFreeService}
                 title="Бесплатное обслуживание"
                 id={1}
             />
             <Checkbox
-                value={forBusiness}
-                onChange={setForBusiness}
+                value={props.forBusiness}
+                onChange={props.setForBusiness}
                 title="Для бизнеса"
                 id={2}
             />
-            <Button width={250} height={50} margin={"0"}>Показать</Button>
+            <Button width={250} height={50} margin={"0"} onClick={props.filter}>Показать</Button>
         </div>
 
     </div>

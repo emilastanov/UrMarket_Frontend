@@ -117,6 +117,7 @@ const Main = props => {
         <Route path={`${path}/cards`}>
             <CreditCards
                 market={market}
+                availableMarkets={markets}
             />
         </Route>
         <Route exact path={`${path}`}>

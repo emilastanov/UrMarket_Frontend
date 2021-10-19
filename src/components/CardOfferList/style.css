@@ -3,6 +3,16 @@
     .card_offer_list {
         padding: 24px var(--offset);
     }
+    .card_offer_list > .list.bad_cards {
+        filter: grayscale(1);
+    }
+    .bad_cards_title {
+        margin-left: 28px;
+        font-family: "Ubuntu", sans-serif;
+        color: #535353;
+        font-size: 18px;
+    }
+
 }
 
 @media screen and (max-width: 900px){

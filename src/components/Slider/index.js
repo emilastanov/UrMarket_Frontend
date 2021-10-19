@@ -6,7 +6,7 @@ import './style.css';
 const Slider = props => (
     <div className="slider_wrapper">
         <span className="title">{props.title}</span>
-        <ReactSlider
+        {props.value ? <ReactSlider
             className="horizontal-slider"
             thumbClassName="example-thumb"
             trackClassName="example-track"
@@ -14,10 +14,10 @@ const Slider = props => (
             min={props.min}
             max={props.max}
             step={props.step}
-        />
+        /> : ''}
         <input
             className="value"
-            value={`${props.value}${props.symbol}`}
+            value={`${props.value ? props.value : "..."}${props.symbol}`}
             onChange={ref=>{
                 props.onChange(ref.target.value.replace(props.symbol, ''))
             }}

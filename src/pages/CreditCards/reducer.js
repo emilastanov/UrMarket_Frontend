@@ -62,3 +62,76 @@ export const creditCardOffersList = (market, main=false) => {
 
     return axios(config);
 }
+
+
+export const getCreditCardFilters = (market) => {
+    const data = JSON.stringify({
+        query: `query GetCreditCardFilters(
+            $market: String!
+        ){
+            getCreditCardFilters(market: $market){
+                filters {
+                    amount {
+                        min
+                        max
+                    }
+                    grace_period {
+                        min
+                        max
+                    }
+                    card_types
+                }
+            }
+        }`,
+        variables: {
+            market: market
+        }
+    });
+
+    const config = {
+        method: 'post',
+        url: API_URL,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data : data
+    };
+
+    return axios(config);
+}
+
+export const getCreditCardReviews = async (market) => {
+    const data = JSON.stringify({
+        "query": `query GetCreditCardReviews(
+            $market: String!
+        ){
+            listCreditCardReviews(
+                market: $market
+            ){
+                reviews {
+                    id
+                    name
+                    text
+                    rating
+                    card {
+                        title
+                    }
+                }
+            }
+        }`,
+        variables: {
+            market: market
+        }
+    })
+
+    const config = {
+        method: 'post',
+        url: API_URL,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data : data
+    };
+
+    return axios(config);
+}
