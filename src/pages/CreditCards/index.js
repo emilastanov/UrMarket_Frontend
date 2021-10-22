@@ -7,7 +7,7 @@ import Reviews from "../../components/Reviews";
 
 import './style.css';
 
-import {creditCardOffersList, getCreditCardFilters} from "./reducer";
+import {creditCardOffersList, getCreditCardFilters, getCreditCardReviews} from "./reducer";
 import {getFAQ} from "../Main/reducer";
 
 const CreditCards = props => {
@@ -22,12 +22,21 @@ const CreditCards = props => {
     const [freeService, setFreeService] = useState(false);
     const [forBusiness, setForBusiness] = useState(false);
     const [FAQData, setFAQData] = useState(null);
+    const [reviews, setReviews] = useState(null);
 
     const getCreditCardList = () => {
         creditCardOffersList(props.market, true).then(response=>{
             const creditCardsData = response.data.data.listCreditCardOffers.credit_cards;
             setCreditCards(creditCardsData.sort((a,b)=>(a.rating.min - b.rating.min)));
             setFilteredCreditCards(creditCardsData.sort((a,b)=>(a.rating.min - b.rating.min)))
+        })
+    }
+
+    const getReviews = () => {
+        getCreditCardReviews(props.market).then((response)=>{
+            const reviews = response.data.data.listCreditCardReviews.reviews
+            setReviews(reviews)
+
         })
     }
 
@@ -62,9 +71,10 @@ const CreditCards = props => {
     }
 
     useEffect(()=>{
-        getFAQData()
+        getFAQData();
         getCreditCardList();
         setCreditCardFilters();
+        getReviews();
     }, [setCreditCards,setFilters])
 
     return <React.Fragment>
@@ -92,10 +102,11 @@ const CreditCards = props => {
         />
         <Reviews
             updateReviews={()=>{}}
-            market={null}
-            data={null}
-            offers={[]}
-            reviews={[]}
+            market={props.market}
+            data={props.reviewsData}
+            isCard={true}
+            offers={creditCards ? creditCards : [] }
+            reviews={reviews ? reviews: []}
         />
     </React.Fragment>
 }

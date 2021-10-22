@@ -38,14 +38,14 @@ const OfferDetails = props => {
                     {offerData.amount.min} {offerData.amount.symbol} - {offerData.amount.max} {offerData.amount.symbol}
                 </span>
             </div>
-            {/*<div className="condition">*/}
-            {/*    <span>*/}
-            {/*        {props.content.term.title}*/}
-            {/*    </span>*/}
-            {/*    <span>*/}
-            {/*        {offerData.term.min} - {offerData.term.max} {props.content.term.units}*/}
-            {/*    </span>*/}
-            {/*</div>*/}
+            <div className="condition">
+                <span>
+                    {props.content.term.title}
+                </span>
+                <span>
+                    {offerData.term.min} - {offerData.term.max} {props.content.term.units}
+                </span>
+            </div>
             <div className="condition">
                 <span>
                     {props.content.rate.title}

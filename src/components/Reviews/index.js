@@ -61,7 +61,7 @@ const Reviews = props => {
                                 {({input,meta})=>(
                                     <select {...input} style={!success && meta.touched && meta.error ? {boxShadow: "0 0 5px -2px red"} : {}}>
                                         <option value={0} hidden={true}>
-                                            {props.data ? props.data.form.select_organization : ""}
+                                            {!props.isCard && props.data ? props.data.form.select_organization : "Выбрать Кредитную Карту"}
                                         </option>
                                         {props.offers.map((item,key)=>(
                                             <option key={key} value={item.id}>{item.title}</option>

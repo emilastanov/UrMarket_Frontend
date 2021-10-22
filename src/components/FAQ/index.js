@@ -20,18 +20,16 @@ const FAQ = props => {
                     <React.Fragment key={key}>
                         <div className={`question ${activeQuestion===key? 'active': ''}`} onClick={()=>{
                             showAnswer(item.answer);
-                            setActiveQuestion(key)
+                            setActiveQuestion(key);
                         }}>
                             {item.question}
                         </div>
-                        <div className={`answer_mobile ${item.answer === answer ? "active" : ""}`}>
-                            {item.answer}
-                        </div>
+                        <div className={`answer_mobile ${item.answer === answer ? "active" : ""}`} dangerouslySetInnerHTML={{__html: item.answer}}/>
                     </React.Fragment>
                 )) : ""}
             </div>
             <div className="answer" >
-                <p>{answer}</p>
+                <p dangerouslySetInnerHTML={{__html: answer}} />
             </div>
         </div>
     </div>
