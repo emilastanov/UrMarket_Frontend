@@ -61,7 +61,7 @@ export const creditCardOffersList = (market, main=false) => {
     };
 
     return axios(config);
-}
+};
 
 
 export const getCreditCardFilters = (market) => {
@@ -98,7 +98,7 @@ export const getCreditCardFilters = (market) => {
     };
 
     return axios(config);
-}
+};
 
 export const getCreditCardReviews = async (market) => {
     const data = JSON.stringify({
@@ -122,7 +122,7 @@ export const getCreditCardReviews = async (market) => {
         variables: {
             market: market
         }
-    })
+    });
 
     const config = {
         method: 'post',
@@ -134,4 +134,44 @@ export const getCreditCardReviews = async (market) => {
     };
 
     return axios(config);
-}
+};
+
+export const addCreditCardReview = (market, name, text, rating, card) => {
+    const data = JSON.stringify({
+        query: `mutation AddCreditCardReview(
+                    $name: String!
+                    $market: String!
+                    $text: String!
+                    $rating: Int!
+                    $card: Int!
+                  ){
+                      addCreditCardReview(
+                        name: $name
+                        market: $market
+                        text: $text
+                        rating: $rating
+                        card: $card
+                      ){
+                        success
+                      }
+                    }`,
+        variables: {
+            market: market,
+            name: name,
+            text: text,
+            rating: rating,
+            card: parseInt(card,10)
+        }
+    });
+
+    const config = {
+        method: 'post',
+        url: API_URL,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data : data
+    };
+
+    return axios(config);
+};

@@ -17,7 +17,7 @@ import {getMarkets} from "../AdminPanel/reducer";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
-}
+};
 
 const Main = props => {
 

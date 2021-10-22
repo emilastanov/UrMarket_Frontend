@@ -9,16 +9,24 @@ const CardOfferList = props => {
     return <div className="card_offer_list">
         <Filter header={"Сортировать:"} filters={[
             {"name": "По популярности", "filter": ()=>{
-                    console.log('CLICK')
+                    let offers = [...props.creditCards];
+                    offers = offers.sort((a,b)=>(b.rating - a.rating));
+                    props.setCreditCards(offers);
                 }},
             {"name": "По сумме", "filter": ()=>{
-                    console.log('CLICK')
+                    let offers = [...props.creditCards];
+                    offers = offers.sort((a,b)=>(b.credit_limit - a.credit_limit));
+                    props.setCreditCards(offers);
                 }},
             {"name": "По грейс периоду", "filter": ()=>{
-                    console.log('CLICK')
+                    let offers = [...props.creditCards];
+                    offers = offers.sort((a,b)=>(b.grace_period - a.grace_period));
+                    props.setCreditCards(offers);
                 }},
             {"name": "По ставке", "filter": ()=>{
-                    console.log('CLICK')
+                    let offers = [...props.creditCards];
+                    offers = offers.sort((a,b)=>(a.rate - b.rate));
+                    props.setCreditCards(offers);
                 }}
         ]}/>
         <div className="list">

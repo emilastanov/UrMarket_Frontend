@@ -15,7 +15,7 @@ const ReviewsList = props => {
                 <div key={key} className="review">
                     <h4 style={{marginBottom: 0}}>{item.name}</h4>
                     <div>
-                        <span>{item.company.title}</span>
+                        <span>{item.company ? item.company.title : item.card.title}</span>
                         <span>
                             <Star />
                         </span>

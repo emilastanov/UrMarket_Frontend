@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 import './style.css';
 
@@ -37,8 +38,8 @@ const CardOffer = props => (
             </div>
         </div>
         <div className="buttons">
-            <div className="button">Получить решение</div>
-            <div className="button inner">Подробнее</div>
+            <a className="button" target="_blank" href={props.card.link}>Получить карту</a>
+            <Link className="button inner" to={`cards/${props.card.id}`}>Подробнее</Link>
         </div>
     </div>
 );

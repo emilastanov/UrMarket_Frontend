@@ -4,13 +4,17 @@ import CardSelector from "../../components/CardSelector";
 import CardOfferList from "../../components/CardOfferList";
 import FAQ from "../../components/FAQ";
 import Reviews from "../../components/Reviews";
+import CreditCardDetails from "../CreditCardDetails";
 
 import './style.css';
 
-import {creditCardOffersList, getCreditCardFilters, getCreditCardReviews} from "./reducer";
+import {creditCardOffersList, getCreditCardFilters, getCreditCardReviews, addCreditCardReview} from "./reducer";
 import {getFAQ} from "../Main/reducer";
+import {Route, useRouteMatch} from "react-router-dom";
 
 const CreditCards = props => {
+
+    let { path } = useRouteMatch();
 
     const [creditCards, setCreditCards] = useState(null);
     const [filteredCreditCards, setFilteredCreditCards] = useState(null);
@@ -27,10 +31,10 @@ const CreditCards = props => {
     const getCreditCardList = () => {
         creditCardOffersList(props.market, true).then(response=>{
             const creditCardsData = response.data.data.listCreditCardOffers.credit_cards;
-            setCreditCards(creditCardsData.sort((a,b)=>(a.rating.min - b.rating.min)));
-            setFilteredCreditCards(creditCardsData.sort((a,b)=>(a.rating.min - b.rating.min)))
+            setCreditCards(creditCardsData.sort((a,b)=>(b.rating - a.rating)));
+            setFilteredCreditCards(creditCardsData.sort((a,b)=>(b.rating - a.rating)))
         })
-    }
+    };
 
     const getReviews = () => {
         getCreditCardReviews(props.market).then((response)=>{
@@ -38,7 +42,8 @@ const CreditCards = props => {
             setReviews(reviews)
 
         })
-    }
+    };
+
 
     const filterCreditCardOffers = () => {
         let cc = creditCards;
@@ -55,59 +60,68 @@ const CreditCards = props => {
         }
         setFilteredCreditCards(cc);
         setBadCreditCards(creditCards.filter(item=>(cc.indexOf(item) < 0)));
-    }
+    };
 
     const setCreditCardFilters = () => {
         getCreditCardFilters(props.market).then(response=>{
             const filters = response.data.data.getCreditCardFilters.filters;
             setFilters(filters);
         })
-    }
+    };
 
     const getFAQData = () => {
         getFAQ(props.market, 'cc').then(response=>{
             setFAQData(response.data.data.listFAQ.list_faq);
         })
-    }
+    };
 
     useEffect(()=>{
         getFAQData();
         getCreditCardList();
         setCreditCardFilters();
         getReviews();
-    }, [setCreditCards,setFilters])
+    }, [setCreditCards,setFilters]);
 
     return <React.Fragment>
-        <CardSelector
-            filters={filters}
-            amount={amount}
-            setAmount={setAmount}
-            period={period}
-            setPeriod={setPeriod}
-            cardType={cardType}
-            setCardType={setCardType}
-            freeService={freeService}
-            setFreeSevice={setFreeService}
-            forBusiness={forBusiness}
-            setForBusiness={setForBusiness}
-            filter={filterCreditCardOffers}
-        />
-        <CardOfferList
-            creditCards={filteredCreditCards}
-            badCreditCards={badCreditCards}
-        />
-        <FAQ
-            questions={FAQData}
-            header="Часто задаваемые вопросы"
-        />
-        <Reviews
-            updateReviews={()=>{}}
-            market={props.market}
-            data={props.reviewsData}
-            isCard={true}
-            offers={creditCards ? creditCards : [] }
-            reviews={reviews ? reviews: []}
-        />
+        <Route path={`${path}/:card`}>
+            <CreditCardDetails
+                market={props.market}
+            />
+        </Route>
+        <Route exact path={path}>
+            <CardSelector
+                filters={filters}
+                amount={amount}
+                setAmount={setAmount}
+                period={period}
+                setPeriod={setPeriod}
+                cardType={cardType}
+                setCardType={setCardType}
+                freeService={freeService}
+                setFreeSevice={setFreeService}
+                forBusiness={forBusiness}
+                setForBusiness={setForBusiness}
+                filter={filterCreditCardOffers}
+            />
+            <CardOfferList
+                creditCards={filteredCreditCards}
+                setCreditCards={setFilteredCreditCards}
+                badCreditCards={badCreditCards}
+            />
+            <FAQ
+                questions={FAQData}
+                header="Часто задаваемые вопросы"
+            />
+            <Reviews
+                updateReviews={getReviews}
+                market={props.market}
+                data={props.reviewsData}
+                isCard={true}
+                offers={creditCards ? creditCards : [] }
+                reviews={reviews ? reviews: []}
+                addReview={addCreditCardReview}
+            />
+        </Route>
     </React.Fragment>
 }
 

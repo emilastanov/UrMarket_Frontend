@@ -13,18 +13,32 @@ const Reviews = props => {
     const [success, setSuccess] = useState(null);
 
     const submitForm = (e,f) => {
-        addReview_reducer(
-            props.market,
-            e.name,
-            e.text,
-            e.rating,
-            e.company
-        ).then((response)=>{
-            setSuccess(response.data.data.addReview.success);
-            props.updateReviews();
-            f.reset();
-        })
-    }
+        if (props.addReview) {
+            props.addReview(
+                props.market,
+                e.name,
+                e.text,
+                e.rating,
+                e.company
+            ).then((response)=>{
+                setSuccess(response.data.data.addCreditCardReview.success);
+                props.updateReviews();
+                f.reset();
+            })
+        } else {
+            addReview_reducer(
+                props.market,
+                e.name,
+                e.text,
+                e.rating,
+                e.company
+            ).then((response)=>{
+                setSuccess(response.data.data.addReview.success);
+                props.updateReviews();
+                f.reset();
+            })
+        }
+    };
 
     const reviewValidator = (values) => {
         const errors = {}
