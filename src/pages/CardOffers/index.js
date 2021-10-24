@@ -48,6 +48,7 @@ const CardOffers = props => {
             uploadImg(file).then((response)=>{
                 e.logotype = response.data.out_original;
                 e.isShow = e.isShow === undefined ? false : e.isShow;
+                e.onlyIndividual = e.onlyIndividual === undefined ? false : e.onlyIndividual;
                 e.market = market;
                 addOrUpdateCreditCardOffer(
                     props.user.key,
