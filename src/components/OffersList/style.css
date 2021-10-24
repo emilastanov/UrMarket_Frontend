@@ -22,7 +22,7 @@
 
 @media screen and (max-width: 900px) {
     .offersList {
-        padding: 18px calc(var(--offset)/9);
+        padding: 12px 6px;
     }
 
     .offersList > .list {

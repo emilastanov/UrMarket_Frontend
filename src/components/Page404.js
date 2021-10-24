@@ -12,11 +12,11 @@ const Page404 = props => {
 
     useEffect(()=>{
         props.loader(false)
-    }, [props.loader])
+    }, [props.loader]);
 
     return <div className="page404" style={{"zIndex": 100, "opacity": 1}}>
         <div className="content" >
-            <img src="https://res.cloudinary.com/urmarket-online/image/upload/v1630921659/logotype.svg" alt=""/>
+            <img src="/logotype.svg" alt=""/>
             <div>
                 <h1>404</h1>
                 <p>Запрашиваемая страница не найдена!</p>

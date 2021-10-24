@@ -17,7 +17,7 @@ const InputGroup = props => (
         "width": window.innerWidth <= 900 ? "100%" : props.width? props.width: "500px",
         "height": window.innerWidth <= 900 ?
             props.children.length ?
-                50*props.children.length : 50 :
+                40*props.children.length : 40 :
             props.height ? props.height: "60px"
     }}>
         {props.children}

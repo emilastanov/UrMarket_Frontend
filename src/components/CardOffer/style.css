@@ -4,18 +4,18 @@
     box-sizing: border-box;
     padding: 32px 0 8px 48px;
     width: 100%;
-    margin: 0 auto;
     height: 290px;
     background: linear-gradient(90deg, rgba(226,217,226,0.63) 0%, rgba(234,234,234,0) 100%);
     border-radius: 8px;
-    margin-bottom: 24px;
+    margin: 0 auto 24px 0;
     border: 0.5px solid #e1e0e0;
     box-shadow: 0 0 10px -8px black;
 }
 
 .offerCard > .logotype {
     width: 285px;
-    height: 179px;
+    height: 180px;
+    background-repeat: no-repeat;
     border-radius: 16px;
     box-shadow: -2px 2px 7px -2px black;
     background-size: contain;

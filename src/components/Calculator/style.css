@@ -34,7 +34,7 @@
     .calculator {
         box-sizing: border-box;
         background: linear-gradient(90deg, var(--back) 0%, var(--detail) 100%);
-        padding: 16px calc(var(--offset)/9) 8px calc(var(--offset)/9);
+        padding: 16px calc(var(--offset)/9) 0 calc(var(--offset)/9);
     }
 
     .calculator > h1 {
@@ -48,6 +48,6 @@
         width: 100%;
         color: white;
         margin: 8px 0;
-        font-size: 14px;
+        font-size: 12px;
     }
 }

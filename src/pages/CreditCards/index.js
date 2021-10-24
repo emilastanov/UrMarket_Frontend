@@ -112,16 +112,16 @@ const CreditCards = props => {
                 questions={FAQData}
                 header="Часто задаваемые вопросы"
             />
-            <Reviews
-                updateReviews={getReviews}
-                market={props.market}
-                data={props.reviewsData}
-                isCard={true}
-                offers={creditCards ? creditCards : [] }
-                reviews={reviews ? reviews: []}
-                addReview={addCreditCardReview}
-            />
         </Route>
+        <Reviews
+            updateReviews={getReviews}
+            market={props.market}
+            data={props.reviewsData}
+            isCard={true}
+            offers={creditCards ? creditCards : [] }
+            reviews={reviews ? reviews: []}
+            addReview={addCreditCardReview}
+        />
     </React.Fragment>
 }
 

@@ -99,6 +99,7 @@
         display: none;
         padding: 18px;
         font-style: italic;
+        font-size: 14px;
         border-bottom: 1px solid #dfdfdf;
     }
     .FAQ > .body > .questions > .answer_mobile.active {

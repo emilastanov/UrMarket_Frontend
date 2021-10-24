@@ -51,6 +51,7 @@ select{
 :root {
     --offset: 144px;
     --back: #3C2679;
+    --back_opacity50: rgba(60, 38, 121, 0.5);
     --detail: #ED7938;
 }
 body {

@@ -241,7 +241,7 @@
     .offer > .wrapper > div:first-child > span:last-child {
         font-family: "Ubuntu", sans-serif;
         color: #212121;
-        font-size: 18px;
+        font-size: 16px;
         font-style: normal;
     }
 
@@ -294,7 +294,7 @@
         box-sizing: border-box;
         margin: 0 auto 0 auto;
         font-style: italic;
-        font-size: 17px;
+        font-size: 15px;
         color: white;
         display: flex;
         align-items: center;
@@ -428,7 +428,7 @@
         justify-content: center;
         margin: 16px 0;
         cursor: pointer;
-        font-size: 16px;
+        font-size: 14px;
         font-style: italic;
         z-index: 3;
     }
@@ -474,7 +474,7 @@
         left: 16px;
         bottom: 27%;
         z-index: 6;
-        font-size: 16px;
+        font-size: 14px;
         transition: 300ms;
         color: gray;
         cursor: pointer;
@@ -482,7 +482,7 @@
 
     .input > input {
         width: 100%;
-        font-size: 16px;
+        font-size: 14px;
         transition: 400ms;
         opacity: 0;
         padding: 16px;
@@ -502,8 +502,10 @@
     }
 
     .ads > img {
+        position: relative;
+        left: 8px;
         max-height: 68px;
-        margin: 6px 0 0 2%;
+        height: 120px;
     }
 
     .ads > p {

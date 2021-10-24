@@ -18,7 +18,7 @@ const CardOffers = props => {
         creditCardOffersList(market).then(res=>{
             setCardOffers(res.data.data.listCreditCardOffers.credit_cards.sort((a,b)=>(a.id-b.id)));
         })
-    }
+    };
 
     const addOrUpdateCardOffer = (e,f) => {
         if (showEditForm) {
@@ -31,7 +31,7 @@ const CardOffers = props => {
                         showEditForm
                     ).then(resp=>{
                         getCardOfferList();
-                        f.reset();
+                        // f.reset();
                     })
                 })
             } else {
@@ -41,48 +41,48 @@ const CardOffers = props => {
                     showEditForm
                 ).then(resp=>{
                     getCardOfferList();
-                    f.reset();
+                    // f.reset();
                 })
             }
         } else {
             uploadImg(file).then((response)=>{
                 e.logotype = response.data.out_original;
                 e.isShow = e.isShow === undefined ? false : e.isShow;
-                e.market = market
+                e.market = market;
                 addOrUpdateCreditCardOffer(
                     props.user.key,
                     e,
                     showEditForm
                 ).then(resp=>{
                     getCardOfferList();
-                    f.reset();
+                    // f.reset();
                 })
             })
         }
-    }
+    };
 
     const removeCardOffer = (id) => {
         removeCreditCardOffer(props.user.key, id).then((response)=>{
             getCardOfferList()
         })
-    }
+    };
 
     const switchCardOffer = (id,state) => {
         cardOfferSwitcher(props.user.key, id, state).then((response)=>{
             getCardOfferList()
         })
-    }
+    };
 
     useEffect(()=>{
-        getCardOfferList()
+        getCardOfferList();
         console.log(file);
 
-    }, setCardOffers)
+    }, setCardOffers);
 
     const switchToEditForm = (id) => {
         setEditForm(true);
         setEditOffer(cardOffers.filter((item)=>(item.id === id))[0]);
-    }
+    };
 
     return <div className="content p-5">
         <div className="row">
