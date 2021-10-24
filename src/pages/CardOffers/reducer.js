@@ -41,7 +41,7 @@ export const addOrUpdateCreditCardOffer = async (key, values, edit) => {
             $link: String!
             $description: String!
             $gracePeriod: Int!
-            $rate: Float!
+            $rate: String!
             $servicePayment: Int!
             $creditLimit: Int!
             $creditDocs: String!
@@ -96,7 +96,7 @@ export const addOrUpdateCreditCardOffer = async (key, values, edit) => {
             link: values.link,
             description: values.description,
             gracePeriod: parseInt(values.gracePeriod, 10),
-            rate: parseFloat(values.rate),
+            rate: values.rate,
             servicePayment: parseInt(values.servicePayment, 10),
             creditLimit: parseInt(values.creditLimit,10),
             creditDocs: values.creditDocs,
