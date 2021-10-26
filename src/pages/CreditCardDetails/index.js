@@ -54,15 +54,6 @@ const CreditCardDetails = props => {
                         </ul>
                     </div>
                     <div className="requirement">
-                        <h2 className="title">Кешбэк</h2>
-                        <ul className="condition">
-                            <li>
-                                До 10%
-                                <span>Кешбек начисляется бонусами, которые можно тратить в магазинах партнеров.</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div className="requirement">
                         <h2 className="title">Льготный период</h2>
                         <ul className="condition">
                             <li>
@@ -75,7 +66,7 @@ const CreditCardDetails = props => {
                         <h2 className="title">Ставка по истечению льготного периода</h2>
                         <ul className="condition">
                             <li>
-                                От {creditCard && creditCard.rate}% в год
+                                {creditCard && creditCard.rate}
                             </li>
                         </ul>
                     </div>

@@ -21,19 +21,19 @@ const CardOffer = props => (
             </div>
             <div className="condition">
                 <span>Обслуживание</span>
-                <span>{props.card.service_payment === 0 ? "Беслпатно" : `${props.card.service_payment} ${props.card.amount_symbol}/год`}</span>
+                <span>{props.card.service_payment === 0 ? "Бесплатно" : `${props.card.service_payment} ${props.card.amount_symbol}/год`}</span>
             </div>
             <div className="condition">
                 <span>Ставка</span>
-                <span>от {props.card.rate}%</span>
+                <span>{props.card.rate}</span>
                 <span>* После окончания грейс периода</span>
             </div>
-            <div className="condition">
+            {props.card.salary.minimum_salary?<div className="condition">
                 <span>Мин. заработная плата</span>
                 <span>{props.card.salary.minimum_salary} {props.card.amount_symbol}</span>
-            </div>
+            </div>:""}
             <div className="condition">
-                <span>Коммиссия на снятие</span>
+                <span>Снятие наличных</span>
                 <span>{props.card.cash_withdrawal}</span>
             </div>
         </div>

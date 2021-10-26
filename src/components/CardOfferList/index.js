@@ -18,14 +18,9 @@ const CardOfferList = props => {
                     offers = offers.sort((a,b)=>(b.credit_limit - a.credit_limit));
                     props.setCreditCards(offers);
                 }},
-            {"name": "По грейс периоду", "filter": ()=>{
+            {"name": "По льготному периоду", "filter": ()=>{
                     let offers = [...props.creditCards];
                     offers = offers.sort((a,b)=>(b.grace_period - a.grace_period));
-                    props.setCreditCards(offers);
-                }},
-            {"name": "По ставке", "filter": ()=>{
-                    let offers = [...props.creditCards];
-                    offers = offers.sort((a,b)=>(a.rate - b.rate));
                     props.setCreditCards(offers);
                 }}
         ]}/>

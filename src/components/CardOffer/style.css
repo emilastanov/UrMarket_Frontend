@@ -18,7 +18,7 @@
     background-repeat: no-repeat;
     border-radius: 16px;
     box-shadow: -2px 2px 7px -2px black;
-    background-size: contain;
+    background-size: 100% 100%;
     position: absolute;
     right: 48px;
     top: 0;

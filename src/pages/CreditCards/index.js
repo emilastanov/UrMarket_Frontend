@@ -98,7 +98,7 @@ const CreditCards = props => {
                 cardType={cardType}
                 setCardType={setCardType}
                 freeService={freeService}
-                setFreeSevice={setFreeService}
+                setFreeService={setFreeService}
                 forBusiness={forBusiness}
                 setForBusiness={setForBusiness}
                 filter={filterCreditCardOffers}

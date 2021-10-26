@@ -32,7 +32,7 @@ const CardSelector = props => {
             <Slider
                 value={props.period}
                 onChange={props.setPeriod}
-                title="Грейс период"
+                title="Льготный период"
                 min={props.filters && props.filters.grace_period.min}
                 max={props.filters && props.filters.grace_period.max}
                 step={5}

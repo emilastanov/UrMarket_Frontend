@@ -38,8 +38,8 @@
     text-decoration: none;
     color: white;
     background: var(--back);
-    width: 125px;
-    height: 32px;
+    width: 150px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -63,6 +63,10 @@
     font-weight: bold;
 }
 
+.credit_card_offer > .header > .credit_card > .logotype > img {
+    width: 100%;
+    height: 100%;
+}
 .credit_card_offer > .header > .credit_card > .logotype {
     position: absolute;
     width: 285px;
@@ -82,7 +86,7 @@
 }
 .credit_card_offer > .requirements_wrapper > .requirements_card > .requirements > .requirement{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
     padding: 16px 48px;
     box-sizing: border-box;
 }
@@ -96,6 +100,7 @@
 .credit_card_offer > .requirements_wrapper > .requirements_card > .requirements > .requirement > .condition {
     font-family: OpenSans, sans-serif;
     color: #434242;
+    margin: 0;
     font-size: 14px;
 }
 .credit_card_offer > .requirements_wrapper > .requirements_card > .requirements > .requirement > .condition > li {
@@ -107,7 +112,7 @@
     color: #828282;
 }
 .credit_card_offer > .requirements_wrapper > .requirements_card > .requirements > .requirement > .condition >li::marker {
-    color: var(--detail);
+    color: var(--detail)
 }
 .credit_card_offer > .requirements_wrapper > .requirements_card > .requirements{
     width: 100%;
@@ -129,4 +134,8 @@
     border: 1px solid #efefef;
     box-shadow: 0 0 10px -8px grey;
     position: relative;
+}
+
+.credit_card_offer > .requirements_wrapper > .requirements_card > .requirements > .requirement:nth-child(2n+1){
+    background: #eaeaea;
 }
