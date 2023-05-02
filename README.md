@@ -1,71 +1,167 @@
-# Getting Started with Create React App
+#UrMarket (архив)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Наш проект представляет собой инновационный агрегатор микрофинансовых организаций (МФО) с удобной панелью администратора. Мы собираем информацию о различных МФО и их предложениях, чтобы предоставить пользователям удобный доступ к информации о микрозаймах, кредитах и других финансовых услугах. Наша платформа также предоставляет управляющим МФО возможность добавлять и обновлять свои предложения, что позволяет им достичь широкой аудитории потенциальных клиентов. Мы стремимся улучшить процесс выбора и сравнения МФО, обеспечивая прозрачность и удобство для пользователей, а также создавая возможности для МФО привлекать новых клиентов и расширять свой бизнес.
 
-## Available Scripts
 
-In the project directory, you can run:
+# React Project Changelog
 
-### `yarn start`
+## Sep 20, 2021
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Added metrics
+- Added 404 page
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Sep 19, 2021
 
-### `yarn test`
+- Optimized AdminPanel loading
+- Optimized Fonts
+- Optimized Bootstrap
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Sep 17, 2021
 
-### `yarn build`
+- Fixed bugs
+- Added scroll
+- Added admin panel
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Sep 15, 2021
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Hot fix
+- Fixed bugs
+- Added logic in calculator and filter
+- Added form for FAQ
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Sep 14, 2021
 
-### `yarn eject`
+- Added style sheets
+- Checkout to BrowserRouter
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Sep 10, 2021
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Fixed bugs
+- Added admin panel
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Sep 8, 2021
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Integrated backend
 
-## Learn More
+## Sep 7, 2021
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Added footer
+- Added reviews list component
+- Added review form
+- Added template of review component
+- Added FAQ
+- Added Filter, OffersList, TopTable
+- Added calculator
+- Added header. Created components: Button, InputGroup
+- Initialized project using Create React App
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Sep 30, 2021
 
-### Code Splitting
+- Removed vk and facebook pixels
+- Added arrow to location selector
+- Updated dialog window
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Sep 29, 2021
 
-### Analyzing the Bundle Size
+- Removed all console.log
+- Added detail page and location selector
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Sep 27, 2021
 
-### Making a Progressive Web App
+- Added vk pixel
+- Added facebook pixel
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Sep 26, 2021
 
-### Advanced Configuration
+- Removed unused component
+- Added offer details desktop version
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Sep 22, 2021
 
-### Deployment
+- Added offer details page
+- Showed markets on 404 page
+- Hide language changer in ru version
+- Bug fixed
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Sep 21, 2021
 
-### `yarn build` fails to minify
+- Bug fixed
+- Added offer edit form
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-#UrMarket_Frontend
+## Sep 20, 2021
+
+- Added tap menu
+- Created dev branch
+
+## Oct 12, 2021
+
+- Added new design
+- Added card offer selector component
+- Added card offer component
+- Changed color for loader page
+- Added credit cards page frame
+- Updated color schema
+- Updated menu for desktop version
+
+## Oct 11, 2021
+
+- Added card offer selector component
+
+## Oct 10, 2021
+
+- Added card offer component
+
+## Oct 8, 2021
+
+- Showed term elements
+- Changed color for loader page
+
+## Oct 6, 2021
+
+- Added credit cards page frame
+
+## Oct 5, 2021
+
+- Removed modifications
+- Added rate per year
+
+## Oct 4, 2021
+
+- Change rate
+- Updated color schema
+
+## Oct 1, 2021
+
+- Disabled term from detail page
+- Bug fixed
+- Removed unused component
+- Disabled term
+- Updated menu for desktop version
+- Switch on metrics
+
+## Sep 30, 2021
+
+- Removed vk and facebook pixels
+- Fixed topTable
+
+## Sep 26, 2021
+
+- Removed unused component
+- Added offer details desktop version
+
+## Sep 22, 2021
+
+- Added offer details page
+- Showed markets on 404 page
+- Hide language changer in ru version
+- Bug fixed
+
+## Sep 21, 2021
+
+- Bug fixed
+- Added offer edit form
+
+## Sep 20, 2021
+
+- Added tap menu
+- Created dev branch
